@@ -1,0 +1,18 @@
+{
+  "problem_type": "regression",
+  "target": "569",
+  "features_used": [
+    "30",
+    "malignant",
+    "benign"
+  ],
+  "metrics": {
+    "r2": 0.704,
+    "rmse": 0.038
+  },
+  "features": {
+    "malignant": 0.9266,
+    "30": 0.1059,
+    "benign": 0.0891
+  }
+}

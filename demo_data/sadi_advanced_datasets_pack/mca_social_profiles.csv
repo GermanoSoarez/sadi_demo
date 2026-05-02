@@ -1,0 +1,201 @@
+city,education_level,employment_type,life_satisfaction,owns_house
+Asuncion,university,unemployed,low,yes
+Asuncion,university,unemployed,medium,yes
+Encarnacion,technical,unemployed,low,yes
+Asuncion,secondary,employee,medium,no
+Pedro Juan,secondary,student,high,yes
+Encarnacion,postgraduate,self_employed,high,no
+Asuncion,university,unemployed,low,no
+Ciudad del Este,technical,student,medium,no
+Asuncion,technical,employee,medium,no
+Asuncion,technical,self_employed,low,no
+Asuncion,technical,unemployed,medium,yes
+Encarnacion,technical,employee,low,yes
+Pedro Juan,secondary,employee,medium,yes
+Ciudad del Este,secondary,self_employed,low,yes
+Asuncion,secondary,student,medium,no
+Pedro Juan,university,unemployed,low,yes
+Pedro Juan,postgraduate,unemployed,medium,no
+Encarnacion,technical,student,high,no
+Ciudad del Este,university,student,medium,yes
+Encarnacion,technical,student,low,yes
+Pedro Juan,secondary,self_employed,high,yes
+Pedro Juan,university,self_employed,medium,yes
+Pedro Juan,secondary,unemployed,high,no
+Encarnacion,technical,self_employed,medium,no
+Ciudad del Este,technical,employee,high,yes
+Asuncion,postgraduate,unemployed,low,no
+Encarnacion,technical,self_employed,medium,no
+Pedro Juan,secondary,student,medium,no
+Encarnacion,technical,employee,low,yes
+Pedro Juan,postgraduate,student,high,no
+Asuncion,postgraduate,unemployed,low,yes
+Asuncion,secondary,student,low,yes
+Ciudad del Este,university,self_employed,high,no
+Pedro Juan,technical,self_employed,low,no
+Ciudad del Este,postgraduate,unemployed,medium,yes
+Ciudad del Este,technical,student,medium,no
+Asuncion,technical,unemployed,medium,no
+Encarnacion,university,student,low,yes
+Encarnacion,postgraduate,employee,medium,yes
+Ciudad del Este,technical,self_employed,medium,yes
+Asuncion,postgraduate,unemployed,medium,yes
+Pedro Juan,secondary,employee,medium,no
+Encarnacion,secondary,employee,medium,no
+Ciudad del Este,technical,unemployed,medium,yes
+Encarnacion,postgraduate,unemployed,low,yes
+Encarnacion,technical,employee,medium,yes
+Pedro Juan,postgraduate,student,medium,no
+Asuncion,postgraduate,employee,high,yes
+Pedro Juan,university,unemployed,low,no
+Asuncion,university,employee,low,yes
+Encarnacion,university,student,low,yes
+Ciudad del Este,technical,self_employed,low,yes
+Pedro Juan,university,self_employed,medium,no
+Asuncion,university,employee,medium,no
+Encarnacion,secondary,student,high,no
+Asuncion,postgraduate,self_employed,high,yes
+Asuncion,postgraduate,employee,low,no
+Asuncion,university,employee,high,no
+Encarnacion,postgraduate,student,high,yes
+Ciudad del Este,secondary,unemployed,low,yes
+Ciudad del Este,secondary,employee,low,no
+Ciudad del Este,university,unemployed,high,no
+Asuncion,secondary,unemployed,medium,no
+Encarnacion,postgraduate,self_employed,high,no
+Asuncion,technical,unemployed,high,yes
+Ciudad del Este,postgraduate,student,medium,yes
+Ciudad del Este,technical,self_employed,medium,yes
+Encarnacion,university,self_employed,low,no
+Asuncion,technical,self_employed,low,no
+Pedro Juan,secondary,employee,high,yes
+Pedro Juan,postgraduate,employee,medium,yes
+Ciudad del Este,technical,unemployed,low,no
+Encarnacion,postgraduate,self_employed,high,no
+Asuncion,university,self_employed,medium,yes
+Asuncion,university,student,high,yes
+Ciudad del Este,secondary,unemployed,low,yes
+Ciudad del Este,university,student,low,no
+Asuncion,technical,unemployed,medium,no
+Asuncion,university,unemployed,high,no
+Ciudad del Este,secondary,employee,medium,no
+Asuncion,postgraduate,employee,low,no
+Pedro Juan,postgraduate,student,low,no
+Ciudad del Este,university,unemployed,high,yes
+Asuncion,technical,self_employed,high,yes
+Ciudad del Este,secondary,employee,high,no
+Encarnacion,technical,self_employed,medium,yes
+Ciudad del Este,secondary,student,high,no
+Ciudad del Este,university,employee,high,yes
+Encarnacion,secondary,employee,low,no
+Pedro Juan,secondary,unemployed,low,yes
+Asuncion,university,student,high,yes
+Encarnacion,technical,unemployed,high,no
+Ciudad del Este,university,employee,low,no
+Asuncion,secondary,student,high,yes
+Encarnacion,university,employee,medium,yes
+Asuncion,secondary,student,medium,no
+Asuncion,university,employee,medium,yes
+Encarnacion,postgraduate,self_employed,high,no
+Asuncion,postgraduate,self_employed,low,no
+Pedro Juan,university,unemployed,high,yes
+Encarnacion,technical,self_employed,high,no
+Pedro Juan,secondary,employee,low,yes
+Ciudad del Este,postgraduate,employee,low,yes
+Asuncion,technical,self_employed,low,no
+Ciudad del Este,secondary,unemployed,medium,yes
+Ciudad del Este,postgraduate,self_employed,high,no
+Asuncion,postgraduate,student,low,no
+Encarnacion,university,student,high,no
+Asuncion,secondary,student,medium,yes
+Ciudad del Este,technical,self_employed,medium,no
+Ciudad del Este,technical,self_employed,low,yes
+Encarnacion,technical,self_employed,low,no
+Asuncion,secondary,student,high,no
+Ciudad del Este,technical,unemployed,low,no
+Pedro Juan,technical,employee,high,yes
+Ciudad del Este,technical,self_employed,low,yes
+Ciudad del Este,university,unemployed,high,no
+Encarnacion,university,employee,high,no
+Pedro Juan,secondary,employee,high,yes
+Ciudad del Este,secondary,employee,high,yes
+Ciudad del Este,technical,unemployed,medium,yes
+Pedro Juan,university,unemployed,high,no
+Asuncion,postgraduate,student,low,yes
+Asuncion,postgraduate,unemployed,medium,no
+Ciudad del Este,technical,unemployed,medium,yes
+Ciudad del Este,technical,unemployed,high,no
+Asuncion,university,employee,medium,no
+Encarnacion,university,self_employed,high,no
+Pedro Juan,university,student,low,yes
+Pedro Juan,secondary,self_employed,high,yes
+Encarnacion,secondary,self_employed,medium,yes
+Encarnacion,technical,unemployed,low,no
+Encarnacion,secondary,student,high,no
+Encarnacion,university,self_employed,low,yes
+Encarnacion,university,self_employed,low,no
+Encarnacion,secondary,student,medium,no
+Pedro Juan,postgraduate,unemployed,low,no
+Encarnacion,technical,self_employed,medium,yes
+Asuncion,postgraduate,employee,low,no
+Encarnacion,technical,self_employed,high,yes
+Encarnacion,postgraduate,employee,low,yes
+Pedro Juan,secondary,unemployed,high,yes
+Pedro Juan,technical,self_employed,high,yes
+Encarnacion,technical,student,low,yes
+Pedro Juan,technical,student,high,no
+Ciudad del Este,university,self_employed,low,yes
+Pedro Juan,university,unemployed,low,yes
+Pedro Juan,postgraduate,unemployed,high,yes
+Pedro Juan,secondary,student,high,no
+Pedro Juan,university,self_employed,medium,no
+Asuncion,technical,unemployed,high,no
+Asuncion,university,student,medium,no
+Asuncion,secondary,employee,high,yes
+Encarnacion,university,self_employed,low,yes
+Encarnacion,technical,employee,high,no
+Ciudad del Este,postgraduate,employee,low,no
+Asuncion,technical,unemployed,low,no
+Encarnacion,secondary,unemployed,low,no
+Pedro Juan,postgraduate,unemployed,medium,yes
+Pedro Juan,university,self_employed,high,no
+Asuncion,university,employee,low,no
+Ciudad del Este,university,self_employed,low,no
+Ciudad del Este,postgraduate,unemployed,medium,no
+Pedro Juan,technical,employee,high,no
+Ciudad del Este,postgraduate,self_employed,high,no
+Asuncion,postgraduate,self_employed,medium,no
+Pedro Juan,secondary,student,medium,yes
+Encarnacion,postgraduate,self_employed,high,yes
+Encarnacion,university,unemployed,medium,yes
+Ciudad del Este,technical,self_employed,high,yes
+Pedro Juan,technical,employee,high,yes
+Pedro Juan,technical,self_employed,low,yes
+Encarnacion,university,student,low,no
+Pedro Juan,university,employee,high,no
+Pedro Juan,university,employee,high,yes
+Pedro Juan,university,student,high,no
+Ciudad del Este,university,unemployed,high,yes
+Pedro Juan,postgraduate,employee,high,no
+Asuncion,university,unemployed,high,no
+Ciudad del Este,university,employee,medium,no
+Pedro Juan,university,employee,high,no
+Pedro Juan,university,unemployed,medium,no
+Asuncion,technical,employee,medium,no
+Ciudad del Este,university,unemployed,high,yes
+Encarnacion,postgraduate,student,high,yes
+Encarnacion,postgraduate,unemployed,medium,no
+Ciudad del Este,postgraduate,student,medium,yes
+Pedro Juan,secondary,employee,high,no
+Pedro Juan,technical,unemployed,high,yes
+Encarnacion,university,employee,medium,no
+Encarnacion,secondary,unemployed,medium,yes
+Encarnacion,university,student,medium,no
+Asuncion,secondary,student,low,yes
+Encarnacion,secondary,unemployed,medium,no
+Asuncion,postgraduate,student,low,yes
+Ciudad del Este,postgraduate,employee,high,no
+Pedro Juan,secondary,employee,high,no
+Encarnacion,postgraduate,self_employed,medium,no
+Pedro Juan,secondary,student,high,yes
+Pedro Juan,technical,employee,high,yes

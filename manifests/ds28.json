@@ -1,0 +1,1513 @@
+{
+  "plots": [
+    "plots/ds28_cronbach.png",
+    "plots/ds28_likert_summary_scores.png",
+    "plots/ds28_likert_divergent.png",
+    "plots/ds28_dimension_summary_scores.png",
+    "plots/ds28_dimension_radar.png",
+    "ds28_likert_summary_scores.png",
+    "ds28_cronbach.png",
+    "ds28_dimension_summary_scores.png",
+    "ds28_dimension_radar.png",
+    "ds28_likert_divergent.png"
+  ],
+  "meta": {
+    "dataset_id": 28,
+    "dataset_title": "Likert 7",
+    "research_area": "educacion",
+    "dataset_type": "survey_likert_7",
+    "n": 200,
+    "n_total": 200,
+    "scale": 7,
+    "likert_scale": 7,
+    "columns": [
+      "claridad_clases",
+      "organizacion_programa",
+      "disponibilidad_docentes",
+      "uso_tecnologia",
+      "relevancia_contenidos",
+      "evaluacion_aprendizaje",
+      "infraestructura_aulas",
+      "satisfaccion_general"
+    ],
+    "likert_cols": [
+      "claridad_clases",
+      "organizacion_programa",
+      "disponibilidad_docentes",
+      "uso_tecnologia",
+      "relevancia_contenidos",
+      "evaluacion_aprendizaje",
+      "infraestructura_aulas",
+      "satisfaccion_general"
+    ],
+    "likert_columns": [
+      "claridad_clases",
+      "organizacion_programa",
+      "disponibilidad_docentes",
+      "uso_tecnologia",
+      "relevancia_contenidos",
+      "evaluacion_aprendizaje",
+      "infraestructura_aulas",
+      "satisfaccion_general"
+    ],
+    "usable_items": [
+      "claridad_clases",
+      "organizacion_programa",
+      "disponibilidad_docentes",
+      "uso_tecnologia",
+      "relevancia_contenidos",
+      "evaluacion_aprendizaje",
+      "infraestructura_aulas",
+      "satisfaccion_general"
+    ],
+    "n_items": 8,
+    "n_dimensions": 8,
+    "response_rate": 1.0,
+    "global_mean": 5.033125,
+    "trend": "intermedia",
+    "means_by_item": {
+      "relevancia_contenidos": 5.245,
+      "disponibilidad_docentes": 5.195,
+      "claridad_clases": 5.175,
+      "organizacion_programa": 5.075,
+      "satisfaccion_general": 5.01,
+      "evaluacion_aprendizaje": 4.965,
+      "uso_tecnologia": 4.85,
+      "infraestructura_aulas": 4.75
+    },
+    "item_stats": [
+      {
+        "item": "claridad_clases",
+        "mean": 5.175,
+        "median": 5.0,
+        "std": 1.136146621580438,
+        "n_valid": 200
+      },
+      {
+        "item": "organizacion_programa",
+        "mean": 5.075,
+        "median": 5.0,
+        "std": 1.1731394978462857,
+        "n_valid": 200
+      },
+      {
+        "item": "disponibilidad_docentes",
+        "mean": 5.195,
+        "median": 5.0,
+        "std": 1.0642547584835005,
+        "n_valid": 200
+      },
+      {
+        "item": "uso_tecnologia",
+        "mean": 4.85,
+        "median": 5.0,
+        "std": 1.1977785132628533,
+        "n_valid": 200
+      },
+      {
+        "item": "relevancia_contenidos",
+        "mean": 5.245,
+        "median": 5.0,
+        "std": 1.077394493429571,
+        "n_valid": 200
+      },
+      {
+        "item": "evaluacion_aprendizaje",
+        "mean": 4.965,
+        "median": 5.0,
+        "std": 1.1750227197632388,
+        "n_valid": 200
+      },
+      {
+        "item": "infraestructura_aulas",
+        "mean": 4.75,
+        "median": 5.0,
+        "std": 1.3176421762081743,
+        "n_valid": 200
+      },
+      {
+        "item": "satisfaccion_general",
+        "mean": 5.01,
+        "median": 5.0,
+        "std": 0.7297690141889772,
+        "n_valid": 200
+      }
+    ],
+    "cronbach_alpha": 0.6986711502850569,
+    "cronbach_label": "Cuestionable",
+    "cronbach_text": "El alfa de Cronbach global fue 0.6987 (Cuestionable).",
+    "reliability_level": "débil",
+    "top_item": "relevancia_contenidos",
+    "top_mean": 5.245,
+    "low_item": "infraestructura_aulas",
+    "low_mean": 4.75,
+    "alpha_if_deleted": [],
+    "dimension_alpha": [],
+    "dimension_summary": [
+      {
+        "dimension": "relevancia",
+        "n_items": 1,
+        "items": [
+          "relevancia_contenidos"
+        ],
+        "mean": 5.245,
+        "std": 1.077394493429571,
+        "item_means": {
+          "relevancia_contenidos": 5.245
+        }
+      },
+      {
+        "dimension": "disponibilidad",
+        "n_items": 1,
+        "items": [
+          "disponibilidad_docentes"
+        ],
+        "mean": 5.195,
+        "std": 1.0642547584835005,
+        "item_means": {
+          "disponibilidad_docentes": 5.195
+        }
+      },
+      {
+        "dimension": "claridad",
+        "n_items": 1,
+        "items": [
+          "claridad_clases"
+        ],
+        "mean": 5.175,
+        "std": 1.136146621580438,
+        "item_means": {
+          "claridad_clases": 5.175
+        }
+      },
+      {
+        "dimension": "organizacion",
+        "n_items": 1,
+        "items": [
+          "organizacion_programa"
+        ],
+        "mean": 5.075,
+        "std": 1.1731394978462857,
+        "item_means": {
+          "organizacion_programa": 5.075
+        }
+      },
+      {
+        "dimension": "satisfaccion",
+        "n_items": 1,
+        "items": [
+          "satisfaccion_general"
+        ],
+        "mean": 5.01,
+        "std": 0.7297690141889772,
+        "item_means": {
+          "satisfaccion_general": 5.01
+        }
+      },
+      {
+        "dimension": "evaluacion",
+        "n_items": 1,
+        "items": [
+          "evaluacion_aprendizaje"
+        ],
+        "mean": 4.965,
+        "std": 1.1750227197632388,
+        "item_means": {
+          "evaluacion_aprendizaje": 4.965
+        }
+      },
+      {
+        "dimension": "uso",
+        "n_items": 1,
+        "items": [
+          "uso_tecnologia"
+        ],
+        "mean": 4.85,
+        "std": 1.1977785132628533,
+        "item_means": {
+          "uso_tecnologia": 4.85
+        }
+      },
+      {
+        "dimension": "infraestructura",
+        "n_items": 1,
+        "items": [
+          "infraestructura_aulas"
+        ],
+        "mean": 4.75,
+        "std": 1.3176421762081743,
+        "item_means": {
+          "infraestructura_aulas": 4.75
+        }
+      }
+    ],
+    "dimension_ranking": [
+      {
+        "dimension": "relevancia",
+        "n_items": 1,
+        "items": [
+          "relevancia_contenidos"
+        ],
+        "mean": 5.245,
+        "std": 1.077394493429571,
+        "item_means": {
+          "relevancia_contenidos": 5.245
+        }
+      },
+      {
+        "dimension": "disponibilidad",
+        "n_items": 1,
+        "items": [
+          "disponibilidad_docentes"
+        ],
+        "mean": 5.195,
+        "std": 1.0642547584835005,
+        "item_means": {
+          "disponibilidad_docentes": 5.195
+        }
+      },
+      {
+        "dimension": "claridad",
+        "n_items": 1,
+        "items": [
+          "claridad_clases"
+        ],
+        "mean": 5.175,
+        "std": 1.136146621580438,
+        "item_means": {
+          "claridad_clases": 5.175
+        }
+      },
+      {
+        "dimension": "organizacion",
+        "n_items": 1,
+        "items": [
+          "organizacion_programa"
+        ],
+        "mean": 5.075,
+        "std": 1.1731394978462857,
+        "item_means": {
+          "organizacion_programa": 5.075
+        }
+      },
+      {
+        "dimension": "satisfaccion",
+        "n_items": 1,
+        "items": [
+          "satisfaccion_general"
+        ],
+        "mean": 5.01,
+        "std": 0.7297690141889772,
+        "item_means": {
+          "satisfaccion_general": 5.01
+        }
+      },
+      {
+        "dimension": "evaluacion",
+        "n_items": 1,
+        "items": [
+          "evaluacion_aprendizaje"
+        ],
+        "mean": 4.965,
+        "std": 1.1750227197632388,
+        "item_means": {
+          "evaluacion_aprendizaje": 4.965
+        }
+      },
+      {
+        "dimension": "uso",
+        "n_items": 1,
+        "items": [
+          "uso_tecnologia"
+        ],
+        "mean": 4.85,
+        "std": 1.1977785132628533,
+        "item_means": {
+          "uso_tecnologia": 4.85
+        }
+      },
+      {
+        "dimension": "infraestructura",
+        "n_items": 1,
+        "items": [
+          "infraestructura_aulas"
+        ],
+        "mean": 4.75,
+        "std": 1.3176421762081743,
+        "item_means": {
+          "infraestructura_aulas": 4.75
+        }
+      }
+    ],
+    "strong_dimensions": [
+      "relevancia",
+      "disponibilidad"
+    ],
+    "weak_dimensions": [
+      "uso",
+      "infraestructura"
+    ],
+    "results_text": "El dataset analizado presenta 200 registros y 8 variables. En su estructura se identifican 8 variables numéricas, 0 categóricas y 0 temporales. No se observaron valores faltantes globales, lo que constituye una base favorable para el análisis. Desde la perspectiva analítica, el enfoque sugerido por SADI es: educativo Las variables más dispersas podrían explicar buena parte de la variabilidad observada. SADI detectó como posible variable objetivo 'infraestructura_aulas', dentro de un contexto de regression.",
+    "survey_insights": "El dataset contiene 200 filas y 8 columnas, lo que permite un análisis exploratorio inicial consistente.\nSe detectaron 8 variables numéricas, adecuadas para análisis descriptivo, correlacional y eventualmente predictivo.\nNo se detectaron valores faltantes a nivel global, lo que favorece análisis más directos y limpios.\nLa variable 'infraestructura_aulas' destaca como la más relevante en términos de variabilidad y calidad de datos.\nLa variable 'infraestructura_aulas' presenta la mayor variabilidad observada en el dataset.\nLa variable 'infraestructura_aulas' podría utilizarse como objetivo en un modelo de regresión.\nLa variable con mayor dispersión observada fue 'infraestructura_aulas'.\nEl dataset presenta una estructura general que permite comenzar con análisis exploratorio, visualizaciones y detección de patrones.\nEl área de investigación declarada es 'educacion', por lo que SADI puede orientar mejor las recomendaciones metodológicas.\nEl instrumento presentó un alfa de Cronbach de 0.6987, lo que indica una consistencia interna cuestionable.\nEn términos metodológicos, la confiabilidad global del instrumento puede calificarse como débil.\nLa media global del instrumento fue de 5.033, lo que resume una tendencia general intermedia en las respuestas.\nLas respuestas muestran un comportamiento relativamente equilibrado, sin polarización extrema.\nEl ítem con valoración media más alta fue 'relevancia_contenidos' con un promedio de 5.245.\nEl ítem con valoración media más baja fue 'infraestructura_aulas' con un promedio de 4.750.\nSe identificaron 8 ítems Likert válidos, lo que brinda una base suficiente para análisis psicométrico avanzado.\nLa dimensión con promedio más alto fue 'relevancia' con una media de 5.245.\nLa dimensión con promedio más bajo fue 'infraestructura' con una media de 4.750.\nLas dimensiones más fuertes del instrumento son: relevancia, disponibilidad.\nLas dimensiones con mayor necesidad de revisión o refuerzo son: uso, infraestructura.\nSe recomienda revisar o depurar ítems, ya que la consistencia interna del instrumento es limitada.\nLa calidad general de los datos puede considerarse alta, con un 0.0% de valores faltantes.\nEl instrumento presenta problemas de consistencia interna y debería ser revisado antes de análisis avanzados.\nEl instrumento presenta 8 dimensiones, lo que sugiere una estructura conceptual multidimensional.",
+    "analysis_meta": {
+      "n_rows": 200,
+      "n_cols": 8,
+      "missing_global_pct": 0.0,
+      "num_cols": [
+        "claridad_clases",
+        "organizacion_programa",
+        "disponibilidad_docentes",
+        "uso_tecnologia",
+        "relevancia_contenidos",
+        "evaluacion_aprendizaje",
+        "infraestructura_aulas",
+        "satisfaccion_general"
+      ],
+      "cat_cols": [],
+      "dt_cols": [],
+      "n_num": 8,
+      "n_cat": 0,
+      "n_dt": 0,
+      "high_corr_pairs": [],
+      "top_numeric_by_variability": [
+        {
+          "column": "infraestructura_aulas",
+          "std": 1.3176,
+          "range": 6.0
+        },
+        {
+          "column": "uso_tecnologia",
+          "std": 1.1978,
+          "range": 5.0
+        },
+        {
+          "column": "evaluacion_aprendizaje",
+          "std": 1.175,
+          "range": 5.0
+        },
+        {
+          "column": "organizacion_programa",
+          "std": 1.1731,
+          "range": 5.0
+        },
+        {
+          "column": "claridad_clases",
+          "std": 1.1361,
+          "range": 5.0
+        },
+        {
+          "column": "relevancia_contenidos",
+          "std": 1.0774,
+          "range": 4.0
+        },
+        {
+          "column": "disponibilidad_docentes",
+          "std": 1.0643,
+          "range": 5.0
+        },
+        {
+          "column": "satisfaccion_general",
+          "std": 0.7298,
+          "range": 4.0
+        }
+      ],
+      "variable_importance": [
+        {
+          "column": "infraestructura_aulas",
+          "score": 1.3176,
+          "std": 1.3176,
+          "missing_pct": 0.0
+        },
+        {
+          "column": "uso_tecnologia",
+          "score": 1.1978,
+          "std": 1.1978,
+          "missing_pct": 0.0
+        },
+        {
+          "column": "evaluacion_aprendizaje",
+          "score": 1.175,
+          "std": 1.175,
+          "missing_pct": 0.0
+        },
+        {
+          "column": "organizacion_programa",
+          "score": 1.1731,
+          "std": 1.1731,
+          "missing_pct": 0.0
+        },
+        {
+          "column": "claridad_clases",
+          "score": 1.1361,
+          "std": 1.1361,
+          "missing_pct": 0.0
+        },
+        {
+          "column": "relevancia_contenidos",
+          "score": 1.0774,
+          "std": 1.0774,
+          "missing_pct": 0.0
+        },
+        {
+          "column": "disponibilidad_docentes",
+          "score": 1.0643,
+          "std": 1.0643,
+          "missing_pct": 0.0
+        },
+        {
+          "column": "satisfaccion_general",
+          "score": 0.7298,
+          "std": 0.7298,
+          "missing_pct": 0.0
+        }
+      ],
+      "outlier_summary": [],
+      "pattern_notes": [
+        "La variable con mayor dispersión observada fue 'infraestructura_aulas'."
+      ],
+      "target_candidate": "infraestructura_aulas",
+      "target_type": "regression",
+      "target_reason": "SADI seleccionó 'infraestructura_aulas' como variable objetivo porque presenta variabilidad útil.",
+      "binary_target_candidates": [],
+      "ranked_target_candidates": [
+        {
+          "column": "infraestructura_aulas",
+          "type": "regression",
+          "score": 4.3776,
+          "reason": "variabilidad útil"
+        },
+        {
+          "column": "uso_tecnologia",
+          "type": "regression",
+          "score": 4.2478,
+          "reason": "variabilidad útil"
+        },
+        {
+          "column": "evaluacion_aprendizaje",
+          "type": "regression",
+          "score": 4.225,
+          "reason": "variabilidad útil"
+        },
+        {
+          "column": "organizacion_programa",
+          "type": "regression",
+          "score": 4.2231,
+          "reason": "variabilidad útil"
+        },
+        {
+          "column": "claridad_clases",
+          "type": "regression",
+          "score": 4.1861,
+          "reason": "variabilidad útil"
+        },
+        {
+          "column": "relevancia_contenidos",
+          "type": "regression",
+          "score": 4.1174,
+          "reason": "variabilidad útil"
+        },
+        {
+          "column": "disponibilidad_docentes",
+          "type": "regression",
+          "score": 4.1143,
+          "reason": "variabilidad útil"
+        },
+        {
+          "column": "satisfaccion_general",
+          "type": "regression",
+          "score": 3.7698,
+          "reason": "variabilidad útil"
+        }
+      ],
+      "dataset_type": "survey_likert_7",
+      "research_area": "educacion",
+      "suggested_plan": {
+        "recommended_analysis": [
+          "Análisis descriptivo por ítem",
+          "Análisis descriptivo por dimensión",
+          "Consistencia interna mediante alfa de Cronbach",
+          "Comparación entre dimensiones del instrumento"
+        ],
+        "recommended_plots": [
+          "Resumen gráfico de puntajes Likert",
+          "Radar de dimensiones",
+          "Gráfico divergente Likert",
+          "Gráfico resumen por dimensión"
+        ],
+        "narrative_focus": "Interpretar la consistencia del instrumento, la tendencia general de respuesta y las diferencias entre dimensiones o bloques temáticos.",
+        "warnings": [
+          "La confiabilidad del instrumento es baja y conviene revisar ítems antes de sacar conclusiones fuertes."
+        ]
+      },
+      "quick_recommendations": [
+        "Calcular promedios por dimensión e ítem.",
+        "Revisar consistencia interna antes de interpretar resultados globales.",
+        "Analizar rendimiento, asistencia y patrones académicos.",
+        "Comparar resultados entre grupos o cursos si existen variables categóricas.",
+        "Revisar la redacción, coherencia y redundancia de los ítems para mejorar la confiabilidad del instrumento.",
+        "Profundizar el análisis de las dimensiones más débiles: uso, infraestructura.",
+        "Considerar las dimensiones fuertes (relevancia, disponibilidad) como ejes interpretativos principales.",
+        "Complementar la interpretación con gráficos por dimensión, ranking de ítems y distribución de respuestas."
+      ],
+      "priority_order": [
+        "Verificar confiabilidad global",
+        "Interpretar dimensiones más fuertes y más débiles",
+        "Analizar ítems extremos",
+        "Revisar posibles dimensiones débiles o ítems problemáticos"
+      ],
+      "research_area_suggested": "educacion",
+      "insights": [
+        "El dataset contiene 200 filas y 8 columnas, lo que permite un análisis exploratorio inicial consistente.",
+        "Se detectaron 8 variables numéricas, adecuadas para análisis descriptivo, correlacional y eventualmente predictivo.",
+        "No se detectaron valores faltantes a nivel global, lo que favorece análisis más directos y limpios.",
+        "La variable 'infraestructura_aulas' destaca como la más relevante en términos de variabilidad y calidad de datos.",
+        "La variable 'infraestructura_aulas' presenta la mayor variabilidad observada en el dataset.",
+        "La variable 'infraestructura_aulas' podría utilizarse como objetivo en un modelo de regresión.",
+        "La variable con mayor dispersión observada fue 'infraestructura_aulas'.",
+        "El dataset presenta una estructura general que permite comenzar con análisis exploratorio, visualizaciones y detección de patrones.",
+        "El área de investigación declarada es 'educacion', por lo que SADI puede orientar mejor las recomendaciones metodológicas.",
+        "El instrumento presentó un alfa de Cronbach de 0.6987, lo que indica una consistencia interna cuestionable.",
+        "En términos metodológicos, la confiabilidad global del instrumento puede calificarse como débil.",
+        "La media global del instrumento fue de 5.033, lo que resume una tendencia general intermedia en las respuestas."
+      ],
+      "insights_text": "El dataset analizado presenta 200 registros y 8 variables. En su estructura se identifican 8 variables numéricas, 0 categóricas y 0 temporales. No se observaron valores faltantes globales, lo que constituye una base favorable para el análisis. Desde la perspectiva analítica, el enfoque sugerido por SADI es: educativo Las variables más dispersas podrían explicar buena parte de la variabilidad observada. SADI detectó como posible variable objetivo 'infraestructura_aulas', dentro de un contexto de regression.",
+      "instrument_type": "Likert",
+      "missing_pct": 0.0,
+      "data_quality": "alta",
+      "warnings": [
+        "La baja confiabilidad puede afectar la validez de las conclusiones."
+      ],
+      "n_total": 200,
+      "n_valid": 200,
+      "likert_scale": 7,
+      "n_items": 8,
+      "n_dimensions": 8,
+      "response_rate": 1.0,
+      "cronbach_alpha": 0.6986711502850569,
+      "reliability_level": "débil",
+      "cronbach_label": "Cuestionable",
+      "global_mean": 5.033125,
+      "trend": "intermedia",
+      "dimension_summary": [
+        {
+          "dimension": "relevancia",
+          "n_items": 1,
+          "items": [
+            "relevancia_contenidos"
+          ],
+          "mean": 5.245,
+          "std": 1.077394493429571,
+          "item_means": {
+            "relevancia_contenidos": 5.245
+          }
+        },
+        {
+          "dimension": "disponibilidad",
+          "n_items": 1,
+          "items": [
+            "disponibilidad_docentes"
+          ],
+          "mean": 5.195,
+          "std": 1.0642547584835005,
+          "item_means": {
+            "disponibilidad_docentes": 5.195
+          }
+        },
+        {
+          "dimension": "claridad",
+          "n_items": 1,
+          "items": [
+            "claridad_clases"
+          ],
+          "mean": 5.175,
+          "std": 1.136146621580438,
+          "item_means": {
+            "claridad_clases": 5.175
+          }
+        },
+        {
+          "dimension": "organizacion",
+          "n_items": 1,
+          "items": [
+            "organizacion_programa"
+          ],
+          "mean": 5.075,
+          "std": 1.1731394978462857,
+          "item_means": {
+            "organizacion_programa": 5.075
+          }
+        },
+        {
+          "dimension": "satisfaccion",
+          "n_items": 1,
+          "items": [
+            "satisfaccion_general"
+          ],
+          "mean": 5.01,
+          "std": 0.7297690141889772,
+          "item_means": {
+            "satisfaccion_general": 5.01
+          }
+        },
+        {
+          "dimension": "evaluacion",
+          "n_items": 1,
+          "items": [
+            "evaluacion_aprendizaje"
+          ],
+          "mean": 4.965,
+          "std": 1.1750227197632388,
+          "item_means": {
+            "evaluacion_aprendizaje": 4.965
+          }
+        },
+        {
+          "dimension": "uso",
+          "n_items": 1,
+          "items": [
+            "uso_tecnologia"
+          ],
+          "mean": 4.85,
+          "std": 1.1977785132628533,
+          "item_means": {
+            "uso_tecnologia": 4.85
+          }
+        },
+        {
+          "dimension": "infraestructura",
+          "n_items": 1,
+          "items": [
+            "infraestructura_aulas"
+          ],
+          "mean": 4.75,
+          "std": 1.3176421762081743,
+          "item_means": {
+            "infraestructura_aulas": 4.75
+          }
+        }
+      ],
+      "dimension_ranking": [
+        {
+          "dimension": "relevancia",
+          "n_items": 1,
+          "items": [
+            "relevancia_contenidos"
+          ],
+          "mean": 5.245,
+          "std": 1.077394493429571,
+          "item_means": {
+            "relevancia_contenidos": 5.245
+          }
+        },
+        {
+          "dimension": "disponibilidad",
+          "n_items": 1,
+          "items": [
+            "disponibilidad_docentes"
+          ],
+          "mean": 5.195,
+          "std": 1.0642547584835005,
+          "item_means": {
+            "disponibilidad_docentes": 5.195
+          }
+        },
+        {
+          "dimension": "claridad",
+          "n_items": 1,
+          "items": [
+            "claridad_clases"
+          ],
+          "mean": 5.175,
+          "std": 1.136146621580438,
+          "item_means": {
+            "claridad_clases": 5.175
+          }
+        },
+        {
+          "dimension": "organizacion",
+          "n_items": 1,
+          "items": [
+            "organizacion_programa"
+          ],
+          "mean": 5.075,
+          "std": 1.1731394978462857,
+          "item_means": {
+            "organizacion_programa": 5.075
+          }
+        },
+        {
+          "dimension": "satisfaccion",
+          "n_items": 1,
+          "items": [
+            "satisfaccion_general"
+          ],
+          "mean": 5.01,
+          "std": 0.7297690141889772,
+          "item_means": {
+            "satisfaccion_general": 5.01
+          }
+        },
+        {
+          "dimension": "evaluacion",
+          "n_items": 1,
+          "items": [
+            "evaluacion_aprendizaje"
+          ],
+          "mean": 4.965,
+          "std": 1.1750227197632388,
+          "item_means": {
+            "evaluacion_aprendizaje": 4.965
+          }
+        },
+        {
+          "dimension": "uso",
+          "n_items": 1,
+          "items": [
+            "uso_tecnologia"
+          ],
+          "mean": 4.85,
+          "std": 1.1977785132628533,
+          "item_means": {
+            "uso_tecnologia": 4.85
+          }
+        },
+        {
+          "dimension": "infraestructura",
+          "n_items": 1,
+          "items": [
+            "infraestructura_aulas"
+          ],
+          "mean": 4.75,
+          "std": 1.3176421762081743,
+          "item_means": {
+            "infraestructura_aulas": 4.75
+          }
+        }
+      ],
+      "strong_dimensions": [
+        "relevancia",
+        "disponibilidad"
+      ],
+      "weak_dimensions": [
+        "uso",
+        "infraestructura"
+      ],
+      "dimension_summary_plot": "ds28_dimension_summary_scores.png",
+      "dimension_radar_plot": "ds28_dimension_radar.png",
+      "plots": [
+        "plots/ds28_cronbach.png",
+        "plots/ds28_likert_summary_scores.png",
+        "plots/ds28_likert_divergent.png",
+        "plots/ds28_dimension_summary_scores.png",
+        "plots/ds28_dimension_radar.png"
+      ],
+      "plot_summary": [
+        {
+          "tag": "Psicométrico",
+          "count": 1
+        },
+        {
+          "tag": "Comparativo",
+          "count": 3
+        },
+        {
+          "tag": "Analítico",
+          "count": 1
+        }
+      ],
+      "instrument_profile": {
+        "instrument_type": "Likert",
+        "likert_scale": 7,
+        "n_items": 8,
+        "n_dimensions": 8,
+        "n_total": 200,
+        "n_valid": 200,
+        "response_rate": 1.0,
+        "missing_pct": 0.0,
+        "data_quality": "alta",
+        "reliability_level": "débil"
+      },
+      "methodological_warnings": [
+        "La baja confiabilidad puede afectar la validez de las conclusiones."
+      ],
+      "top_strengths": [
+        "relevancia",
+        "disponibilidad"
+      ],
+      "top_weaknesses": [
+        "uso",
+        "infraestructura"
+      ]
+    },
+    "insights": [
+      "El dataset contiene 200 filas y 8 columnas, lo que permite un análisis exploratorio inicial consistente.",
+      "Se detectaron 8 variables numéricas, adecuadas para análisis descriptivo, correlacional y eventualmente predictivo.",
+      "No se detectaron valores faltantes a nivel global, lo que favorece análisis más directos y limpios.",
+      "La variable 'infraestructura_aulas' destaca como la más relevante en términos de variabilidad y calidad de datos.",
+      "La variable 'infraestructura_aulas' presenta la mayor variabilidad observada en el dataset.",
+      "La variable 'infraestructura_aulas' podría utilizarse como objetivo en un modelo de regresión.",
+      "La variable con mayor dispersión observada fue 'infraestructura_aulas'.",
+      "El dataset presenta una estructura general que permite comenzar con análisis exploratorio, visualizaciones y detección de patrones.",
+      "El área de investigación declarada es 'educacion', por lo que SADI puede orientar mejor las recomendaciones metodológicas.",
+      "El instrumento presentó un alfa de Cronbach de 0.6987, lo que indica una consistencia interna cuestionable.",
+      "En términos metodológicos, la confiabilidad global del instrumento puede calificarse como débil.",
+      "La media global del instrumento fue de 5.033, lo que resume una tendencia general intermedia en las respuestas."
+    ],
+    "insights_text": "El dataset analizado presenta 200 registros y 8 variables. En su estructura se identifican 8 variables numéricas, 0 categóricas y 0 temporales. No se observaron valores faltantes globales, lo que constituye una base favorable para el análisis. Desde la perspectiva analítica, el enfoque sugerido por SADI es: educativo Las variables más dispersas podrían explicar buena parte de la variabilidad observada. SADI detectó como posible variable objetivo 'infraestructura_aulas', dentro de un contexto de regression.",
+    "quick_recommendations": [
+      "Calcular promedios por dimensión e ítem.",
+      "Revisar consistencia interna antes de interpretar resultados globales.",
+      "Analizar rendimiento, asistencia y patrones académicos.",
+      "Comparar resultados entre grupos o cursos si existen variables categóricas.",
+      "Revisar la redacción, coherencia y redundancia de los ítems para mejorar la confiabilidad del instrumento.",
+      "Profundizar el análisis de las dimensiones más débiles: uso, infraestructura.",
+      "Considerar las dimensiones fuertes (relevancia, disponibilidad) como ejes interpretativos principales.",
+      "Complementar la interpretación con gráficos por dimensión, ranking de ítems y distribución de respuestas."
+    ],
+    "suggested_plan": {
+      "recommended_analysis": [
+        "Análisis descriptivo por ítem",
+        "Análisis descriptivo por dimensión",
+        "Consistencia interna mediante alfa de Cronbach",
+        "Comparación entre dimensiones del instrumento"
+      ],
+      "recommended_plots": [
+        "Resumen gráfico de puntajes Likert",
+        "Radar de dimensiones",
+        "Gráfico divergente Likert",
+        "Gráfico resumen por dimensión"
+      ],
+      "narrative_focus": "Interpretar la consistencia del instrumento, la tendencia general de respuesta y las diferencias entre dimensiones o bloques temáticos.",
+      "warnings": [
+        "La confiabilidad del instrumento es baja y conviene revisar ítems antes de sacar conclusiones fuertes."
+      ]
+    },
+    "priority_order": [
+      "Verificar confiabilidad global",
+      "Interpretar dimensiones más fuertes y más débiles",
+      "Analizar ítems extremos",
+      "Revisar posibles dimensiones débiles o ítems problemáticos"
+    ],
+    "research_area_suggested": "educacion",
+    "cronbach_plot": "ds28_cronbach.png",
+    "summary_plot": "ds28_likert_summary_scores.png",
+    "divergent_plot": "ds28_likert_divergent.png",
+    "plots": [
+      "plots/ds28_cronbach.png",
+      "plots/ds28_likert_summary_scores.png",
+      "plots/ds28_likert_divergent.png",
+      "plots/ds28_dimension_summary_scores.png",
+      "plots/ds28_dimension_radar.png"
+    ],
+    "plot_summary": [
+      {
+        "tag": "Psicométrico",
+        "count": 1
+      },
+      {
+        "tag": "Comparativo",
+        "count": 3
+      },
+      {
+        "tag": "Analítico",
+        "count": 1
+      }
+    ],
+    "dimension_summary_plot": "ds28_dimension_summary_scores.png",
+    "dimension_radar_plot": "ds28_dimension_radar.png"
+  },
+  "model_results": {
+    "rf_result": {
+      "target_col": "infraestructura_aulas",
+      "n_rows": 200,
+      "n_predictors": 9,
+      "r2": 0.210893,
+      "mae": 0.911533,
+      "rmse": 1.172578,
+      "feature_importance_table": [
+        {
+          "variable": "satisfaccion_general",
+          "importance": 0.269223
+        },
+        {
+          "variable": "id_respuesta",
+          "importance": 0.175621
+        },
+        {
+          "variable": "semestre",
+          "importance": 0.127542
+        },
+        {
+          "variable": "uso_tecnologia",
+          "importance": 0.084273
+        },
+        {
+          "variable": "evaluacion_aprendizaje",
+          "importance": 0.083453
+        },
+        {
+          "variable": "claridad_clases",
+          "importance": 0.073373
+        },
+        {
+          "variable": "organizacion_programa",
+          "importance": 0.067047
+        },
+        {
+          "variable": "disponibilidad_docentes",
+          "importance": 0.062302
+        },
+        {
+          "variable": "relevancia_contenidos",
+          "importance": 0.057165
+        }
+      ],
+      "interpretation": [
+        "El modelo Random Forest muestra un ajuste predictivo limitado.",
+        "Las variables más influyentes en la predicción son: satisfaccion_general, id_respuesta, semestre."
+      ],
+      "interpretacion": "Random Forest presenta un ajuste bajo (R²=0.21).",
+      "pred_plot": "plots/ds28_rf_pred_vs_real.png",
+      "importance_plot": "plots/ds28_rf_feature_importance.png"
+    }
+  },
+  "best_model_selection": {
+    "target_col": "infraestructura_aulas",
+    "problem_type": "regression",
+    "best_model": null,
+    "reason": "No hay suficiente información para recomendar un modelo con seguridad.",
+    "comparison_summary": []
+  },
+  "generated": [
+    "plots/ds28_cronbach.png",
+    "plots/ds28_likert_summary_scores.png",
+    "plots/ds28_likert_divergent.png",
+    "plots/ds28_dimension_summary_scores.png",
+    "plots/ds28_dimension_radar.png",
+    "ds28_likert_summary_scores.png",
+    "ds28_cronbach.png",
+    "ds28_dimension_summary_scores.png",
+    "ds28_dimension_radar.png",
+    "ds28_likert_divergent.png"
+  ],
+  "analysis_meta": {
+    "n_rows": 200,
+    "n_cols": 8,
+    "missing_global_pct": 0.0,
+    "num_cols": [
+      "claridad_clases",
+      "organizacion_programa",
+      "disponibilidad_docentes",
+      "uso_tecnologia",
+      "relevancia_contenidos",
+      "evaluacion_aprendizaje",
+      "infraestructura_aulas",
+      "satisfaccion_general"
+    ],
+    "cat_cols": [],
+    "dt_cols": [],
+    "n_num": 8,
+    "n_cat": 0,
+    "n_dt": 0,
+    "high_corr_pairs": [],
+    "top_numeric_by_variability": [
+      {
+        "column": "infraestructura_aulas",
+        "std": 1.3176,
+        "range": 6.0
+      },
+      {
+        "column": "uso_tecnologia",
+        "std": 1.1978,
+        "range": 5.0
+      },
+      {
+        "column": "evaluacion_aprendizaje",
+        "std": 1.175,
+        "range": 5.0
+      },
+      {
+        "column": "organizacion_programa",
+        "std": 1.1731,
+        "range": 5.0
+      },
+      {
+        "column": "claridad_clases",
+        "std": 1.1361,
+        "range": 5.0
+      },
+      {
+        "column": "relevancia_contenidos",
+        "std": 1.0774,
+        "range": 4.0
+      },
+      {
+        "column": "disponibilidad_docentes",
+        "std": 1.0643,
+        "range": 5.0
+      },
+      {
+        "column": "satisfaccion_general",
+        "std": 0.7298,
+        "range": 4.0
+      }
+    ],
+    "variable_importance": [
+      {
+        "column": "infraestructura_aulas",
+        "score": 1.3176,
+        "std": 1.3176,
+        "missing_pct": 0.0
+      },
+      {
+        "column": "uso_tecnologia",
+        "score": 1.1978,
+        "std": 1.1978,
+        "missing_pct": 0.0
+      },
+      {
+        "column": "evaluacion_aprendizaje",
+        "score": 1.175,
+        "std": 1.175,
+        "missing_pct": 0.0
+      },
+      {
+        "column": "organizacion_programa",
+        "score": 1.1731,
+        "std": 1.1731,
+        "missing_pct": 0.0
+      },
+      {
+        "column": "claridad_clases",
+        "score": 1.1361,
+        "std": 1.1361,
+        "missing_pct": 0.0
+      },
+      {
+        "column": "relevancia_contenidos",
+        "score": 1.0774,
+        "std": 1.0774,
+        "missing_pct": 0.0
+      },
+      {
+        "column": "disponibilidad_docentes",
+        "score": 1.0643,
+        "std": 1.0643,
+        "missing_pct": 0.0
+      },
+      {
+        "column": "satisfaccion_general",
+        "score": 0.7298,
+        "std": 0.7298,
+        "missing_pct": 0.0
+      }
+    ],
+    "outlier_summary": [],
+    "pattern_notes": [
+      "La variable con mayor dispersión observada fue 'infraestructura_aulas'."
+    ],
+    "target_candidate": "infraestructura_aulas",
+    "target_type": "regression",
+    "target_reason": "SADI seleccionó 'infraestructura_aulas' como variable objetivo porque presenta variabilidad útil.",
+    "binary_target_candidates": [],
+    "ranked_target_candidates": [
+      {
+        "column": "infraestructura_aulas",
+        "type": "regression",
+        "score": 4.3776,
+        "reason": "variabilidad útil"
+      },
+      {
+        "column": "uso_tecnologia",
+        "type": "regression",
+        "score": 4.2478,
+        "reason": "variabilidad útil"
+      },
+      {
+        "column": "evaluacion_aprendizaje",
+        "type": "regression",
+        "score": 4.225,
+        "reason": "variabilidad útil"
+      },
+      {
+        "column": "organizacion_programa",
+        "type": "regression",
+        "score": 4.2231,
+        "reason": "variabilidad útil"
+      },
+      {
+        "column": "claridad_clases",
+        "type": "regression",
+        "score": 4.1861,
+        "reason": "variabilidad útil"
+      },
+      {
+        "column": "relevancia_contenidos",
+        "type": "regression",
+        "score": 4.1174,
+        "reason": "variabilidad útil"
+      },
+      {
+        "column": "disponibilidad_docentes",
+        "type": "regression",
+        "score": 4.1143,
+        "reason": "variabilidad útil"
+      },
+      {
+        "column": "satisfaccion_general",
+        "type": "regression",
+        "score": 3.7698,
+        "reason": "variabilidad útil"
+      }
+    ],
+    "dataset_type": "survey_likert_7",
+    "research_area": "educacion",
+    "suggested_plan": {
+      "recommended_analysis": [
+        "Análisis descriptivo por ítem",
+        "Análisis descriptivo por dimensión",
+        "Consistencia interna mediante alfa de Cronbach",
+        "Comparación entre dimensiones del instrumento"
+      ],
+      "recommended_plots": [
+        "Resumen gráfico de puntajes Likert",
+        "Radar de dimensiones",
+        "Gráfico divergente Likert",
+        "Gráfico resumen por dimensión"
+      ],
+      "narrative_focus": "Interpretar la consistencia del instrumento, la tendencia general de respuesta y las diferencias entre dimensiones o bloques temáticos.",
+      "warnings": [
+        "La confiabilidad del instrumento es baja y conviene revisar ítems antes de sacar conclusiones fuertes."
+      ]
+    },
+    "quick_recommendations": [
+      "Calcular promedios por dimensión e ítem.",
+      "Revisar consistencia interna antes de interpretar resultados globales.",
+      "Analizar rendimiento, asistencia y patrones académicos.",
+      "Comparar resultados entre grupos o cursos si existen variables categóricas.",
+      "Revisar la redacción, coherencia y redundancia de los ítems para mejorar la confiabilidad del instrumento.",
+      "Profundizar el análisis de las dimensiones más débiles: uso, infraestructura.",
+      "Considerar las dimensiones fuertes (relevancia, disponibilidad) como ejes interpretativos principales.",
+      "Complementar la interpretación con gráficos por dimensión, ranking de ítems y distribución de respuestas."
+    ],
+    "priority_order": [
+      "Verificar confiabilidad global",
+      "Interpretar dimensiones más fuertes y más débiles",
+      "Analizar ítems extremos",
+      "Revisar posibles dimensiones débiles o ítems problemáticos"
+    ],
+    "research_area_suggested": "educacion",
+    "insights": [
+      "El dataset contiene 200 filas y 8 columnas, lo que permite un análisis exploratorio inicial consistente.",
+      "Se detectaron 8 variables numéricas, adecuadas para análisis descriptivo, correlacional y eventualmente predictivo.",
+      "No se detectaron valores faltantes a nivel global, lo que favorece análisis más directos y limpios.",
+      "La variable 'infraestructura_aulas' destaca como la más relevante en términos de variabilidad y calidad de datos.",
+      "La variable 'infraestructura_aulas' presenta la mayor variabilidad observada en el dataset.",
+      "La variable 'infraestructura_aulas' podría utilizarse como objetivo en un modelo de regresión.",
+      "La variable con mayor dispersión observada fue 'infraestructura_aulas'.",
+      "El dataset presenta una estructura general que permite comenzar con análisis exploratorio, visualizaciones y detección de patrones.",
+      "El área de investigación declarada es 'educacion', por lo que SADI puede orientar mejor las recomendaciones metodológicas.",
+      "El instrumento presentó un alfa de Cronbach de 0.6987, lo que indica una consistencia interna cuestionable.",
+      "En términos metodológicos, la confiabilidad global del instrumento puede calificarse como débil.",
+      "La media global del instrumento fue de 5.033, lo que resume una tendencia general intermedia en las respuestas."
+    ],
+    "insights_text": "El dataset analizado presenta 200 registros y 8 variables. En su estructura se identifican 8 variables numéricas, 0 categóricas y 0 temporales. No se observaron valores faltantes globales, lo que constituye una base favorable para el análisis. Desde la perspectiva analítica, el enfoque sugerido por SADI es: educativo Las variables más dispersas podrían explicar buena parte de la variabilidad observada. SADI detectó como posible variable objetivo 'infraestructura_aulas', dentro de un contexto de regression.",
+    "instrument_type": "Likert",
+    "missing_pct": 0.0,
+    "data_quality": "alta",
+    "warnings": [
+      "La baja confiabilidad puede afectar la validez de las conclusiones."
+    ],
+    "n_total": 200,
+    "n_valid": 200,
+    "likert_scale": 7,
+    "n_items": 8,
+    "n_dimensions": 8,
+    "response_rate": 1.0,
+    "cronbach_alpha": 0.6986711502850569,
+    "reliability_level": "débil",
+    "cronbach_label": "Cuestionable",
+    "global_mean": 5.033125,
+    "trend": "intermedia",
+    "dimension_summary": [
+      {
+        "dimension": "relevancia",
+        "n_items": 1,
+        "items": [
+          "relevancia_contenidos"
+        ],
+        "mean": 5.245,
+        "std": 1.077394493429571,
+        "item_means": {
+          "relevancia_contenidos": 5.245
+        }
+      },
+      {
+        "dimension": "disponibilidad",
+        "n_items": 1,
+        "items": [
+          "disponibilidad_docentes"
+        ],
+        "mean": 5.195,
+        "std": 1.0642547584835005,
+        "item_means": {
+          "disponibilidad_docentes": 5.195
+        }
+      },
+      {
+        "dimension": "claridad",
+        "n_items": 1,
+        "items": [
+          "claridad_clases"
+        ],
+        "mean": 5.175,
+        "std": 1.136146621580438,
+        "item_means": {
+          "claridad_clases": 5.175
+        }
+      },
+      {
+        "dimension": "organizacion",
+        "n_items": 1,
+        "items": [
+          "organizacion_programa"
+        ],
+        "mean": 5.075,
+        "std": 1.1731394978462857,
+        "item_means": {
+          "organizacion_programa": 5.075
+        }
+      },
+      {
+        "dimension": "satisfaccion",
+        "n_items": 1,
+        "items": [
+          "satisfaccion_general"
+        ],
+        "mean": 5.01,
+        "std": 0.7297690141889772,
+        "item_means": {
+          "satisfaccion_general": 5.01
+        }
+      },
+      {
+        "dimension": "evaluacion",
+        "n_items": 1,
+        "items": [
+          "evaluacion_aprendizaje"
+        ],
+        "mean": 4.965,
+        "std": 1.1750227197632388,
+        "item_means": {
+          "evaluacion_aprendizaje": 4.965
+        }
+      },
+      {
+        "dimension": "uso",
+        "n_items": 1,
+        "items": [
+          "uso_tecnologia"
+        ],
+        "mean": 4.85,
+        "std": 1.1977785132628533,
+        "item_means": {
+          "uso_tecnologia": 4.85
+        }
+      },
+      {
+        "dimension": "infraestructura",
+        "n_items": 1,
+        "items": [
+          "infraestructura_aulas"
+        ],
+        "mean": 4.75,
+        "std": 1.3176421762081743,
+        "item_means": {
+          "infraestructura_aulas": 4.75
+        }
+      }
+    ],
+    "dimension_ranking": [
+      {
+        "dimension": "relevancia",
+        "n_items": 1,
+        "items": [
+          "relevancia_contenidos"
+        ],
+        "mean": 5.245,
+        "std": 1.077394493429571,
+        "item_means": {
+          "relevancia_contenidos": 5.245
+        }
+      },
+      {
+        "dimension": "disponibilidad",
+        "n_items": 1,
+        "items": [
+          "disponibilidad_docentes"
+        ],
+        "mean": 5.195,
+        "std": 1.0642547584835005,
+        "item_means": {
+          "disponibilidad_docentes": 5.195
+        }
+      },
+      {
+        "dimension": "claridad",
+        "n_items": 1,
+        "items": [
+          "claridad_clases"
+        ],
+        "mean": 5.175,
+        "std": 1.136146621580438,
+        "item_means": {
+          "claridad_clases": 5.175
+        }
+      },
+      {
+        "dimension": "organizacion",
+        "n_items": 1,
+        "items": [
+          "organizacion_programa"
+        ],
+        "mean": 5.075,
+        "std": 1.1731394978462857,
+        "item_means": {
+          "organizacion_programa": 5.075
+        }
+      },
+      {
+        "dimension": "satisfaccion",
+        "n_items": 1,
+        "items": [
+          "satisfaccion_general"
+        ],
+        "mean": 5.01,
+        "std": 0.7297690141889772,
+        "item_means": {
+          "satisfaccion_general": 5.01
+        }
+      },
+      {
+        "dimension": "evaluacion",
+        "n_items": 1,
+        "items": [
+          "evaluacion_aprendizaje"
+        ],
+        "mean": 4.965,
+        "std": 1.1750227197632388,
+        "item_means": {
+          "evaluacion_aprendizaje": 4.965
+        }
+      },
+      {
+        "dimension": "uso",
+        "n_items": 1,
+        "items": [
+          "uso_tecnologia"
+        ],
+        "mean": 4.85,
+        "std": 1.1977785132628533,
+        "item_means": {
+          "uso_tecnologia": 4.85
+        }
+      },
+      {
+        "dimension": "infraestructura",
+        "n_items": 1,
+        "items": [
+          "infraestructura_aulas"
+        ],
+        "mean": 4.75,
+        "std": 1.3176421762081743,
+        "item_means": {
+          "infraestructura_aulas": 4.75
+        }
+      }
+    ],
+    "strong_dimensions": [
+      "relevancia",
+      "disponibilidad"
+    ],
+    "weak_dimensions": [
+      "uso",
+      "infraestructura"
+    ],
+    "dimension_summary_plot": "ds28_dimension_summary_scores.png",
+    "dimension_radar_plot": "ds28_dimension_radar.png",
+    "plots": [
+      "plots/ds28_cronbach.png",
+      "plots/ds28_likert_summary_scores.png",
+      "plots/ds28_likert_divergent.png",
+      "plots/ds28_dimension_summary_scores.png",
+      "plots/ds28_dimension_radar.png"
+    ],
+    "plot_summary": [
+      {
+        "tag": "Psicométrico",
+        "count": 1
+      },
+      {
+        "tag": "Comparativo",
+        "count": 3
+      },
+      {
+        "tag": "Analítico",
+        "count": 1
+      }
+    ],
+    "instrument_profile": {
+      "instrument_type": "Likert",
+      "likert_scale": 7,
+      "n_items": 8,
+      "n_dimensions": 8,
+      "n_total": 200,
+      "n_valid": 200,
+      "response_rate": 1.0,
+      "missing_pct": 0.0,
+      "data_quality": "alta",
+      "reliability_level": "débil"
+    },
+    "methodological_warnings": [
+      "La baja confiabilidad puede afectar la validez de las conclusiones."
+    ],
+    "top_strengths": [
+      "relevancia",
+      "disponibilidad"
+    ],
+    "top_weaknesses": [
+      "uso",
+      "infraestructura"
+    ]
+  },
+  "dataset_type": "survey_likert_7",
+  "research_area": "educacion",
+  "suggested_plan": {
+    "recommended_analysis": [
+      "Análisis descriptivo por ítem",
+      "Análisis descriptivo por dimensión",
+      "Consistencia interna mediante alfa de Cronbach",
+      "Comparación entre dimensiones del instrumento"
+    ],
+    "recommended_plots": [
+      "Resumen gráfico de puntajes Likert",
+      "Radar de dimensiones",
+      "Gráfico divergente Likert",
+      "Gráfico resumen por dimensión"
+    ],
+    "narrative_focus": "Interpretar la consistencia del instrumento, la tendencia general de respuesta y las diferencias entre dimensiones o bloques temáticos.",
+    "warnings": [
+      "La confiabilidad del instrumento es baja y conviene revisar ítems antes de sacar conclusiones fuertes."
+    ]
+  },
+  "cols": [
+    "claridad_clases",
+    "organizacion_programa",
+    "disponibilidad_docentes",
+    "uso_tecnologia",
+    "relevancia_contenidos",
+    "evaluacion_aprendizaje",
+    "infraestructura_aulas",
+    "satisfaccion_general"
+  ]
+}

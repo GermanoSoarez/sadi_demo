@@ -1,0 +1,103 @@
+{
+  "plots": [],
+  "meta": {
+    "n_rows": 4,
+    "n_cols": 3,
+    "missing_global_pct": 0.0,
+    "num_cols": [
+      "ddsadsa",
+      "98098",
+      "098"
+    ],
+    "cat_cols": [],
+    "dt_cols": [],
+    "n_num": 3,
+    "n_cat": 0,
+    "n_dt": 0,
+    "n_duplicates": 0,
+    "columns_summary": [
+      {
+        "name": "ddsadsa",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 4,
+        "n_valid": 4,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 2025.5,
+          "median": 53.5,
+          "min": 8.0,
+          "max": 7987.0,
+          "std": 3974.5572919089577,
+          "q1": 8.75,
+          "q3": 2070.25
+        },
+        "categorical": {},
+        "top_categories": []
+      },
+      {
+        "name": "98098",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 4,
+        "n_valid": 4,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 2287.0,
+          "median": 530.0,
+          "min": 0.0,
+          "max": 8088.0,
+          "std": 3892.7739895007176,
+          "q1": 60.0,
+          "q3": 2757.0
+        },
+        "categorical": {},
+        "top_categories": []
+      },
+      {
+        "name": "098",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 4,
+        "n_valid": 4,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 24818.5,
+          "median": 539.0,
+          "min": 98.0,
+          "max": 98098.0,
+          "std": 48854.76927588544,
+          "q1": 98.0,
+          "q3": 25259.5
+        },
+        "categorical": {},
+        "top_categories": []
+      }
+    ],
+    "top_missing_cols": [],
+    "high_cardinality_cols": [],
+    "strong_correlations": [
+      {
+        "a": "ddsadsa",
+        "b": "098",
+        "corr": 0.9998630256788609
+      },
+      {
+        "a": "98098",
+        "b": "098",
+        "corr": 0.993006121859757
+      },
+      {
+        "a": "ddsadsa",
+        "b": "98098",
+        "corr": 0.9927176711928603
+      }
+    ],
+    "insights_text": "Filas: 4, Columnas: 3. Missing global: 0.0%.\nCorrelaciones fuertes (|r| ≥ 0.70):\n• ddsadsa vs 098: r=1.000\n• 98098 vs 098: r=0.993\n• ddsadsa vs 98098: r=0.993",
+    "dataset_type": "dataset",
+    "n_total": 4
+  }
+}

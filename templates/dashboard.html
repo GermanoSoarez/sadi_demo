@@ -1,0 +1,679 @@
+<!-- DASHBOARD SADI AJUSTADO -->
+{% extends 'base.html' %}
+{% block title %}Panel — SADI{% endblock %}
+
+{% block extra_head %}
+<style>
+  .dash-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:6px;
+    margin-top:-10px;
+  }
+
+  .card{
+    padding:10px !important;
+    margin:6px 0 !important;
+  }
+
+  .topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+
+  .topbar h2{
+    margin:0 !important;
+    line-height:1.05;
+  }
+
+  .actions{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+
+  .btn-view{
+    background:#3aa5ff;
+    border:1px solid #2b7fc2;
+    color:#051a2a;
+    padding:7px 12px;
+    border-radius:10px;
+    font-weight:800;
+    text-decoration:none;
+    box-shadow:0 2px 6px rgba(0,0,0,.18);
+    display:inline-block;
+    font-size:13px;
+  }
+  .btn-view:hover{ filter:brightness(1.03); transform:translateY(-1px); }
+
+  .btn-del{
+    background:#5a1730;
+    border:1px solid #6d243e;
+    color:#ffe7ed;
+    padding:6px 10px;
+    border-radius:8px;
+    font-size:12px;
+    cursor:pointer;
+  }
+  .btn-del:hover{ filter:brightness(1.03); }
+
+  .empty{
+    padding:8px;
+    background:#0f1d38;
+    border:1px dashed #2a3b63;
+    border-radius:10px;
+    color:#9fb3d9;
+  }
+
+  .badge{
+    display:inline-block;
+    padding:3px 9px;
+    border-radius:999px;
+    font-size:11px;
+    font-weight:900;
+    border:1px solid rgba(0,0,0,.08);
+    white-space:nowrap;
+  }
+  .badge-ok{ background:#e8f5e9; color:#1b5e20; }
+  .badge-info{ background:#e3f2fd; color:#0d47a1; }
+  .badge-warn{ background:#fff3e0; color:#e65100; }
+
+  .toolbar{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    margin-top:2px;
+  }
+
+  .upload-title{
+    margin:0 0 6px !important;
+    line-height:1.1;
+  }
+
+  .upload-row{
+    display:grid;
+    grid-template-columns: 1.25fr 1fr 1fr 1.2fr 1.2fr .55fr;
+    gap:8px;
+    align-items:end;
+  }
+
+  @media (max-width: 1300px){
+    .upload-row{
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 800px){
+    .upload-row{
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .upload-row label{
+    margin:0 0 3px;
+    font-size:12px;
+    font-weight:800;
+  }
+
+  .upload-row input[type="text"],
+  .upload-row input[type="file"],
+  .upload-row select{
+    height:34px;
+    padding:4px 8px;
+    font-size:12.5px;
+    box-sizing:border-box;
+    width:100%;
+    border-radius:8px;
+  }
+
+  .upload-row .submit-cell{
+    display:flex;
+    justify-content:flex-end;
+  }
+
+  .upload-row .submit-cell .btn{
+    height:34px;
+    padding:7px 12px;
+    font-size:13px;
+    font-weight:900;
+    border-radius:10px;
+    width:100%;
+  }
+
+  .table th, .table td{
+    padding:6px 9px !important;
+    font-size:12.5px;
+    vertical-align:middle;
+  }
+  .table th{ font-size:11.5px; }
+
+  .ds-table-wrap{
+    overflow:auto;
+    margin-top:8px;
+    max-height:260px;
+    border-radius:10px;
+    scroll-behavior:smooth;
+  }
+
+  #dsTable .dsFile{
+    max-width:220px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    color:#cfe2ff;
+  }
+  @media (max-width: 1200px){
+    #dsTable .dsFile{ max-width:160px; }
+  }
+  @media (max-width: 980px){
+    #dsTable .dsFile{ max-width:120px; }
+  }
+
+  #dsTable .actions{ gap:6px; }
+
+  .editable-cell{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    min-width:220px;
+  }
+
+  .editable-badge-wrap{
+    min-width:0;
+    flex:1 1 auto;
+    overflow:hidden;
+  }
+
+  .editable-cell .badge{
+    max-width:100%;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  .type-edit-btn{
+    background:transparent;
+    border:none;
+    cursor:pointer;
+    font-weight:900;
+    font-size:12px;
+    color:#60a5fa;
+    padding:0;
+    flex:0 0 auto;
+    min-width:42px;
+    text-align:right;
+  }
+  .type-edit-btn:hover{ text-decoration:underline; }
+
+  .type-pop{
+    position:absolute;
+    top:20px;
+    right:0;
+    min-width:190px;
+    background:#ffffff;
+    border:1px solid #d1d5db;
+    border-radius:10px;
+    box-shadow:0 6px 16px rgba(0,0,0,.15);
+    padding:8px;
+    z-index:9999;
+    opacity:0;
+    transform:translateY(-4px) scale(.98);
+    pointer-events:none;
+    transition:opacity .12s ease, transform .12s ease;
+  }
+  .type-pop.open{
+    opacity:1;
+    transform:translateY(0) scale(1);
+    pointer-events:auto;
+  }
+  .type-pop label{
+    font-size:11px;
+    font-weight:900;
+    margin-bottom:4px;
+    color:#111827;
+    display:block;
+  }
+  .type-pop select{
+    width:100%;
+    padding:6px 8px;
+    font-size:12px;
+    border-radius:8px;
+    border:1px solid #cbd5e1;
+    background:#ffffff;
+    color:#111827;
+    font-weight:800;
+  }
+  .type-pop .status{
+    margin-top:6px;
+    font-size:10px;
+    color:#475569;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+  }
+
+  .pill{
+    padding:2px 6px;
+    border-radius:999px;
+    border:1px solid #cbd5e1;
+    background:#f8fafc;
+    color:#0f172a;
+    font-weight:900;
+    display:none;
+  }
+  .pill.show{ display:inline-block; }
+  .pill.ok{ border-color:#86efac; background:#ecfdf5; color:#166534; }
+  .pill.err{ border-color:#fdba74; background:#fff7ed; color:#9a3412; }
+
+  .ds-table-wrap{ overflow:auto; }
+  #dsTable td{ overflow:visible !important; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="dash-grid">
+
+  <div class="card">
+    <div class="topbar">
+      <div>
+        <h2>Panel SADI</h2>
+      </div>
+
+      <div class="actions">
+        <a href="{{ url_for('dataset.dataset_new_manual') }}" class="btn secondary" style="padding:6px 10px;font-size:13px;">
+          Crear dataset manual
+        </a>
+
+        <a href="{{ url_for('auth.configurar_modo_sadi') }}" class="btn secondary" style="padding:6px 10px;font-size:13px;">
+          Configurar modo SADI 2.0 Premium
+        </a>
+
+        {% if ES_VERSION_PREMIUM %}
+          <span class="badge badge-ok">Modo: Premium</span>
+        {% else %}
+          <span class="badge badge-info">Modo: Free</span>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="upload-title">Subir nuevo dataset</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="empty" style="margin-bottom:8px">
+          {% for cat, m in messages %}
+            {{ m }}{% if not loop.last %}<br>{% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('dataset.upload_dataset') }}" method="post" enctype="multipart/form-data">
+      <div class="upload-row">
+        <div>
+          <label for="title">Título</label>
+          <input type="text" id="title" name="title" placeholder="Ej: Encuesta UPE 2024" required autofocus>
+        </div>
+
+        <div>
+          <label for="research_area">Área de investigación</label>
+          <select id="research_area" name="research_area">
+            {% for value, label in RESEARCH_AREA_CHOICES %}
+              <option value="{{ value }}" {% if value == 'general' %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div>
+          <label for="dataset_type">Tipo de dataset</label>
+          <select id="dataset_type" name="dataset_type" required>
+            {% for value, label in DATASET_TYPE_CHOICES %}
+              <option value="{{ value }}" {% if value == 'dataset' %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div>
+          <label for="file">Seleccionar archivo</label>
+          <input type="file" id="file" name="file" required accept=".csv,.tsv,.xlsx,.xls,.json,.txt,.sav" onchange="showFileName(this)">
+        </div>
+
+        <div>
+          <label for="file_name_preview">Archivo</label>
+          <input type="text" id="file_name_preview" value="Ningún archivo seleccionado" readonly>
+        </div>
+
+        <div class="submit-cell">
+          <label style="opacity:0;">.</label>
+          <button class="btn" type="submit">Subir</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="card">
+    <div class="toolbar" style="justify-content:flex-start;">
+      <div>
+        <h2 style="margin:0;">Mis datasets</h2>
+      </div>
+    </div>
+
+    {% if datasets and datasets|length > 0 %}
+      <div class="ds-table-wrap">
+        <table class="table" id="dsTable">
+          <thead>
+            <tr>
+              <th>Título</th>
+              <th>Archivo</th>
+              <th>Filas × Columnas</th>
+              <th>Investigación</th>
+              <th>Tipo</th>
+              <th>Subido</th>
+              <th style="width:200px">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for d in datasets %}
+
+              {% set current_kind = (d.dataset_type | default('dataset') | string | trim) %}
+              {% set ra = d.research_area or 'general' %}
+              {% set research_label = RESEARCH_AREA_LABELS.get(ra, ra) %}
+              {% set dataset_label = DATASET_TYPE_LABELS.get(current_kind, current_kind) %}
+
+              <tr class="dsRow">
+                <td class="dsTitle">{{ d.title }}</td>
+                <td class="dsFile" title="{{ d.original_name }}">{{ d.original_name }}</td>
+                <td>{{ d.n_rows }} × {{ d.n_cols }}</td>
+
+                <!-- COLUMNA INVESTIGACION -->
+                <td>
+                  <div class="editable-cell">
+                    <div class="editable-badge-wrap">
+                      <span class="badge badge-info"
+                            id="research-badge-{{ d.id }}"
+                            data-research="{{ ra }}">
+                        {{ research_label }}
+                      </span>
+                    </div>
+
+                    <button type="button"
+                            class="type-edit-btn"
+                            data-toggle="research-pop-{{ d.id }}">
+                      Editar
+                    </button>
+
+                    <div class="type-pop" id="research-pop-{{ d.id }}">
+                      <form method="post"
+                            action="{{ url_for('dataset.dataset_set_research_area', dataset_id=d.id) }}"
+                            class="research-form"
+                            data-dsid="{{ d.id }}">
+
+                        <label>Área</label>
+
+                        <select name="research_area" class="form-control" data-prev="{{ ra }}">
+                          {% for value, label in RESEARCH_AREA_CHOICES %}
+                            <option value="{{ value }}" {% if ra == value %}selected{% endif %}>
+                              {{ label }}
+                            </option>
+                          {% endfor %}
+                        </select>
+
+                        <div class="status">
+                          <span>Auto</span>
+                          <span class="pill" id="research-pill-{{ d.id }}">✓</span>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </td>
+
+                <!-- COLUMNA TIPO -->
+                <td>
+                  <div class="editable-cell">
+                    <div class="editable-badge-wrap">
+                      <span class="badge badge-info"
+                            id="badge-{{ d.id }}"
+                            data-kind="{{ current_kind }}">
+                        {{ dataset_label }}
+                      </span>
+                    </div>
+
+                    <button type="button"
+                            class="type-edit-btn"
+                            data-toggle="type-pop-{{ d.id }}">
+                      Editar
+                    </button>
+
+                    <div class="type-pop" id="type-pop-{{ d.id }}">
+                      <form method="post"
+                            action="{{ url_for('dataset.dataset_set_type', dataset_id=d.id) }}"
+                            class="type-form"
+                            data-dsid="{{ d.id }}">
+
+                        <label>Tipo</label>
+
+                        <select name="dataset_type" class="form-control" data-prev="{{ current_kind }}">
+                          {% for value, label in DATASET_TYPE_CHOICES %}
+                            <option value="{{ value }}" {% if current_kind == value %}selected{% endif %}>
+                              {{ label }}
+                            </option>
+                          {% endfor %}
+                        </select>
+
+                        <div class="status">
+                          <span>Auto</span>
+                          <span class="pill" id="pill-{{ d.id }}">✓</span>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </td>
+
+                <td>{{ d.uploaded_at.strftime('%Y-%m-%d %H:%M') if d.uploaded_at else '' }}</td>
+
+                <td>
+                  <div class="actions">
+                    {% if current_kind == 'multivariate' %}
+                      <a class="btn-view" href="{{ url_for('multivariate.multivariate_detail', dataset_id=d.id) }}">Ver</a>
+                    {% else %}
+                      <a class="btn-view" href="{{ url_for('dataset.dataset_detail', dataset_id=d.id) }}">Ver</a>
+                    {% endif %}
+
+                    <form action="{{ url_for('dataset.dataset_delete', dataset_id=d.id) }}"
+                          method="post"
+                          onsubmit="return confirm('¿Eliminar el dataset &quot;{{ d.title }}&quot; y sus archivos asociados? Esta acción no se puede deshacer.');">
+                      <button class="btn-del" type="submit">Eliminar</button>
+                    </form>
+                  </div>
+                </td>
+
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <div class="empty" style="margin-top:10px;">
+        Aún no tenés datasets. Subí uno con el formulario de arriba.
+      </div>
+    {% endif %}
+  </div>
+
+</div>
+
+<script>
+  function showFileName(input){
+    const fileNamePreview = document.getElementById('file_name_preview');
+    if(!fileNamePreview) return;
+
+    if(input.files && input.files.length > 0){
+      fileNamePreview.value = input.files[0].name;
+    }else{
+      fileNamePreview.value = 'Ningún archivo seleccionado';
+    }
+  }
+
+  function closeAll(){
+    document.querySelectorAll('.type-pop.open').forEach(p => p.classList.remove('open'));
+  }
+
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.type-edit-btn');
+    const popInside = e.target.closest('.type-pop');
+    if(popInside) return;
+
+    if(btn){
+      e.preventDefault();
+      e.stopPropagation();
+      const id = btn.dataset.toggle;
+      const pop = document.getElementById(id);
+      if(!pop) return;
+      document.querySelectorAll('.type-pop.open').forEach(p => {
+        if(p !== pop) p.classList.remove('open');
+      });
+      pop.classList.toggle('open');
+      return;
+    }
+
+    closeAll();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape') closeAll();
+  });
+
+  async function saveType(form, select){
+    const dsid = form.dataset.dsid;
+    const badge = document.getElementById('badge-' + dsid);
+    const pill  = document.getElementById('pill-' + dsid);
+
+    if(!badge || !pill) return;
+
+    if(!select.dataset.prev){
+      select.dataset.prev = select.value;
+    }
+
+    pill.textContent = 'Guardando…';
+    pill.className = 'pill show';
+
+    const fd = new FormData(form);
+    fd.set('dataset_type', select.value);
+    fd.set('dataset_kind', select.value);
+
+    try{
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: fd,
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+      });
+
+      const data = await res.json().catch(() => null);
+      if(!res.ok) throw new Error('HTTP ' + res.status);
+
+      const kind = (data && (data.kind || data.dataset_type)) ? (data.kind || data.dataset_type) : select.value;
+      const label = (data && data.label) ? data.label : select.options[select.selectedIndex].text;
+
+      badge.textContent = label;
+      badge.dataset.kind = kind;
+      badge.classList.remove('badge-ok','badge-info','badge-warn');
+      badge.classList.add('badge-info');
+
+      pill.textContent = '✓';
+      pill.classList.add('ok');
+      pill.classList.remove('err');
+
+      const pop = form.closest('.type-pop');
+      if(pop) pop.classList.remove('open');
+
+      select.dataset.prev = select.value;
+
+    }catch(err){
+      if(select.dataset.prev) select.value = select.dataset.prev;
+      pill.textContent = '!';
+      pill.classList.add('err');
+      pill.classList.remove('ok');
+    }
+
+    setTimeout(() => { pill.classList.remove('show'); }, 1200);
+  }
+
+  async function saveResearchArea(form, select){
+    const dsid = form.dataset.dsid;
+    const badge = document.getElementById('research-badge-' + dsid);
+    const pill  = document.getElementById('research-pill-' + dsid);
+
+    if(!badge || !pill) return;
+
+    if(!select.dataset.prev){
+      select.dataset.prev = select.value;
+    }
+
+    pill.textContent = 'Guardando…';
+    pill.className = 'pill show';
+
+    const fd = new FormData(form);
+    fd.set('research_area', select.value);
+
+    try{
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: fd,
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+      });
+
+      const data = await res.json().catch(() => null);
+      if(!res.ok) throw new Error('HTTP ' + res.status);
+
+      const area = (data && data.research_area) ? data.research_area : select.value;
+      const label = (data && data.label) ? data.label : select.options[select.selectedIndex].text;
+
+      badge.textContent = label;
+      badge.dataset.research = area;
+      badge.classList.remove('badge-ok','badge-info','badge-warn');
+      badge.classList.add('badge-info');
+
+      pill.textContent = '✓';
+      pill.classList.add('ok');
+      pill.classList.remove('err');
+
+      const pop = form.closest('.type-pop');
+      if(pop) pop.classList.remove('open');
+
+      select.dataset.prev = select.value;
+
+    }catch(err){
+      if(select.dataset.prev) select.value = select.dataset.prev;
+      pill.textContent = '!';
+      pill.classList.add('err');
+      pill.classList.remove('ok');
+    }
+
+    setTimeout(() => { pill.classList.remove('show'); }, 1200);
+  }
+
+  document.addEventListener('change', (e) => {
+    const typeSel = e.target.closest('.type-pop select[name="dataset_type"], .type-pop select[name="dataset_kind"]');
+    if(typeSel){
+      const form = typeSel.closest('form.type-form');
+      if(form) saveType(form, typeSel);
+      return;
+    }
+
+    const areaSel = e.target.closest('.type-pop select[name="research_area"]');
+    if(areaSel){
+      const form = areaSel.closest('form.research-form');
+      if(form) saveResearchArea(form, areaSel);
+    }
+  });
+</script>
+{% endblock %}

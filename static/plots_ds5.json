@@ -1,0 +1,229 @@
+{
+  "plots": [
+    "ds5_corr_heatmap.png",
+    "ds5_cronbach.png",
+    "ds5_factor_loadings.png",
+    "ds5_scree_plot.png",
+    "plots/ds5_likert_q1.png",
+    "plots/ds5_likert_q2.png",
+    "plots/ds5_likert_q3.png",
+    "plots/ds5_likert_q4.png",
+    "plots/ds5_likert_q5.png",
+    "plots/ds5_likert_q6.png"
+  ],
+  "meta": {
+    "likert_scale": 5,
+    "likert_columns": [
+      "claridad_clases",
+      "organizacion_programa",
+      "disponibilidad_docentes",
+      "uso_tecnologia",
+      "relevancia_contenidos",
+      "satisfaccion_general"
+    ],
+    "n_total": 200,
+    "cronbach_alpha": 0.0358,
+    "cronbach_text": "El instrumento presenta una consistencia interna inaceptable (α = 0.036), calculada sobre 6 ítems y 184 casos completos. Esto sugiere que los ítems podrían no estar midiendo el mismo constructo de forma homogénea, por lo que se recomienda revisar la estructura del instrumento.",
+    "alpha_if_deleted": [
+      {
+        "item": "claridad_clases",
+        "alpha_if_deleted": 0.1369
+      },
+      {
+        "item": "organizacion_programa",
+        "alpha_if_deleted": 0.1444
+      },
+      {
+        "item": "disponibilidad_docentes",
+        "alpha_if_deleted": -0.0688
+      },
+      {
+        "item": "uso_tecnologia",
+        "alpha_if_deleted": -0.0479
+      },
+      {
+        "item": "relevancia_contenidos",
+        "alpha_if_deleted": -0.0186
+      },
+      {
+        "item": "satisfaccion_general",
+        "alpha_if_deleted": -0.0017
+      }
+    ],
+    "item_stats": [
+      {
+        "item": "claridad_clases",
+        "mean": 3.026,
+        "median": 3.0,
+        "std": 1.3669,
+        "n_valid": 192,
+        "min": 1.0,
+        "max": 5.0
+      },
+      {
+        "item": "organizacion_programa",
+        "mean": 2.94,
+        "median": 3.0,
+        "std": 1.4446,
+        "n_valid": 200,
+        "min": 1.0,
+        "max": 5.0
+      },
+      {
+        "item": "disponibilidad_docentes",
+        "mean": 3.035,
+        "median": 3.0,
+        "std": 1.4084,
+        "n_valid": 200,
+        "min": 1.0,
+        "max": 5.0
+      },
+      {
+        "item": "uso_tecnologia",
+        "mean": 3.11,
+        "median": 3.0,
+        "std": 1.3216,
+        "n_valid": 200,
+        "min": 1.0,
+        "max": 5.0
+      },
+      {
+        "item": "relevancia_contenidos",
+        "mean": 2.98,
+        "median": 3.0,
+        "std": 1.4561,
+        "n_valid": 200,
+        "min": 1.0,
+        "max": 5.0
+      },
+      {
+        "item": "satisfaccion_general",
+        "mean": 2.8229,
+        "median": 3.0,
+        "std": 1.388,
+        "n_valid": 192,
+        "min": 1.0,
+        "max": 5.0
+      }
+    ],
+    "dimension_alpha": [
+      {
+        "dimension": "General",
+        "alpha": 0.0358,
+        "items": 6
+      }
+    ],
+    "summary_error": "compute_likert_summary() missing 2 required positional arguments: 'dimensions' and 'scale'",
+    "results_text": "Resultados del análisis psicométrico\n\nEl instrumento presenta una consistencia interna inaceptable (α = 0.036), calculada sobre 6 ítems y 184 casos completos. Esto sugiere que los ítems podrían no estar midiendo el mismo constructo de forma homogénea, por lo que se recomienda revisar la estructura del instrumento.\n\nConsistencia interna por dimensiones:\n- General: α = 0.0358 (6 ítems)\n\nLa media general de los ítems fue 2.986 en una escala de 1 a 5, lo que indica una tendencia predominante hacia acuerdo moderado.\n\nEn conjunto, los resultados evidencian que el instrumento presenta propiedades psicométricas adecuadas para su uso en estudios académicos.",
+    "scientific_article_error": "generate_scientific_article() takes 0 positional arguments but 2 were given",
+    "dataset_type": "survey_likert_5",
+    "likert_cols": [
+      "claridad_clases",
+      "organizacion_programa",
+      "disponibilidad_docentes",
+      "uso_tecnologia",
+      "relevancia_contenidos",
+      "satisfaccion_general"
+    ],
+    "kmo_report": {
+      "kmo_global": 0.5161497761742635,
+      "kmo_per_item": {
+        "claridad_clases": 0.5569130424070201,
+        "organizacion_programa": 0.4833626467075296,
+        "disponibilidad_docentes": 0.5298443894471617,
+        "uso_tecnologia": 0.5159005985126823,
+        "relevancia_contenidos": 0.4265682544657679,
+        "satisfaccion_general": 0.5252037188276624
+      }
+    },
+    "bartlett_report": {
+      "chi2": 19.752180090598955,
+      "p_value": 0.18164687670779178
+    },
+    "efa_report": {
+      "n_factors": 3,
+      "rotation": "varimax",
+      "eigenvalues": [
+        1.2998367430310176,
+        1.1864928813171876,
+        1.0163431134162622,
+        0.889492866567632,
+        0.8632526376009242,
+        0.7445817580669791
+      ],
+      "loadings": {
+        "Factor_1": {
+          "claridad_clases": 0.0246,
+          "organizacion_programa": 0.0243,
+          "disponibilidad_docentes": 0.062,
+          "uso_tecnologia": -0.0343,
+          "relevancia_contenidos": 0.9972,
+          "satisfaccion_general": 0.0408
+        },
+        "Factor_2": {
+          "claridad_clases": -0.2054,
+          "organizacion_programa": 0.0907,
+          "disponibilidad_docentes": 0.3498,
+          "uso_tecnologia": 0.5614,
+          "relevancia_contenidos": 0.0037,
+          "satisfaccion_general": 0.1528
+        },
+        "Factor_3": {
+          "claridad_clases": -0.133,
+          "organizacion_programa": 0.5925,
+          "disponibilidad_docentes": -0.1173,
+          "uso_tecnologia": -0.0207,
+          "relevancia_contenidos": -0.0261,
+          "satisfaccion_general": -0.2591
+        }
+      },
+      "communalities": [
+        {
+          "Ítem": "claridad_clases",
+          "Comunalidad": 0.0605
+        },
+        {
+          "Ítem": "organizacion_programa",
+          "Comunalidad": 0.3598
+        },
+        {
+          "Ítem": "disponibilidad_docentes",
+          "Comunalidad": 0.14
+        },
+        {
+          "Ítem": "uso_tecnologia",
+          "Comunalidad": 0.3168
+        },
+        {
+          "Ítem": "relevancia_contenidos",
+          "Comunalidad": 0.9951
+        },
+        {
+          "Ítem": "satisfaccion_general",
+          "Comunalidad": 0.0921
+        }
+      ],
+      "variance": [
+        {
+          "Factor": "Factor_1",
+          "SS_Loadings": 1.0023,
+          "Proportion_Var": 0.167,
+          "Cumulative_Var": 0.167
+        },
+        {
+          "Factor": "Factor_2",
+          "SS_Loadings": 0.5113,
+          "Proportion_Var": 0.0852,
+          "Cumulative_Var": 0.2523
+        },
+        {
+          "Factor": "Factor_3",
+          "SS_Loadings": 0.4507,
+          "Proportion_Var": 0.0751,
+          "Cumulative_Var": 0.3274
+        }
+      ]
+    },
+    "psychometric_interpretation": "El índice KMO global fue de 0.516, lo que indica una adecuación muestral débil. La prueba de esfericidad de Bartlett no fue significativa, por lo que no se recomienda realizar análisis factorial con estos datos. El análisis factorial exploratorio sugirió una estructura de 3 factor(es). La varianza acumulada explicada por la solución factorial fue de 32.74%. En conjunto, estos resultados aportan evidencia sobre la estructura interna del instrumento y respaldan su utilidad para fines de investigación."
+  }
+}

@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block title %}Análisis — {{ ds.title }}{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+    <div>
+      <h2 style="margin:0;">Análisis (EDA): {{ ds.title }}</h2>
+      <p class="meta" style="margin:4px 0 0;">
+        Archivo: <b>{{ ds.original_name }}</b> — {{ ds.n_rows }} × {{ ds.n_cols }}
+        {% if is_survey %} — <b>Clasificado: Encuesta</b>{% else %} — <b>Clasificado: No encuesta</b>{% endif %}
+      </p>
+    </div>
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      
+      <a class="btn" href="{{ url_for('dataset_detail', dataset_id=ds.id) }}">Volver</a>
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-top:10px;">
+  <h3 style="margin:0 0 8px;">Resumen</h3>
+
+  {% if summary and summary.get('tipos') %}
+    <div class="empty" style="margin-bottom:8px;">
+      Tipos detectados: {{ summary.get('tipos')|length }} columnas.
+      {% if summary.get('correlaciones_error') %}<br><b>Error correlaciones:</b> {{ summary.get('correlaciones_error') }}{% endif %}
+    </div>
+  {% else %}
+    <div class="empty">Aún no hay summary generado para este dataset. (Presioná “Ver” desde el panel para generarlo.)</div>
+  {% endif %}
+</div>
+
+{% if preview_html %}
+<div class="card" style="margin-top:10px;">
+  <h3 style="margin:0 0 8px;">Vista previa (primeras 25 filas)</h3>
+  <div style="overflow:auto; max-height:340px;">
+    {{ preview_html | safe }}
+  </div>
+</div>
+{% else %}
+<div class="card" style="margin-top:10px;">
+  <h3 style="margin:0 0 8px;">Vista previa</h3>
+  <div class="empty">No se pudo generar vista previa.</div>
+</div>
+{% endif %}
+
+{% if is_survey and summary and summary.get('survey') %}
+  <div class="card" style="margin-top:10px;">
+    <h3 style="margin:0 0 8px;">Encuesta</h3>
+
+    <div class="empty" style="margin-bottom:8px;">
+      Filas: <b>{{ summary.survey.n_rows }}</b> —
+      Columnas: <b>{{ summary.survey.n_cols }}</b> —
+      Missing global: <b>{{ summary.survey.missing_global_pct }}%</b>
+    </div>
+
+    {% if summary.survey.likert and summary.survey.likert.is_likert %}
+      <div class="empty" style="margin-bottom:8px;">
+        Likert detectado: <b>{{ summary.survey.likert.scale_points }}</b> puntos —
+        Ítems: <b>{{ summary.survey.likert.n_items }}</b>
+      </div>
+
+      {% if summary.survey.likert.items %}
+        <details>
+          <summary style="cursor:pointer;">Ver ítems Likert detectados</summary>
+          <ul>
+            {% for c in summary["survey"]["likert"]["items"] %}
+              <li>{{ c }}</li>
+            {% endfor %}
+          </ul>
+        </details>
+      {% endif %}
+    {% else %}
+      <div class="empty">No se detectó Likert (o no cumple criterios mínimos).</div>
+    {% endif %}
+
+    {% if summary.survey.top_missing_questions %}
+      <details style="margin-top:8px;">
+        <summary style="cursor:pointer;">Top preguntas con más faltantes</summary>
+        <ul>
+          {% for name, pct in summary.survey.top_missing_questions %}
+            <li>{{ name }} — {{ "%.1f"|format(pct) }}%</li>
+          {% endfor %}
+        </ul>
+      </details>
+    {% endif %}
+  </div>
+{% endif %}
+
+<div class="card" style="margin-top:10px;">
+  <h3 style="margin:0 0 8px;">Gráficos</h3>
+
+  {% if plot_files %}
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:10px;">
+      {% for p in plot_files %}
+        <div class="card" style="margin:0;">
+          <img src="{{ url_for('static', filename=p) }}" alt="plot" style="width:100%; height:auto; border-radius:10px;">
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="empty">No se encontraron gráficos para este dataset todavía.</div>
+  {% endif %}
+</div>
+{% endblock %}

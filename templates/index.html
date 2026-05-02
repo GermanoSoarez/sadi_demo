@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block title %}SADI — Sistema de Análisis de Datos para Investigadores{% endblock %}
+{% block content %}
+
+<style>
+  .hero {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    padding: 28px 18px;
+    color: #fff;
+    background:
+      radial-gradient(800px 400px at 10% -10%, rgba(105,209,109,.28), transparent 60%),
+      radial-gradient(800px 400px at 110% 110%, rgba(40,167,69,.36), transparent 60%),
+      linear-gradient(135deg, #0a1a2f 0%, #0e2443 55%, #0a1a2f 100%);
+    box-shadow: 0 10px 28px rgba(0,0,0,.28);
+    min-height: clamp(280px, 46vh, 440px);  /* más bajo que antes */
+    display:flex; align-items:center; justify-content:center;
+  }
+  .hero-inner{ max-width: 940px; width:100%; text-align:center; }
+  .badge{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:5px 9px; border-radius:999px;
+    background: rgba(255,255,255,.08); color:#e7ffe9;
+    font-size:12px; letter-spacing:.2px; border:1px solid rgba(255,255,255,.12);
+    backdrop-filter: blur(4px);
+  }
+  .brand-dot{ width:8px; height:8px; border-radius:50%; background:#28a745; box-shadow:0 0 0 3px rgba(40,167,69,.18); }
+  .hero h1{
+    font-size: clamp(24px, 4vw, 36px);
+    line-height: 1.12; margin:6px 0;
+    font-weight: 800; letter-spacing:.2px;
+  }
+  .accent{ color:#69d16d; }
+  .subline{ font-size: clamp(14px, 2vw, 17px); color:#dfe9ff; opacity:.95; }
+  .rotator{ min-height: 26px; margin-top:6px; font-weight:600; color:#c9ffd1; letter-spacing:.2px; }
+  .fade{ opacity:0; transform: translateY(6px); transition: all .35s ease; }
+  .fade.in{ opacity:1; transform: translateY(0); }
+  .cta{ margin-top:12px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+</style>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div><span class="badge"><span class="brand-dot"></span> SADI • Sistema de Análisis de Datos para Investigadores</span></div>
+    <h1>De <span class="accent">datos</span> a <span class="accent">conocimiento</span>, en minutos.</h1>
+    <p class="subline">Subí archivos, generá estadísticas, gráficos y reportes PDF listos para compartir.</p>
+    <div id="rotator" class="rotator fade">Analizá, descubrí y comprendé tus datos sin complicaciones.</div>
+    <div class="cta">
+      <a href="{{ url_for('dashboard') }}" class="btn">Empezar ahora</a>
+      <a href="{{ url_for('login') }}" class="btn secondary">Iniciar sesión</a>
+    </div>
+  </div>
+</section>
+
+<div class="grid two">
+  <div class="card">
+    <h3>Subida inteligente</h3>
+    <p class="meta">CSV, TXT, XLSX/XLS, SAV, JSON. Detección de delimitadores y tipos.</p>
+  </div>
+  <div class="card">
+    <h3>EDA en un clic</h3>
+    <p class="meta">Faltantes, medias, medianas, desviación, correlaciones y outliers.</p>
+  </div>
+  <div class="card">
+    <h3>Gráficos clave</h3>
+    <p class="meta">Histogramas, barras, serie temporal, dispersión y boxplot.</p>
+  </div>
+  <div class="card">
+    <h3>Reporte profesional</h3>
+    <p class="meta">PDF con logo, QR de verificación y resumen descriptivo.</p>
+  </div>
+</div>
+
+<script>
+  (function(){
+    const frases = [
+      "Analizá, descubrí y comprendé tus datos sin complicaciones.",
+      "SADI transforma tus archivos en conocimiento científico real.",
+      "Subí tus datos, obtené estadísticas, gráficos y reportes en segundos.",
+      "Un aliado gratuito para investigadores que aman la ciencia basada en evidencia.",
+      "De los datos a la publicación: SADI te acompaña en cada paso."
+    ];
+    const el = document.getElementById('rotator');
+    let i = 0;
+    function showNext(){
+      i = (i + 1) % frases.length;
+      el.classList.remove('in');
+      setTimeout(() => { el.textContent = frases[i]; el.classList.add('in'); }, 90);
+    }
+    setTimeout(()=> el.classList.add('in'), 60);
+    setInterval(showNext, 3200);
+  })();
+</script>
+
+{% endblock %}

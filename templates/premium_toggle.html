@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Modo SADI — Premium{% endblock %}
+
+{% block content %}
+<div class="card">
+  <h2>Configurar modo SADI</h2>
+  <p class="meta">Este cambio es temporal (por sesión). Al reiniciar o cerrar sesión, puede volver a modo básico.</p>
+
+  <form method="post" action="{{ url_for('auth.configurar_modo_sadi_post') }}">
+    <label style="display:flex;align-items:center;gap:8px;">
+      <input type="checkbox" name="is_premium" value="1" {% if is_premium %}checked{% endif %}>
+      Activar SADI 2.0 Premium
+    </label>
+
+    <div style="margin-top:12px; display:flex; gap:8px; justify-content:flex-end;">
+      <a class="btn secondary" href="{{ url_for('dataset.dashboard') }}">Cancelar</a>
+      <button class="btn" type="submit">Guardar</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

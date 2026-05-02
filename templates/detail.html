@@ -1,0 +1,1371 @@
+{% extends 'base.html' %}
+{% block title %}Análisis multivariado{% endblock %}
+
+{% block extra_head %}
+<style>
+  .mv-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:14px;
+  }
+
+  .mv-mini-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:10px;
+  }
+
+  .mv-kpi{
+    padding:12px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.02);
+  }
+
+  .mv-kpi strong{
+    display:block;
+    margin-bottom:4px;
+  }
+
+  .mv-card{
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:14px;
+    padding:14px;
+    background:rgba(255,255,255,.02);
+  }
+
+  .mv-card h4{
+    margin:0 0 6px;
+  }
+
+  .mv-card p{
+    margin:0 0 10px;
+  }
+
+  .mv-thumb{
+    width:100%;
+    max-width:520px;
+    max-height:320px;
+    object-fit:contain;
+    display:block;
+    margin:10px auto;
+    border-radius:10px;
+    background:#fff;
+    padding:6px;
+  }
+
+  .mv-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  .mv-actions form{
+    margin:0;
+  }
+
+  .mv-note{
+    font-size:13px;
+    opacity:.92;
+    margin-top:8px;
+    line-height:1.45;
+  }
+
+  .mv-section-title{
+    margin-top:0;
+    margin-bottom:10px;
+  }
+
+  .mv-table-wrap{
+    overflow:auto;
+  }
+
+  .mv-subtle{
+    margin-top:-4px;
+  }
+
+  .mv-block-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  .mv-badge{
+    display:inline-block;
+    padding:5px 10px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:800;
+    border:1px solid rgba(255,255,255,.12);
+    background:rgba(255,255,255,.04);
+  }
+
+  .mv-list{
+    margin:0;
+    padding-left:18px;
+  }
+
+  .mv-list li{
+    margin-bottom:6px;
+  }
+
+  .mv-form-row{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    align-items:end;
+  }
+
+  .mv-form-row select{
+    padding:8px;
+    border-radius:8px;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+
+{% set num_options = numeric_columns if numeric_columns and numeric_columns|length > 0 else (profile.usable_num_cols if profile.usable_num_cols is defined and profile.usable_num_cols else profile.num_cols) %}
+{% set cat_options = categorical_columns if categorical_columns and categorical_columns|length > 0 else (profile.usable_cat_cols if profile.usable_cat_cols is defined and profile.usable_cat_cols else profile.cat_cols) %}
+
+{% set show_anova = (num_options|length >= 1 and cat_options|length >= 1) %}
+{% set show_manova = (num_options|length >= 2 and cat_options|length >= 1) %}
+{% set show_permanova = (num_options|length >= 2 and cat_options|length >= 1) %}
+{% set quick_recommendations = profile.quick_recommendations if profile and profile.quick_recommendations is defined else [] %}
+{% set top_insights = insights_ranking if insights_ranking else [] %}
+<div class="card">
+  <div class="mv-block-title">
+    <div>
+      <h2 style="margin:0;">Análisis multivariado</h2>
+      <p class="meta" style="margin:4px 0 0;">
+        Dataset: <strong>{{ ds.title }}</strong>
+      </p>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <span class="mv-badge">Área: {{ research_type or 'general' }}</span>
+      <span class="mv-badge">Perfil: {{ profile.profile_type }}</span>
+      <a class="btn secondary" href="{{ url_for('dataset.dashboard') }}">Dashboard</a>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h3 style="margin-top:0;">Resumen ejecutivo</h3>
+  <p class="meta mv-subtle">
+    Síntesis automática del comportamiento estructural del dataset según SADI.
+  </p>
+
+  <p>
+    El dataset contiene <strong>{{ profile.n_rows }}</strong> filas y <strong>{{ profile.n_cols }}</strong> columnas.
+    Se detectaron <strong>{{ profile.n_num }}</strong> variables numéricas y
+    <strong>{{ profile.n_cat }}</strong> variables categóricas, con un porcentaje global de
+    <strong>{{ profile.missing_pct }}%</strong> de valores faltantes.
+    El perfil general fue clasificado como <strong>{{ profile.profile_type }}</strong>.
+  </p>
+
+  {% if conclusion %}
+    <div class="ds-alert" style="margin-top:12px;">
+      <strong>Lectura automática de SADI:</strong><br>
+      {{ conclusion }}
+    </div>
+  {% endif %}
+</div>
+
+<div class="card">
+  <h3 style="margin-top:0;">SADI recomienda</h3>
+  <p class="meta mv-subtle">
+    Recomendaciones automáticas según el área de investigación, el perfil del dataset y los análisis ejecutados.
+  </p>
+
+  {% if suggested_plan %}
+    {% if suggested_plan.recommended_analysis %}
+      <h4 style="margin-bottom:6px;">Análisis sugeridos</h4>
+      <ul class="mv-list">
+        {% for item in suggested_plan.recommended_analysis %}
+          <li>✓ {{ item }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% if suggested_plan.recommended_plots %}
+      <h4 style="margin-top:10px; margin-bottom:6px;">Gráficos recomendados</h4>
+      <ul class="mv-list">
+        {% for item in suggested_plan.recommended_plots %}
+          <li>📊 {{ item }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% if suggested_plan.narrative_focus %}
+      <div class="ds-alert" style="margin-top:10px;">
+        <strong>Enfoque sugerido:</strong><br>
+        {{ suggested_plan.narrative_focus }}
+      </div>
+    {% endif %}
+
+    {% if suggested_plan.warnings %}
+      <div class="ds-alert" style="margin-top:10px;">
+        <strong>Advertencias:</strong><br>
+        {% for w in suggested_plan.warnings %}
+          • {{ w }}{% if not loop.last %}<br>{% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endif %}
+
+  {% if quick_recommendations %}
+    <h4 style="margin-top:12px; margin-bottom:6px;">Recomendaciones rápidas</h4>
+    <ul class="mv-list">
+      {% for item in quick_recommendations %}
+        <li>✓ {{ item }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
+
+{% if top_insights %}
+<div class="card">
+  <h3 style="margin-top:0;">Hallazgos principales priorizados por SADI</h3>
+  <p class="meta mv-subtle">
+    Insights automáticos priorizados a partir de correlación, dimensionalidad, segmentación y modelos.
+  </p>
+
+  <ol class="mv-list" style="padding-left:20px;">
+    {% for item in top_insights %}
+      <li>
+        {% if item.category is defined %}
+          <strong>[{{ item.category }}]</strong>
+        {% endif %}
+        {{ item.text if item.text is defined else item }}
+      </li>
+    {% endfor %}
+  </ol>
+</div>
+{% endif %}
+
+{% if prediction_context and prediction_context.target %}
+<div class="card">
+  <h3 style="margin-top:0;">Modelos predictivos sugeridos por SADI</h3>
+  <p class="meta mv-subtle">
+    Recomendación automática según la variable objetivo detectada en el dataset.
+  </p>
+
+  <div class="mv-mini-grid">
+    <div class="mv-kpi">
+      <strong>Variable objetivo detectada</strong>
+      {{ prediction_context.target }}
+    </div>
+
+    <div class="mv-kpi">
+      <strong>Tipo de problema</strong>
+      {% if prediction_context.target_type == "regression" %}
+        Regresión
+      {% elif prediction_context.target_type == "classification" %}
+        Clasificación
+      {% else %}
+        No definido
+      {% endif %}
+    </div>
+  </div>
+
+  <div style="margin-top:12px;">
+
+    {% if prediction_context.target_type == "regression" %}
+      <div class="ds-alert" style="margin-bottom:12px;">
+        SADI detectó una <strong>variable objetivo numérica</strong>.
+        Se recomienda aplicar modelos de regresión para analizar relaciones predictivas
+        y comparar enfoques lineales y no lineales.
+      </div>
+
+      <div class="mv-actions">
+        <form method="post" action="{{ url_for('multivariate.multivariate_regression', dataset_id=ds.id) }}">
+          <input type="hidden" name="target_col" value="{{ prediction_context.target }}">
+          <button class="btn" type="submit">Regresión lineal</button>
+        </form>
+
+        <form method="post" action="{{ url_for('multivariate.multivariate_rf_regression', dataset_id=ds.id) }}">
+          <input type="hidden" name="target_col" value="{{ prediction_context.target }}">
+          <button class="btn secondary" type="submit">Random Forest</button>
+        </form>
+      </div>
+
+    {% elif prediction_context.target_type == "classification" %}
+      <div class="ds-alert" style="margin-bottom:12px;">
+        SADI detectó al menos una <strong>variable objetivo binaria</strong>.
+        Se recomienda aplicar modelos de clasificación.
+      </div>
+
+      {% set binary_targets = prediction_context.binary_target_cols if prediction_context.binary_target_cols else [] %}
+
+      {% if binary_targets %}
+        <div class="mv-actions" style="margin-bottom:12px;">
+          <form method="post"
+                action="{{ url_for('multivariate.multivariate_logistic', dataset_id=ds.id) }}"
+                class="mv-form-row">
+            <div>
+              <label for="logistic_target_col"><strong>Elegir target binario</strong></label><br>
+              <select name="target_col" id="logistic_target_col">
+                {% for col in binary_targets %}
+                  <option value="{{ col }}" {% if col == logistic_target_col %}selected{% endif %}>{{ col }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div>
+              <button class="btn" type="submit">Logistic Regression</button>
+            </div>
+          </form>
+
+          {% if has_rf_classification_route %}
+          <form method="post"
+                action="{{ url_for('multivariate.multivariate_rf_classification', dataset_id=ds.id) }}"
+                class="mv-form-row">
+            <div>
+              <label for="rf_classification_target_col"><strong>Target binario</strong></label><br>
+              <select name="target_col" id="rf_classification_target_col">
+                {% for col in binary_targets %}
+                  <option value="{{ col }}" {% if col == rf_classification_target_col %}selected{% endif %}>{{ col }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div>
+              <button class="btn secondary" type="submit">RF Classification</button>
+            </div>
+          </form>
+          {% endif %}
+        </div>
+      {% else %}
+        <div class="ds-alert">
+          SADI no encontró columnas binarias aptas para clasificación.
+        </div>
+      {% endif %}
+
+    {% else %}
+      <div class="ds-alert">
+        SADI no pudo determinar automáticamente un contexto predictivo claro para este dataset.
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+{% endif %}
+
+<div class="card">
+  <h3 style="margin-top:0;">Resumen del perfil</h3>
+  <p class="meta mv-subtle">
+    Características generales detectadas automáticamente por SADI.
+  </p>
+
+  <div class="mv-mini-grid">
+    <div class="mv-kpi"><strong>Filas</strong>{{ profile.n_rows }}</div>
+    <div class="mv-kpi"><strong>Columnas</strong>{{ profile.n_cols }}</div>
+    <div class="mv-kpi"><strong>Numéricas</strong>{{ profile.n_num }}</div>
+    <div class="mv-kpi"><strong>Categóricas</strong>{{ profile.n_cat }}</div>
+    <div class="mv-kpi"><strong>Missing (%)</strong>{{ profile.missing_pct }}</div>
+    <div class="mv-kpi"><strong>Perfil</strong>{{ profile.profile_type }}</div>
+  </div>
+</div>
+<div class="card">
+  <div class="mv-block-title">
+    <div>
+      <h3 style="margin:0;">Estado del análisis</h3>
+      <p class="meta mv-subtle" style="margin:4px 0 0;">
+        Gestión del cache analítico y lectura automática de resultados.
+      </p>
+    </div>
+
+    <div class="mv-actions">
+      <form method="post" action="{{ url_for('multivariate.recompute_analysis_cache', dataset_id=ds.id) }}" style="display:inline;">
+        <button type="submit" class="btn btn-warning btn-sm">Recalcular análisis</button>
+      </form>
+
+      {% if cache_available %}
+        <span class="mv-badge">Cache activo</span>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if conclusion %}
+    <div class="ds-alert" style="margin-top:12px;">
+      <strong>Conclusión automática SADI:</strong><br>
+      {{ conclusion }}
+    </div>
+  {% endif %}
+</div>
+<div class="card">
+  <h3 style="margin-top:0;">Análisis disponibles</h3>
+  <p class="meta mv-subtle">
+    Ejecuta análisis exploratorios, predictivos y multivariados sobre este dataset.
+  </p>
+
+  {% if not show_anova and not show_manova and not show_permanova %}
+  <div class="ds-alert" style="margin-top:12px;">
+    Este dataset no tiene una combinación suficiente de variables numéricas y categóricas de grupo
+    para habilitar ANOVA, MANOVA o PERMANOVA.
+  </div>
+  {% endif %}
+
+  <div class="mv-actions">
+    <form method="post" action="{{ url_for('multivariate.multivariate_corr', dataset_id=ds.id) }}">
+      <button class="btn" type="submit">Heatmap</button>
+    </form>
+
+    <form method="post" action="{{ url_for('multivariate.multivariate_pca', dataset_id=ds.id) }}">
+      <button class="btn" type="submit">PCA</button>
+    </form>
+
+    <form method="post" action="{{ url_for('multivariate.multivariate_cluster', dataset_id=ds.id) }}">
+      <button class="btn" type="submit">Clustering</button>
+    </form>
+
+    <form method="post" action="{{ url_for('multivariate.multivariate_efa', dataset_id=ds.id) }}">
+      <button class="btn" type="submit">EFA</button>
+    </form>
+
+    <form method="post" action="{{ url_for('multivariate.multivariate_outliers', dataset_id=ds.id) }}">
+      <button class="btn" type="submit">Outliers</button>
+    </form>
+  </div>
+
+  <div style="margin-top:14px;">
+    <h4 style="margin:0 0 8px 0;">Regresión lineal múltiple</h4>
+    {% if num_options|length >= 2 %}
+      <form method="post" action="{{ url_for('multivariate.multivariate_regression', dataset_id=ds.id) }}"
+            class="mv-form-row">
+        <div>
+          <label for="target_col"><strong>Variable objetivo</strong></label><br>
+          <select name="target_col" id="target_col">
+            {% for col in num_options %}
+              <option value="{{ col }}" {% if col == regression_target_col %}selected{% endif %}>{{ col }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div>
+          <button class="btn" type="submit">Ejecutar regresión</button>
+        </div>
+      </form>
+    {% else %}
+      <div class="ds-alert" style="margin-top:8px;">
+        La regresión requiere al menos dos variables numéricas detectadas.
+      </div>
+    {% endif %}
+  </div>
+
+  <div style="margin-top:14px;">
+    <h4 style="margin:0 0 8px 0;">Random Forest Regressor</h4>
+    {% if num_options|length >= 2 %}
+      <form method="post" action="{{ url_for('multivariate.multivariate_rf_regression', dataset_id=ds.id) }}"
+            class="mv-form-row">
+        <div>
+          <label for="rf_target_col"><strong>Variable objetivo</strong></label><br>
+          <select name="target_col" id="rf_target_col">
+            {% for col in num_options %}
+              <option value="{{ col }}" {% if col == rf_target_col %}selected{% endif %}>{{ col }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div>
+          <button class="btn" type="submit">Ejecutar Random Forest</button>
+        </div>
+      </form>
+    {% else %}
+      <div class="ds-alert" style="margin-top:8px;">
+        Random Forest requiere al menos dos variables numéricas detectadas.
+      </div>
+    {% endif %}
+  </div>
+
+  {% if show_anova %}
+  <div style="margin-top:14px;">
+    <h4 style="margin:0 0 8px 0;">ANOVA</h4>
+
+    <form method="post" action="{{ url_for('multivariate.multivariate_anova', dataset_id=ds.id) }}"
+          class="mv-form-row">
+      <div>
+        <label><strong>Variable dependiente</strong></label><br>
+        <select name="anova_target_col">
+          {% for col in num_options %}
+            <option value="{{ col }}" {% if col == anova_target_col %}selected{% endif %}>{{ col }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div>
+        <label><strong>Grupo</strong></label><br>
+        <select name="anova_group_col">
+          {% for col in cat_options %}
+            <option value="{{ col }}" {% if col == anova_group_col %}selected{% endif %}>{{ col }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div>
+        <button class="btn" type="submit">Ejecutar ANOVA</button>
+      </div>
+    </form>
+  </div>
+  {% endif %}
+
+  {% if show_manova %}
+  <div style="margin-top:14px;">
+    <h4 style="margin:0 0 8px 0;">MANOVA</h4>
+
+    <form method="post" action="{{ url_for('multivariate.multivariate_manova', dataset_id=ds.id) }}"
+          class="mv-form-row">
+      <div>
+        <label><strong>Grupo</strong></label><br>
+        <select name="manova_group_col">
+          {% for col in cat_options %}
+            <option value="{{ col }}" {% if col == manova_group_col %}selected{% endif %}>{{ col }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div>
+        <button class="btn" type="submit">Ejecutar MANOVA</button>
+      </div>
+    </form>
+  </div>
+  {% endif %}
+
+  {% if show_permanova %}
+  <div style="margin-top:14px;">
+    <h4 style="margin:0 0 8px 0;">PERMANOVA</h4>
+
+    <form method="post" action="{{ url_for('multivariate.multivariate_permanova', dataset_id=ds.id) }}"
+          class="mv-form-row">
+      <div>
+        <label><strong>Grupo</strong></label><br>
+        <select name="permanova_group_col">
+          {% for col in cat_options %}
+            <option value="{{ col }}" {% if col == permanova_group_col %}selected{% endif %}>{{ col }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div>
+        <button class="btn" type="submit">Ejecutar PERMANOVA</button>
+      </div>
+    </form>
+  </div>
+  {% endif %}
+
+  {% if cat_options|length == 0 %}
+    <div class="ds-alert" style="margin-top:12px;">
+      Este dataset no tiene variables categóricas de grupo detectadas.
+      Por eso ANOVA, MANOVA y PERMANOVA no están disponibles.
+    </div>
+  {% endif %}
+</div>
+
+<div class="card">
+  <h3 style="margin-top:0;">Exportación</h3>
+  <p class="meta mv-subtle">
+    Genera reportes técnicos y documentos académicos a partir de los resultados obtenidos.
+  </p>
+
+  <div class="mv-actions">
+    <a class="btn secondary" href="{{ url_for('multivariate.multivariate_report_word', dataset_id=ds.id) }}">
+      Exportar Word
+    </a>
+
+    <a class="btn secondary" href="{{ url_for('multivariate.multivariate_article', dataset_id=ds.id) }}">
+      Generar Artículo
+    </a>
+  </div>
+</div>
+
+<div class="card">
+  <h3 style="margin-top:0;">Métodos recomendados</h3>
+  <p class="meta mv-subtle">
+    Justificación automática de los métodos sugeridos para este dataset.
+  </p>
+
+  {% if profile.recommendations %}
+    <ul class="mv-list">
+      {% for rec in profile.recommendations %}
+        <li><strong>{{ rec.method }}</strong>: {{ rec.reason }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No se generaron recomendaciones.</p>
+  {% endif %}
+</div>
+
+<div class="card">
+  <h3 style="margin-top:0;">Detalle técnico del perfil</h3>
+
+  <h4>Columnas numéricas</h4>
+  {% if profile.num_cols %}
+    <p>{{ profile.num_cols | join(', ') }}</p>
+  {% else %}
+    <p>No se detectaron columnas numéricas.</p>
+  {% endif %}
+
+  <h4>Columnas categóricas</h4>
+  {% if profile.cat_cols %}
+    <p>{{ profile.cat_cols | join(', ') }}</p>
+  {% else %}
+    <p>No se detectaron columnas categóricas.</p>
+  {% endif %}
+
+  <h4>Varianza cero</h4>
+  {% if profile.zero_variance_cols %}
+    <p>{{ profile.zero_variance_cols | join(', ') }}</p>
+  {% else %}
+    <p>No se detectaron columnas con varianza cero.</p>
+  {% endif %}
+
+  <h4>Correlaciones altas</h4>
+  {% if profile.high_corr_pairs %}
+    <div class="mv-table-wrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Variable 1</th>
+            <th>Variable 2</th>
+            <th>Correlación</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in profile.high_corr_pairs %}
+          <tr>
+            <td>{{ item.col1 }}</td>
+            <td>{{ item.col2 }}</td>
+            <td>{{ item.corr }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p>No se detectaron correlaciones altas.</p>
+  {% endif %}
+</div>
+
+{% if plot_catalog %}
+<div class="card">
+  <h3 class="mv-section-title">Resultados gráficos</h3>
+  <p class="meta mv-subtle">
+    Visualizaciones generadas por los análisis ejecutados.
+  </p>
+
+  <div class="mv-grid">
+    {% for fig in plot_catalog %}
+    <div class="mv-card">
+      <h4>{{ fig.title }}</h4>
+      <p>{{ fig.caption }}</p>
+      <img src="{{ url_for('static', filename=fig.filename) }}" alt="{{ fig.title }}" class="mv-thumb">
+      <div class="mv-actions" style="justify-content:flex-end;">
+        <a class="btn secondary" target="_blank" href="{{ url_for('static', filename=fig.filename) }}">Ver</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+{% if pca_summary %}
+<div class="card">
+  <h3 style="margin-top:0;">Resumen del PCA</h3>
+  <p class="meta mv-subtle">
+    Varianza explicada por cada componente principal.
+  </p>
+
+  <div class="mv-table-wrap">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Componente</th>
+          <th>Varianza explicada</th>
+          <th>% explicada</th>
+          <th>Varianza acumulada</th>
+          <th>% acumulado</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in pca_summary %}
+        <tr>
+          <td>{{ row.component }}</td>
+          <td>{{ row.explained_variance_ratio }}</td>
+          <td>{{ row.explained_pct }}%</td>
+          <td>{{ row.cumulative_variance }}</td>
+          <td>{{ row.cumulative_pct }}%</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endif %}
+
+{% if pca_loadings %}
+<div class="card">
+  <h3 style="margin-top:0;">Loadings del PCA</h3>
+  <p class="meta mv-subtle">
+    Contribución de las variables originales a cada componente principal.
+  </p>
+
+  <div class="mv-table-wrap">
+    <table class="table">
+      <thead>
+        <tr>
+          {% for key in pca_loadings[0].keys() %}
+            <th>{{ key }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in pca_loadings %}
+        <tr>
+          {% for key, value in row.items() %}
+            <td>{{ value }}</td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endif %}
+
+{% if cluster_counts %}
+<div class="card">
+  <h3 style="margin-top:0;">Distribución por cluster</h3>
+  <p class="meta mv-subtle">
+    Cantidad de observaciones asignadas a cada grupo por K-Means.
+  </p>
+
+  <div class="mv-table-wrap">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Cluster</th>
+          <th>Cantidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in cluster_counts %}
+        <tr>
+          <td>{{ row.cluster }}</td>
+          <td>{{ row.n }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endif %}
+
+{% if efa_loadings %}
+<div class="card">
+  <h3 style="margin-top:0;">Cargas factoriales (EFA)</h3>
+  <p class="meta mv-subtle">
+    Resultados del análisis factorial exploratorio.
+  </p>
+
+  <p>
+    <strong>KMO:</strong> {{ efa_kmo }} |
+    <strong>Bartlett p:</strong> {{ efa_bartlett_p }}
+    {% if efa_n_factors %}
+      | <strong>Factores sugeridos:</strong> {{ efa_n_factors }}
+    {% endif %}
+  </p>
+
+  <p>
+    La siguiente tabla muestra las cargas factoriales de cada variable en los factores extraídos.
+  </p>
+
+  <div class="mv-table-wrap">
+    <table class="table">
+      <thead>
+        <tr>
+          {% for k in efa_loadings[0].keys() %}
+            <th>{{ k }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in efa_loadings %}
+        <tr>
+          {% for v in row.values() %}
+            <td>{{ v }}</td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endif %}
+
+{% if regression_result or rf_result or model_comparison %}
+<div class="card">
+  <h3 style="margin-top:0;">Modelos predictivos</h3>
+  <p class="meta mv-subtle">
+    Resumen ejecutivo de los modelos predictivos disponibles para este dataset.
+  </p>
+
+  <div class="mv-mini-grid">
+    {% if regression_result %}
+      <div class="mv-kpi">
+        <strong>Regresión lineal</strong>
+        R²: {{ regression_result.r2 if regression_result.r2 is defined else "—" }}<br>
+        MAE: {{ regression_result.mae if regression_result.mae is defined else "—" }}<br>
+        RMSE: {{ regression_result.rmse if regression_result.rmse is defined else "—" }}
+      </div>
+    {% endif %}
+
+    {% if rf_result %}
+      <div class="mv-kpi">
+        <strong>Random Forest</strong>
+        R²: {{ rf_result.r2 if rf_result.r2 is defined else "—" }}<br>
+        MAE: {{ rf_result.mae if rf_result.mae is defined else "—" }}<br>
+        RMSE: {{ rf_result.rmse if rf_result.rmse is defined else "—" }}
+      </div>
+    {% endif %}
+
+    {% if model_comparison and model_comparison.available %}
+      <div class="mv-kpi">
+        <strong>Modelo sugerido</strong>
+        {% if model_comparison.winner == "random_forest" %}
+          Random Forest
+        {% elif model_comparison.winner == "linear_regression" %}
+          Regresión lineal
+        {% elif model_comparison.winner == "tie" %}
+          Rendimiento similar
+        {% else %}
+          No determinado
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+
+{% if regression_result %}
+<div class="card">
+  <h3 style="margin-top:0;">Resultados de regresión</h3>
+  <p class="meta mv-subtle">
+    Modelo lineal múltiple generado automáticamente por SADI.
+  </p>
+
+  <p>
+    <strong>Variable objetivo:</strong> {{ regression_result.target_col }} |
+    <strong>Predictores:</strong> {{ regression_result.n_predictors }} |
+    <strong>Filas usadas:</strong> {{ regression_result.n_rows }}
+  </p>
+
+  <div class="mv-mini-grid" style="margin-bottom:12px;">
+    <div class="mv-kpi"><strong>Intercepto</strong>{{ regression_result.intercept }}</div>
+    <div class="mv-kpi"><strong>R²</strong>{{ regression_result.r2 }}</div>
+    <div class="mv-kpi"><strong>R² ajustado</strong>{{ regression_result.adj_r2 }}</div>
+    <div class="mv-kpi"><strong>MAE</strong>{{ regression_result.mae }}</div>
+    <div class="mv-kpi"><strong>RMSE</strong>{{ regression_result.rmse }}</div>
+  </div>
+
+  {% if regression_result.interpretation %}
+    <div class="ds-alert" style="margin-bottom:14px;">
+      {% for line in regression_result.interpretation %}
+        • {{ line }}{% if not loop.last %}<br>{% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <div class="mv-table-wrap">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Variable</th>
+          <th>Coeficiente</th>
+          <th>Error estándar</th>
+          <th>t</th>
+          <th>p-value</th>
+          <th>Beta est.</th>
+          <th>|Beta est.|</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in regression_result.coeff_table %}
+        <tr>
+          <td>{{ row.variable }}</td>
+          <td>{{ row.coefficient }}</td>
+          <td>{{ row.std_error }}</td>
+          <td>{{ row.t_value }}</td>
+          <td>{{ row.p_value }}</td>
+          <td>{{ row.beta_std }}</td>
+          <td>{{ row.abs_beta_std }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endif %}
+
+{% if rf_result %}
+<div class="card">
+  <h3 style="margin-top:0;">Resultados de Random Forest</h3>
+  <p class="meta mv-subtle">
+    Modelo predictivo no lineal basado en ensamblado de árboles.
+  </p>
+
+  <p>
+    <strong>Variable objetivo:</strong> {{ rf_result.target_col }} |
+    <strong>Predictores:</strong> {{ rf_result.n_predictors }} |
+    <strong>Filas usadas:</strong> {{ rf_result.n_rows }}
+  </p>
+
+  <div class="mv-mini-grid" style="margin-bottom:12px;">
+    <div class="mv-kpi"><strong>R²</strong>{{ rf_result.r2 }}</div>
+    <div class="mv-kpi"><strong>MAE</strong>{{ rf_result.mae }}</div>
+    <div class="mv-kpi"><strong>RMSE</strong>{{ rf_result.rmse }}</div>
+  </div>
+
+  {% if rf_result.interpretation %}
+    <div class="ds-alert" style="margin-bottom:14px;">
+      {% for line in rf_result.interpretation %}
+        • {{ line }}{% if not loop.last %}<br>{% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if rf_result.feature_importance_table %}
+    <div class="mv-table-wrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Variable</th>
+            <th>Importancia</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in rf_result.feature_importance_table %}
+          <tr>
+            <td>{{ row.variable }}</td>
+            <td>{{ row.importance }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% endif %}
+</div>
+{% endif %}
+
+{% if model_comparison and model_comparison.available %}
+<div class="card">
+  <h3 style="margin-top:0;">Comparación automática entre modelos</h3>
+  <p class="meta mv-subtle">
+    Comparación entre regresión lineal y Random Forest para la misma variable objetivo.
+  </p>
+
+  <p>
+    <strong>Variable objetivo:</strong> {{ model_comparison.target_col }}
+  </p>
+
+  <div class="mv-table-wrap">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Modelo</th>
+          <th>R²</th>
+          <th>MAE</th>
+          <th>RMSE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Regresión lineal</td>
+          <td>{{ model_comparison.linear.r2 if model_comparison.linear else "—" }}</td>
+          <td>{{ model_comparison.linear.mae if model_comparison.linear else "—" }}</td>
+          <td>{{ model_comparison.linear.rmse if model_comparison.linear else "—" }}</td>
+        </tr>
+        <tr>
+          <td>Random Forest</td>
+          <td>{{ model_comparison.random_forest.r2 if model_comparison.random_forest else "—" }}</td>
+          <td>{{ model_comparison.random_forest.mae if model_comparison.random_forest else "—" }}</td>
+          <td>{{ model_comparison.random_forest.rmse if model_comparison.random_forest else "—" }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin-top:12px;">
+    <strong>Modelo recomendado por SADI:</strong>
+    {% if model_comparison.winner == "random_forest" %}
+      Random Forest
+    {% elif model_comparison.winner == "linear_regression" %}
+      Regresión lineal
+    {% elif model_comparison.winner == "tie" %}
+      Rendimiento similar
+    {% else %}
+      No determinado
+    {% endif %}
+  </div>
+
+  {% if model_comparison.summary %}
+    <div class="ds-alert" style="margin-top:12px;">
+      {% for line in model_comparison.summary %}
+        • {{ line }}{% if not loop.last %}<br>{% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+{% endif %}
+
+{% if logistic_result %}
+<div class="card">
+  <h3 style="margin-top:0;">Resultados de Logistic Regression</h3>
+  <p class="meta mv-subtle">
+    Modelo de clasificación binaria generado automáticamente por SADI.
+  </p>
+
+  <p>
+    <strong>Target:</strong> {{ logistic_result.target_col }}
+  </p>
+
+  <div class="mv-mini-grid" style="margin-bottom:12px;">
+    <div class="mv-kpi"><strong>Accuracy</strong>{{ logistic_result.accuracy }}</div>
+    <div class="mv-kpi"><strong>Precision</strong>{{ logistic_result.precision }}</div>
+    <div class="mv-kpi"><strong>Recall</strong>{{ logistic_result.recall }}</div>
+    <div class="mv-kpi"><strong>F1</strong>{{ logistic_result.f1 }}</div>
+    <div class="mv-kpi"><strong>AUC</strong>{{ logistic_result.roc_auc }}</div>
+  </div>
+
+  {% if logistic_result.interpretation %}
+    <div class="ds-alert" style="margin-bottom:14px;">
+      {% for line in logistic_result.interpretation %}
+        • {{ line }}{% if not loop.last %}<br>{% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if logistic_result.coef_table %}
+  <div class="mv-table-wrap">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Variable</th>
+          <th>Coef</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in logistic_result.coef_table %}
+        <tr>
+          <td>{{ row.variable }}</td>
+          <td>{{ row.coef }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+</div>
+{% endif %}
+
+{% if rf_classification_result %}
+<div class="card">
+  <h3 style="margin-top:0;">Resultados de Random Forest Classification</h3>
+  <p class="meta mv-subtle">
+    Modelo de clasificación binaria basado en ensamblado de árboles.
+  </p>
+
+  <p>
+    <strong>Target:</strong> {{ rf_classification_result.target_col }}
+  </p>
+
+  <div class="mv-mini-grid" style="margin-bottom:12px;">
+    <div class="mv-kpi"><strong>Accuracy</strong>{{ rf_classification_result.accuracy }}</div>
+    <div class="mv-kpi"><strong>Precision</strong>{{ rf_classification_result.precision }}</div>
+    <div class="mv-kpi"><strong>Recall</strong>{{ rf_classification_result.recall }}</div>
+    <div class="mv-kpi"><strong>F1</strong>{{ rf_classification_result.f1 }}</div>
+    <div class="mv-kpi"><strong>AUC</strong>{{ rf_classification_result.roc_auc }}</div>
+  </div>
+
+  {% if rf_classification_result.interpretation %}
+    <div class="ds-alert" style="margin-bottom:14px;">
+      {% for line in rf_classification_result.interpretation %}
+        • {{ line }}{% if not loop.last %}<br>{% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if rf_classification_result.feature_importance_table %}
+    <div class="mv-table-wrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Variable</th>
+            <th>Importancia</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in rf_classification_result.feature_importance_table %}
+          <tr>
+            <td>{{ row.variable }}</td>
+            <td>{{ row.importance }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% endif %}
+</div>
+{% endif %}
+
+{% if outlier_result %}
+<div class="card">
+  <h3 style="margin-top:0;">Outliers multivariados</h3>
+  <p class="meta mv-subtle">
+    Detección basada en distancia de Mahalanobis.
+  </p>
+
+  <p>
+    <strong>Filas usadas:</strong> {{ outlier_result.n_rows_used }} |
+    <strong>Variables:</strong> {{ outlier_result.n_variables }} |
+    <strong>Umbral:</strong> {{ outlier_result.threshold }} |
+    <strong>Outliers detectados:</strong> {{ outlier_result.outlier_count }} ({{ outlier_result.outlier_pct }}%)
+  </p>
+
+  {% if outlier_result.interpretation %}
+    <div class="ds-alert" style="margin-bottom:14px;">
+      {% for line in outlier_result.interpretation %}
+        • {{ line }}{% if not loop.last %}<br>{% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if outlier_result.top_outliers %}
+    <div class="mv-table-wrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Fila</th>
+            <th>Distancia Mahalanobis²</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in outlier_result.top_outliers %}
+          <tr>
+            <td>{{ row.row_index }}</td>
+            <td>{{ row.mahalanobis_d2 }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% endif %}
+</div>
+{% endif %}
+
+{% if anova_result %}
+<div class="card">
+  <h3 style="margin-top:0;">Resultados de ANOVA</h3>
+  <p class="meta mv-subtle">
+    Comparación de medias entre grupos.
+  </p>
+
+  <p>
+    <strong>Dependiente:</strong> {{ anova_result.target_col }} |
+    <strong>Grupo:</strong> {{ anova_result.group_col }}
+  </p>
+
+  {% if anova_result.interpretation %}
+    <div class="ds-alert" style="margin-bottom:14px;">
+      {% for line in anova_result.interpretation %}
+        • {{ line }}{% if not loop.last %}<br>{% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <h4>Tabla ANOVA</h4>
+  <div class="mv-table-wrap">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Fuente</th>
+          <th>Suma cuadrados</th>
+          <th>gl</th>
+          <th>F</th>
+          <th>p-value</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in anova_result.anova_table %}
+        <tr>
+          <td>{{ row.source }}</td>
+          <td>{{ row.sum_sq }}</td>
+          <td>{{ row.df }}</td>
+          <td>{{ row.f_value }}</td>
+          <td>{{ row.p_value }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <h4>Resumen por grupo</h4>
+  <div class="mv-table-wrap">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>{{ anova_result.group_col }}</th>
+          <th>n</th>
+          <th>Media</th>
+          <th>Std</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in anova_result.group_summary %}
+        <tr>
+          <td>{{ row[anova_result.group_col] }}</td>
+          <td>{{ row.n }}</td>
+          <td>{{ row.mean }}</td>
+          <td>{{ row.std }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endif %}
+
+{% if manova_result is defined and manova_result %}
+<div class="card">
+  <h3 style="margin-top:0;">Resultados de MANOVA</h3>
+  <p class="meta mv-subtle">
+    Contraste multivariado de diferencias entre grupos.
+  </p>
+
+  <p>
+    <strong>Grupo:</strong>
+    {{ manova_result.get('group_col', '—') }}
+    |
+    <strong>Dependientes:</strong>
+    {% if manova_result.get('dependent_cols') %}
+      {{ manova_result.get('dependent_cols') | join(', ') }}
+    {% else %}
+      —
+    {% endif %}
+  </p>
+
+  {% if manova_result.get('interpretation') %}
+    <div class="ds-alert" style="margin-bottom:14px;">
+      {% for line in manova_result.get('interpretation', []) %}
+        • {{ line }}{% if not loop.last %}<br>{% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <div class="mv-table-wrap">
+    <pre style="white-space:pre-wrap;font-family:monospace;line-height:1.45; margin:0;">{{ manova_result.get('manova_text', 'Sin salida textual de MANOVA.') }}</pre>
+  </div>
+</div>
+{% endif %}
+
+{% if permanova_result %}
+<div class="card">
+  <h3 style="margin-top:0;">Resultados de PERMANOVA</h3>
+  <p class="meta mv-subtle">
+    Comparación multivariada por permutaciones entre grupos.
+  </p>
+
+  <p>
+    <strong>Grupo:</strong> {{ permanova_result.group_col }} |
+    <strong>Variables numéricas:</strong> {{ permanova_result.n_variables }} |
+    <strong>Filas:</strong> {{ permanova_result.n_rows }}
+  </p>
+
+  <div class="mv-mini-grid" style="margin-bottom:12px;">
+    <div class="mv-kpi"><strong>Pseudo-F</strong>{{ permanova_result.pseudo_f }}</div>
+    <div class="mv-kpi"><strong>p-value</strong>{{ permanova_result.p_value }}</div>
+    <div class="mv-kpi"><strong>Permutaciones</strong>{{ permanova_result.permutations }}</div>
+  </div>
+
+  {% if permanova_result.interpretation %}
+    <div class="ds-alert" style="margin-bottom:14px;">
+      {% for line in permanova_result.interpretation %}
+        • {{ line }}{% if not loop.last %}<br>{% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <div class="mv-table-wrap">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>{{ permanova_result.group_col }}</th>
+          <th>n</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in permanova_result.group_sizes %}
+        <tr>
+          <td>{{ row[permanova_result.group_col] }}</td>
+          <td>{{ row.n }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endif %}
+{% if insights_ranking %}
+<div class="card mt-3">
+  <h3>Top insights automáticos de SADI</h3>
+  <div class="table-responsive">
+    <table class="table table-sm table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Categoría</th>
+          <th>Insight</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in insights_ranking %}
+        <tr>
+          <td>{{ item.rank }}</td>
+          <td>{{ item.category }}</td>
+          <td>{{ item.text }}</td>
+          <td>{{ item.score }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endif %}
+{% if conclusion or top_insights %}
+<div class="card">
+  <h3 style="margin-top:0;">Interpretación final integrada</h3>
+  <p class="meta mv-subtle">
+    Síntesis de cierre del análisis multivariado realizada por SADI.
+  </p>
+
+  {% if top_insights %}
+    <h4 style="margin-bottom:6px;">Puntos clave</h4>
+    <ul class="mv-list">
+      {% for item in top_insights[:5] %}
+        <li>
+          {% if item.category is defined %}
+            <strong>[{{ item.category }}]</strong>
+          {% endif %}
+          {{ item.text if item.text is defined else item }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% if conclusion %}
+    <div class="ds-alert" style="margin-top:12px;">
+      {{ conclusion }}
+    </div>
+  {% endif %}
+</div>
+{% endif %}
+{% endblock %}

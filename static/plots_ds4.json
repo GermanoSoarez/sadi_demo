@@ -1,0 +1,400 @@
+{
+  "plots": [
+    "ds4_normal_Edad_hist.png",
+    "ds4_normal_Genero_bar.png",
+    "ds4_normal_P1_Claridad_contenido_hist.png",
+    "ds4_normal_P2_Dominio_docente_hist.png",
+    "ds4_normal_P3_Material_apoyo_hist.png",
+    "ds4_normal_P4_Participacion_clase_hist.png",
+    "ds4_normal_P5_Satisfaccion_general_hist.png",
+    "plots/ds4_box_outliers.png",
+    "plots/ds4_corr_heatmap.png",
+    "plots/ds4_group_mean_genero_edad.png",
+    "plots/ds4_group_mean_genero_p1_claridad_contenido.png",
+    "plots/ds4_group_mean_genero_p2_dominio_docente.png",
+    "plots/ds4_group_mean_genero_p3_material_apoyo.png",
+    "plots/ds4_group_mean_genero_p4_participacion_clase.png",
+    "plots/ds4_group_mean_genero_p5_satisfaccion_general.png",
+    "plots/ds4_hist_C6H6.png",
+    "plots/ds4_hist_CO.png",
+    "plots/ds4_hist_Date.png",
+    "plots/ds4_hist_NMHC.png",
+    "plots/ds4_hist_S1.png",
+    "plots/ds4_hist_Time.png",
+    "plots/ds4_missing.png",
+    "plots/ds4_scatter_CO_vs_C6H6.png",
+    "plots/ds4_scatter_CO_vs_S2.png",
+    "plots/ds4_scatter_NMHC_vs_C6H6.png",
+    "plots/ds4_scatter_S1_vs_S3.png"
+  ],
+  "meta": {
+    "n_total": 10,
+    "segment_column": "Genero",
+    "columns_summary": [
+      {
+        "name": "Edad",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 23.5,
+          "median": 23.0,
+          "min": 21.0,
+          "max": 27.0,
+          "std": 1.9578900207451218,
+          "q1": 22.0,
+          "q3": 24.75
+        },
+        "categorical": {}
+      },
+      {
+        "name": "Genero",
+        "dtype": "categorical",
+        "dtype_raw": "object",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {},
+        "categorical": {
+          "n_unique": 2,
+          "top": "Femenino",
+          "top_freq": 6
+        },
+        "top_categories": [
+          {
+            "category": "Femenino",
+            "count": 6,
+            "pct": 60.0
+          },
+          {
+            "category": "Masculino",
+            "count": 4,
+            "pct": 40.0
+          }
+        ]
+      },
+      {
+        "name": "P1_Claridad_contenido",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 4.2,
+          "median": 4.0,
+          "min": 3.0,
+          "max": 5.0,
+          "std": 0.7888106377466155,
+          "q1": 4.0,
+          "q3": 5.0
+        },
+        "categorical": {}
+      },
+      {
+        "name": "P2_Dominio_docente",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 4.2,
+          "median": 4.0,
+          "min": 3.0,
+          "max": 5.0,
+          "std": 0.6324555320336759,
+          "q1": 4.0,
+          "q3": 4.75
+        },
+        "categorical": {}
+      },
+      {
+        "name": "P3_Material_apoyo",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 4.3,
+          "median": 4.0,
+          "min": 3.0,
+          "max": 5.0,
+          "std": 0.6749485577105528,
+          "q1": 4.0,
+          "q3": 5.0
+        },
+        "categorical": {}
+      },
+      {
+        "name": "P4_Participacion_clase",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 3.9,
+          "median": 4.0,
+          "min": 3.0,
+          "max": 5.0,
+          "std": 0.7378647873726218,
+          "q1": 3.25,
+          "q3": 4.0
+        },
+        "categorical": {}
+      },
+      {
+        "name": "P5_Satisfaccion_general",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 4.4,
+          "median": 4.5,
+          "min": 3.0,
+          "max": 5.0,
+          "std": 0.6992058987801011,
+          "q1": 4.0,
+          "q3": 5.0
+        },
+        "categorical": {}
+      }
+    ],
+    "numeric_tests": [
+      {
+        "variable": "Edad",
+        "stat": 1.687,
+        "p_value": 0.1939
+      },
+      {
+        "variable": "P1_Claridad_contenido",
+        "stat": 1.875,
+        "p_value": 0.1709
+      },
+      {
+        "variable": "P2_Dominio_docente",
+        "stat": 0.536,
+        "p_value": 0.4642
+      },
+      {
+        "variable": "P3_Material_apoyo",
+        "stat": 1.125,
+        "p_value": 0.2888
+      },
+      {
+        "variable": "P4_Participacion_clase",
+        "stat": 5.357,
+        "p_value": 0.0206
+      },
+      {
+        "variable": "P5_Satisfaccion_general",
+        "stat": 2.0,
+        "p_value": 0.1573
+      }
+    ],
+    "crosstabs": [],
+    "group_comparisons": [
+      {
+        "variable": "Edad",
+        "segment_column": "Genero",
+        "groups": [
+          {
+            "group": "Femenino",
+            "n": 6,
+            "mean": 23.0,
+            "median": 22.0,
+            "std": 2.1909
+          },
+          {
+            "group": "Masculino",
+            "n": 4,
+            "mean": 24.25,
+            "median": 24.0,
+            "std": 1.5
+          }
+        ],
+        "top_group": "Masculino",
+        "top_mean": 24.25,
+        "low_group": "Femenino",
+        "low_mean": 23.0,
+        "mean_diff": 1.25,
+        "magnitude": "alta",
+        "interpretation": "La variable 'Edad' mostró diferencias altas entre grupos definidos por 'Genero'. El valor promedio más alto se observó en 'Masculino' (M=24.25), mientras que el más bajo correspondió a 'Femenino' (M=23.00), con una diferencia aproximada de 1.25 puntos."
+      },
+      {
+        "variable": "P4_Participacion_clase",
+        "segment_column": "Genero",
+        "groups": [
+          {
+            "group": "Femenino",
+            "n": 6,
+            "mean": 4.3333,
+            "median": 4.0,
+            "std": 0.5164
+          },
+          {
+            "group": "Masculino",
+            "n": 4,
+            "mean": 3.25,
+            "median": 3.0,
+            "std": 0.5
+          }
+        ],
+        "top_group": "Femenino",
+        "top_mean": 4.3333,
+        "low_group": "Masculino",
+        "low_mean": 3.25,
+        "mean_diff": 1.0833,
+        "magnitude": "alta",
+        "interpretation": "La variable 'P4_Participacion_clase' mostró diferencias altas entre grupos definidos por 'Genero'. El valor promedio más alto se observó en 'Femenino' (M=4.33), mientras que el más bajo correspondió a 'Masculino' (M=3.25), con una diferencia aproximada de 1.08 puntos."
+      },
+      {
+        "variable": "P1_Claridad_contenido",
+        "segment_column": "Genero",
+        "groups": [
+          {
+            "group": "Femenino",
+            "n": 6,
+            "mean": 4.5,
+            "median": 4.5,
+            "std": 0.5477
+          },
+          {
+            "group": "Masculino",
+            "n": 4,
+            "mean": 3.75,
+            "median": 3.5,
+            "std": 0.9574
+          }
+        ],
+        "top_group": "Femenino",
+        "top_mean": 4.5,
+        "low_group": "Masculino",
+        "low_mean": 3.75,
+        "mean_diff": 0.75,
+        "magnitude": "moderada",
+        "interpretation": "La variable 'P1_Claridad_contenido' mostró diferencias moderadas entre grupos definidos por 'Genero'. El valor promedio más alto se observó en 'Femenino' (M=4.50), mientras que el más bajo correspondió a 'Masculino' (M=3.75), con una diferencia aproximada de 0.75 puntos."
+      },
+      {
+        "variable": "P5_Satisfaccion_general",
+        "segment_column": "Genero",
+        "groups": [
+          {
+            "group": "Femenino",
+            "n": 6,
+            "mean": 4.6667,
+            "median": 5.0,
+            "std": 0.5164
+          },
+          {
+            "group": "Masculino",
+            "n": 4,
+            "mean": 4.0,
+            "median": 4.0,
+            "std": 0.8165
+          }
+        ],
+        "top_group": "Femenino",
+        "top_mean": 4.6667,
+        "low_group": "Masculino",
+        "low_mean": 4.0,
+        "mean_diff": 0.6667,
+        "magnitude": "moderada",
+        "interpretation": "La variable 'P5_Satisfaccion_general' mostró diferencias moderadas entre grupos definidos por 'Genero'. El valor promedio más alto se observó en 'Femenino' (M=4.67), mientras que el más bajo correspondió a 'Masculino' (M=4.00), con una diferencia aproximada de 0.67 puntos."
+      },
+      {
+        "variable": "P3_Material_apoyo",
+        "segment_column": "Genero",
+        "groups": [
+          {
+            "group": "Femenino",
+            "n": 6,
+            "mean": 4.5,
+            "median": 4.5,
+            "std": 0.5477
+          },
+          {
+            "group": "Masculino",
+            "n": 4,
+            "mean": 4.0,
+            "median": 4.0,
+            "std": 0.8165
+          }
+        ],
+        "top_group": "Femenino",
+        "top_mean": 4.5,
+        "low_group": "Masculino",
+        "low_mean": 4.0,
+        "mean_diff": 0.5,
+        "magnitude": "moderada",
+        "interpretation": "La variable 'P3_Material_apoyo' mostró diferencias moderadas entre grupos definidos por 'Genero'. El valor promedio más alto se observó en 'Femenino' (M=4.50), mientras que el más bajo correspondió a 'Masculino' (M=4.00), con una diferencia aproximada de 0.50 puntos."
+      },
+      {
+        "variable": "P2_Dominio_docente",
+        "segment_column": "Genero",
+        "groups": [
+          {
+            "group": "Femenino",
+            "n": 6,
+            "mean": 4.3333,
+            "median": 4.0,
+            "std": 0.5164
+          },
+          {
+            "group": "Masculino",
+            "n": 4,
+            "mean": 4.0,
+            "median": 4.0,
+            "std": 0.8165
+          }
+        ],
+        "top_group": "Femenino",
+        "top_mean": 4.3333,
+        "low_group": "Masculino",
+        "low_mean": 4.0,
+        "mean_diff": 0.3333,
+        "magnitude": "baja",
+        "interpretation": "La variable 'P2_Dominio_docente' mostró diferencias bajas entre grupos definidos por 'Genero'. El valor promedio más alto se observó en 'Femenino' (M=4.33), mientras que el más bajo correspondió a 'Masculino' (M=4.00), con una diferencia aproximada de 0.33 puntos."
+      }
+    ],
+    "group_comparison_summary": "El análisis comparativo entre grupos permitió identificar diferencias en las medias de algunas variables numéricas según la variable de segmentación detectada. En la variable 'Edad', el grupo 'Masculino' presentó la media más alta (M=24.25), mientras que 'Femenino' registró la más baja (M=23.00), evidenciando una diferencia alta de 1.25 puntos. En la variable 'P4_Participacion_clase', el grupo 'Femenino' presentó la media más alta (M=4.33), mientras que 'Masculino' registró la más baja (M=3.25), evidenciando una diferencia alta de 1.08 puntos. En la variable 'P1_Claridad_contenido', el grupo 'Femenino' presentó la media más alta (M=4.50), mientras que 'Masculino' registró la más baja (M=3.75), evidenciando una diferencia moderada de 0.75 puntos. En la variable 'P5_Satisfaccion_general', el grupo 'Femenino' presentó la media más alta (M=4.67), mientras que 'Masculino' registró la más baja (M=4.00), evidenciando una diferencia moderada de 0.67 puntos. En la variable 'P3_Material_apoyo', el grupo 'Femenino' presentó la media más alta (M=4.50), mientras que 'Masculino' registró la más baja (M=4.00), evidenciando una diferencia moderada de 0.50 puntos. Estas diferencias deben interpretarse como una aproximación descriptiva inicial y pueden complementarse posteriormente con análisis inferenciales más específicos.",
+    "group_findings": [
+      "La variable 'Edad' presentó una diferencia alta entre grupos, destacando 'Masculino' frente a 'Femenino' (Δ≈1.25).",
+      "La variable 'P4_Participacion_clase' presentó una diferencia alta entre grupos, destacando 'Femenino' frente a 'Masculino' (Δ≈1.08).",
+      "La variable 'P1_Claridad_contenido' presentó una diferencia moderada entre grupos, destacando 'Femenino' frente a 'Masculino' (Δ≈0.75).",
+      "La variable 'P5_Satisfaccion_general' presentó una diferencia moderada entre grupos, destacando 'Femenino' frente a 'Masculino' (Δ≈0.67)."
+    ],
+    "crosstabs_insights": "",
+    "important_variables": [
+      "P4_Participacion_clase"
+    ],
+    "results_text": "Participaron 10 personas en la encuesta.\nLa variable seleccionada como segmento fue 'Genero'.",
+    "survey_insights": "La encuesta analizada reúne 10 respuestas válidas.\nLa segmentación principal se realizó con la variable 'Genero'.\nNo se observaron asociaciones categóricas estadísticamente significativas de magnitud relevante.\nEntre las variables numéricas, 'P4_Participacion_clase' mostró diferencias significativas entre grupos (p = 0.0206).\nLas variables con mayor impacto analítico fueron: P4_Participacion_clase.\nEn términos descriptivos, la variable 'Genero' mostró una categoría predominante ('Femenino') con 60.0% de los casos válidos.",
+    "survey_key_findings": [
+      "La encuesta contó con 10 participantes.",
+      "La variable de segmentación principal identificada fue 'Genero'.",
+      "No se detectaron asociaciones significativas entre la variable de segmentación y las variables categóricas analizadas.",
+      "Entre las variables más relevantes identificadas se encuentran: P4_Participacion_clase."
+    ],
+    "survey_profile": {
+      "n_total": 10,
+      "segment_column": "Genero",
+      "n_variables": 7,
+      "n_categorical": 1,
+      "n_numeric": 6
+    }
+  }
+}

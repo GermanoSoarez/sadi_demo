@@ -1,0 +1,20 @@
+<div class="card">
+  <h3>Acciones — Likert</h3>
+
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <form method="post" action="{{ url_for('dataset_likert_summary', dataset_id=ds.id) }}">
+      <button class="btn secondary" type="submit">Generar resumen Likert (5/7)</button>
+    </form>
+
+    <a class="btn secondary" href="{{ url_for('dataset_psychometric_report', dataset_id=ds.id) }}">
+      Descargar informe psicométrico (PDF)
+    </a>
+
+    {# si tienes este endpoint #}
+    <a class="btn secondary" href="{{ url_for('dataset_pdf', dataset_id=ds.id) }}">Generar PDF</a>
+  </div>
+
+  <p class="meta" style="margin-top:8px;">
+    Incluye: gráficos por ítem, Cronbach, correlación, radar por dimensión, AFE (si está habilitado) y texto para tesis.
+  </p>
+</div>

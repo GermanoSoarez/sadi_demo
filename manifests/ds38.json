@@ -1,0 +1,113 @@
+{
+  "plots": [
+    "plots/ds38_corr_heatmap.png",
+    "plots/ds38_box_outliers.png",
+    "plots/ds38_hist_nitrogen_kg.png",
+    "plots/ds38_hist_phosphorus_kg.png",
+    "plots/ds38_hist_potassium_kg.png",
+    "plots/ds38_hist_rainfall_mm.png",
+    "plots/ds38_hist_soil_moisture_pct.png",
+    "plots/ds38_hist_temperature_c.png",
+    "plots/ds38_bar_fertilizer_type.png",
+    "plots/ds38_bar_irrigation_type.png",
+    "plots/ds38_bar_resultado.png"
+  ],
+  "meta": {},
+  "model_results": {
+    "rf_result": {
+      "target_col": "resultado",
+      "accuracy": 0.676923,
+      "precision": 0.677857,
+      "recall": 0.676923,
+      "f1_score": 0.67723,
+      "n_rows": 260,
+      "n_predictors": 9,
+      "labels": [
+        "alto_riesgo",
+        "bajo_riesgo"
+      ],
+      "confusion_matrix": [
+        [
+          20,
+          10
+        ],
+        [
+          11,
+          24
+        ]
+      ],
+      "classification_report": {
+        "alto_riesgo": {
+          "precision": 0.6451612903225806,
+          "recall": 0.6666666666666666,
+          "f1-score": 0.6557377049180327,
+          "support": 30.0
+        },
+        "bajo_riesgo": {
+          "precision": 0.7058823529411765,
+          "recall": 0.6857142857142857,
+          "f1-score": 0.6956521739130435,
+          "support": 35.0
+        },
+        "accuracy": 0.676923076923077,
+        "macro avg": {
+          "precision": 0.6755218216318786,
+          "recall": 0.6761904761904762,
+          "f1-score": 0.675694939415538,
+          "support": 65.0
+        },
+        "weighted avg": {
+          "precision": 0.6778572471172092,
+          "recall": 0.676923076923077,
+          "f1-score": 0.6772301112999615,
+          "support": 65.0
+        }
+      },
+      "feature_importance_table": [
+        {
+          "variable": "rainfall_mm",
+          "importance": 0.18654
+        },
+        {
+          "variable": "pest_index",
+          "importance": 0.186038
+        },
+        {
+          "variable": "soil_moisture_pct",
+          "importance": 0.136373
+        },
+        {
+          "variable": "phosphorus_kg",
+          "importance": 0.092877
+        },
+        {
+          "variable": "soil_ph",
+          "importance": 0.084827
+        },
+        {
+          "variable": "nitrogen_kg",
+          "importance": 0.083094
+        },
+        {
+          "variable": "potassium_kg",
+          "importance": 0.079656
+        },
+        {
+          "variable": "temperature_c",
+          "importance": 0.077545
+        },
+        {
+          "variable": "sunlight_hours",
+          "importance": 0.07305
+        }
+      ],
+      "interpretation": [
+        "El modelo presenta una precisión moderada.",
+        "El equilibrio global entre precisión y recuperación es aceptable.",
+        "Las variables más influyentes son: rainfall_mm, pest_index, soil_moisture_pct."
+      ],
+      "confusion_matrix_plot": "plots/ds38_rf_confusion_matrix.png",
+      "importance_plot": "plots/ds38_rf_class_importance.png"
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block title %}Cargar datos — SADI{% endblock %}
+
+{% block extra_head %}
+<style>
+  .hidden { display:none; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+  <h2>Cargar archivo de datos</h2>
+
+  <form method="post" enctype="multipart/form-data">
+
+    <div class="grid two">
+      <div>
+        <label>Título del dataset</label>
+        <input type="text" name="title" required>
+      </div>
+
+      <div>
+        <label>Tipo de dataset</label>
+        <select name="dataset_kind" id="dataset_kind" required>
+          <option value="" disabled selected>Seleccionar…</option>
+          <option value="survey">Encuesta</option>
+          <option value="dataset">No encuesta</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Subtipo encuesta (solo si elige encuesta) -->
+    <div class="grid two hidden" id="survey_subtype_block">
+      <div>
+        <label>Tipo de encuesta</label>
+        <select name="survey_subtype" id="survey_subtype">
+          <option value="normal">Encuesta normal</option>
+          <option value="likert">Encuesta Likert</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="grid two">
+      <div>
+        <label>Delimitador (para CSV/TSV)</label>
+        <select name="delimiter">
+          <option value="">Auto</option>
+          <option value=",">Coma (,)</option>
+          <option value=";">Punto y coma (;)</option>
+          <option value="\t">Tabulación</option>
+          <option value="|">Barra vertical (|)</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Archivo (.csv, .tsv, .xlsx)</label>
+        <input type="file" name="file" accept=".csv,.tsv,.xlsx" required>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div>
+        <label>Notas (opcional)</label>
+        <textarea name="notes" rows="3" placeholder="Breve descripción de los datos..."></textarea>
+      </div>
+    </div>
+
+    <button class="btn" type="submit">Subir dataset</button>
+
+  </form>
+
+  <p class="meta">
+    Tamaño máximo por archivo configurado en <code>MAX_CONTENT_LENGTH_MB</code>.
+  </p>
+</div>
+
+<script>
+  const kindSelect = document.getElementById("dataset_kind");
+  const subtypeBlock = document.getElementById("survey_subtype_block");
+
+  kindSelect.addEventListener("change", function() {
+    if (this.value === "survey") {
+      subtypeBlock.classList.remove("hidden");
+    } else {
+      subtypeBlock.classList.add("hidden");
+    }
+  });
+</script>
+
+{% endblock %}

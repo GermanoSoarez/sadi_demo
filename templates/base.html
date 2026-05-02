@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>{% block title %}SADI{% endblock %}</title>
+
+  <style>
+    /* ===== Reset + Layout pegado al footer ===== */
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+      color: #eaf0ff;
+      background: #0a1a2f;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      padding: 8px 14px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: #0c1b2a;
+    }
+    .wrap {
+      width: min(1100px, 94vw);
+      margin: 0 auto;
+    }
+    main {
+      flex: 1;
+      padding: 16px 0 12px;
+    }
+
+    /* ===== Componentes base (compactos) ===== */
+    .card {
+      background: #0d1730;
+      border: 1px solid #1b2a49;
+      border-radius: 14px;
+      padding: 14px;
+      margin: 10px 0;
+    }
+    .btn {
+      display: inline-block;
+      border: 1px solid #24406d;
+      background: #17325a;
+      color: #eaf0ff;
+      padding: 8px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    .btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
+    .btn.secondary { background: #122649; }
+    .btn.danger { background: #5a1730; border-color: #6d243e; }
+
+    /* ===== Tablas ===== */
+    .table-wrap { overflow-x: auto; }
+    .table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 720px; }
+    .table th, .table td { padding: 8px 10px; border-bottom: 1px solid #1b2a49; }
+    .table th { text-align: left; color: #cfe2ff; font-weight: 600; }
+
+    @media (max-width: 820px) {
+      .table { min-width: 640px; }
+    }
+
+    /* ===== Grids ===== */
+    .grid.two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 900px){ .grid.two { grid-template-columns: 1fr; } }
+
+    .grid.three-premium {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    @media (max-width: 900px){
+      .grid.three-premium { grid-template-columns: 1fr; }
+    }
+    .grid.three-premium .card { margin: 0; padding: 10px; }
+
+    .plot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    @media (max-width: 980px) {
+      .plot-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 640px) {
+      .plot-grid { grid-template-columns: 1fr; }
+    }
+    .plot-item { margin: 0; padding: 8px; }
+    .plot-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      border: 1px solid #1b2a49;
+      display: block;
+    }
+
+    label { display:block; font-size: 13px; color:#cfe2ff; margin: 6px 0 4px; }
+    input[type="text"], input[type="number"], input[type="file"], select, textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid #1b2a49;
+      background: #0f1d38;
+      color: #eaf0ff;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    textarea { min-height: 90px; }
+    .meta { color:#9fb3d9; font-size: 12.5px; }
+
+    /* ===== Footer pegado ===== */
+    footer {
+      margin-top: 8px;
+      padding: 10px 0 12px;
+      background: #0c1b2a;
+      border-top: 1px solid rgba(255,255,255,.08);
+      color: #dfe9ff;
+      font-size: 13.5px;
+    }
+    .footer-inner { display:flex; align-items:center; justify-content:center; gap:8px; }
+    .footer-logo {
+      width: 28px; height: 28px; object-fit: contain;
+      filter: drop-shadow(0 0 2px rgba(105,209,109,.6));
+    }
+
+    /* ===== Tipografía compacta ===== */
+    h1 { font-size: clamp(22px, 3.2vw, 34px); margin: 8px 0; }
+    h2 { font-size: clamp(18px, 2.4vw, 22px); margin: 6px 0; }
+    h3 { font-size: clamp(16px, 2vw, 18px); margin: 6px 0; }
+    p  { margin: 6px 0; line-height: 1.35; }
+
+    @media (max-height: 900px){
+      main { padding: 12px 0 8px; }
+      .card { padding: 12px; margin: 8px 0; }
+    }
+
+    /* ===== Botonera responsive ===== */
+    .actions-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    /* ===== Header responsive (hamburguesa) ===== */
+    .topbar {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display:flex;
+      align-items:center;
+      gap:8px;
+      min-width: 160px;
+    }
+    .nav-toggle {
+      display: none;
+      border: 1px solid rgba(255,255,255,.16);
+      background: #0f1d38;
+      color: #eaf0ff;
+      padding: 7px 10px;
+      border-radius: 10px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    #topbarLinks {
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+
+    @media (max-width: 760px) {
+      .nav-toggle { display: inline-flex; align-items:center; gap:8px; }
+      #topbarLinks { display: none; width: 100%; }
+      #topbarLinks.open {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding-top: 10px;
+      }
+      #topbarLinks .btn { width: 100%; text-align:center; }
+    }
+  </style>
+
+  {% block extra_head %}{% endblock %}
+</head>
+
+<body>
+  <header>
+    <div class="wrap topbar">
+      <div class="brand">
+        <img src="{{ url_for('static', filename='SG-Sistemas.ico') }}" alt="SG"
+             style="width:22px;height:22px;object-fit:contain">
+        <strong>SADI</strong>
+      </div>
+
+      <button id="navToggle" class="nav-toggle" type="button">☰ Menú</button>
+
+      <nav id="topbarLinks">
+        <a href="{{ url_for('home') }}" class="btn secondary">Inicio</a>
+        <a href="{{ url_for('dataset.dashboard') }}" class="btn">Panel</a>
+
+        {# Si tienes flask-login, esto mejora la UX #}
+        {% if current_user.is_authenticated %}
+          <a href="{{ url_for('auth.logout') }}" class="btn secondary">Salir</a>
+        {% else %}
+          <a href="{{ url_for('auth.login') }}" class="btn secondary">Ingresar</a>
+        {% endif %}
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+
+      {# Flash messages (UNA sola vez) #}
+      {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+          <div style="margin:10px 0;">
+            {% for category, msg in messages %}
+              <div class="card" style="padding:10px;border-left:6px solid #5fa8ff;">
+                <b style="text-transform:capitalize;">{{ category }}</b>: {{ msg }}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      {# Contenido #}
+      {% block content %}{% endblock %}
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-inner">
+        <img src="{{ url_for('static', filename='SG-Sistemas.ico') }}" alt="SG-Sistemas" class="footer-logo">
+        <span>© {{ current_year }} SG-Sistemas — Todos los derechos reservados.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const btn = document.getElementById("navToggle");
+      const links = document.getElementById("topbarLinks");
+      if (btn && links) {
+        btn.addEventListener("click", () => {
+          links.classList.toggle("open");
+        });
+      }
+    })();
+
+    // Wrapper automático de tablas para móvil (opcional, mejora UX)
+    (function () {
+      const tables = document.querySelectorAll("table.table");
+      tables.forEach(t => {
+        if (t.parentElement && !t.parentElement.classList.contains("table-wrap")) {
+          const wrap = document.createElement("div");
+          wrap.className = "table-wrap";
+          t.parentNode.insertBefore(wrap, t);
+          wrap.appendChild(t);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

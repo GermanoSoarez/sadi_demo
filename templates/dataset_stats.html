@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block title %}Análisis exploratorio - {{ ds.title }}{% endblock %}
+
+{% block content %}
+
+<div class="card">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
+    <div>
+      <h2 style="margin-bottom:4px;">Análisis exploratorio – {{ ds.title }}</h2>
+      <p class="meta">
+        ID: {{ ds.id }} · Archivo: {{ ds.filename }}
+      </p>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;">
+      <a href="{{ url_for('dataset_detail', dataset_id=ds.id) }}" class="btn secondary">
+        Volver al dataset
+      </a>
+      <a href="{{ url_for('dashboard_datasets') }}" class="btn secondary">
+        Ir al Dashboard Premium (datasets)
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="grid two">
+  <!-- Resumen general -->
+  <div class="card">
+    <h3>Resumen general</h3>
+    {% set s = summary or {} %}
+    {% set tipos = s.get("tipos", {}) %}
+    {% set n_rows = s.get("n_rows", ds.n_rows or 0) %}
+    {% set n_cols = s.get("n_cols", ds.n_cols or 0) %}
+
+    <p class="meta">Dimensión del dataset:</p>
+    <ul class="meta">
+      <li>Filas: <strong>{{ n_rows }}</strong></li>
+      <li>Columnas: <strong>{{ n_cols }}</strong></li>
+    </ul>
+
+    <p class="meta">Variables detectadas:</p>
+    <ul class="meta">
+      {% set num_vars = 0 %}
+      {% set cat_vars = 0 %}
+      {% set date_vars = 0 %}
+      {% for col, t in tipos.items() %}
+        {% if t in ["numérico", "numerico", "float", "int"] %}
+          {% set num_vars = num_vars + 1 %}
+        {% elif t in ["categórico", "categorico", "category"] %}
+          {% set cat_vars = cat_vars + 1 %}
+        {% elif t in ["fecha", "datetime"] %}
+          {% set date_vars = date_vars + 1 %}
+        {% endif %}
+      {% endfor %}
+      <li>Numéricas: <strong>{{ num_vars }}</strong></li>
+      <li>Categóricas: <strong>{{ cat_vars }}</strong></li>
+      <li>Fecha / tiempo: <strong>{{ date_vars }}</strong></li>
+    </ul>
+  </div>
+
+  <!-- Clasificación encuesta / no encuesta -->
+  <div class="card">
+    <h3>Clasificación del dataset</h3>
+    {% set clasif = s.get("clasificacion", {}) %}
+    {% if clasif %}
+      {% if clasif.get("is_survey") %}
+        <p>
+          Este dataset fue clasificado como
+          <span style="color:#7dd97d;font-weight:600;">ENCUESTA</span>.
+        </p>
+      {% else %}
+        <p>
+          Este dataset fue clasificado como
+          <span style="color:#7dc0d9;font-weight:600;">NO ENCUESTA</span>.
+        </p>
+      {% endif %}
+      {% if clasif.get("score") is not none %}
+        <p class="meta">
+          Score de detección de encuesta: <strong>{{ "%.3f"|format(clasif.get("score")) }}</strong>
+        </p>
+      {% endif %}
+      {% if clasif.get("detalles") %}
+        <p class="meta">
+          Detalles: {{ clasif.get("detalles") }}
+        </p>
+      {% endif %}
+    {% else %}
+      <p class="meta">
+        No se encontró información de clasificación en el summary.
+      </p>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Vista simple de columnas y tipos -->
+<div class="card">
+  <h3>Columnas y tipos detectados</h3>
+  {% if tipos %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Columna</th>
+          <th>Tipo detectado</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for col, t in tipos.items() %}
+        <tr>
+          <td>{{ col }}</td>
+          <td class="meta">{{ t }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="meta">
+      No se encontraron tipos en el summary. Es posible que el análisis haya fallado de forma parcial.
+    </p>
+  {% endif %}
+</div>
+
+<div class="card">
+  <h3>Gráficos generados</h3>
+  <p class="meta">
+    Los gráficos fueron guardados en <code>static/plots/</code> con nombres
+    tipo <code>ds{{ ds.id }}_*.png</code>. Podés integrarlos al PDF/Word o verlos
+    desde las opciones del dataset.
+  </p>
+</div>
+
+{% endblock %}

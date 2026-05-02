@@ -1,0 +1,46 @@
+{
+  "plots": [
+    "ds4_hist_EdadGeneroP1_Claridad_contenidoP2_Dominio_docenteP3_Material_apoyoP4_Participaci.png"
+  ],
+  "meta": {
+    "n_total": 10,
+    "segment_column": null,
+    "columns_summary": [
+      {
+        "name": "Edad,Genero,P1_Claridad_contenido,P2_Dominio_docente,P3_Material_apoyo,P4_Participacion_clase,P5_Satisfaccion_general\n",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "dtype": "numeric",
+        "interpretation": "La variable Edad,Genero,P1_Claridad_contenido,P2_Dominio_docente,P3_Material_apoyo,P4_Participacion_clase,P5_Satisfaccion_general\n es numérica, con media 4.44 y desviación estándar 0.73.",
+        "numeric": {
+          "mean": 4.444444444444445,
+          "median": 5.0,
+          "min": 3.0,
+          "max": 5.0,
+          "std": 0.7264831572567788,
+          "q1": 4.0,
+          "q3": 5.0
+        }
+      }
+    ],
+    "numeric_tests": [],
+    "crosstabs": [],
+    "group_comparisons": [],
+    "group_comparison_summary": "",
+    "group_findings": [],
+    "crosstabs_insights": "",
+    "important_variables": [],
+    "results_text": "El análisis se realizó sobre 10 registros y 1 variables.\n\nNo se detectó una variable de segmentación suficientemente robusta, por lo que el análisis se concentró en la descripción general del dataset.",
+    "survey_insights": "Se analizaron 10 respuestas/registros y — variables.",
+    "survey_key_findings": [],
+    "survey_profile": {
+      "n_total": 10,
+      "segment_column": null,
+      "n_variables": 1,
+      "n_categorical": 0,
+      "n_numeric": 1
+    }
+  }
+}

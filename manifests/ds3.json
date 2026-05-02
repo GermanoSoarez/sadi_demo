@@ -1,0 +1,582 @@
+{
+  "plots": [
+    "ds3_bar_ID.png",
+    "ds3_hist_Edad.png",
+    "ds3_bar_Genero.png",
+    "ds3_hist_P1_Claridad_contenido.png",
+    "ds3_hist_P2_Dominio_docente.png",
+    "ds3_hist_P3_Material_apoyo.png",
+    "ds3_hist_P4_Participacion_clase.png",
+    "ds3_hist_P5_Satisfaccion_general.png",
+    "ds3_group_mean_Edad.png",
+    "ds3_group_mean_P1_Claridad_contenido.png",
+    "ds3_group_mean_P2_Dominio_docente.png",
+    "ds3_group_mean_P3_Material_apoyo.png",
+    "ds3_group_mean_P4_Participacion_clase.png",
+    "ds3_group_mean_P5_Satisfaccion_general.png"
+  ],
+  "meta": {
+    "n_total": 10,
+    "n_rows": 10,
+    "n_cols": 7,
+    "num_cols": [
+      "P1_Claridad_contenido",
+      "P2_Dominio_docente",
+      "P3_Material_apoyo",
+      "P4_Participacion_clase",
+      "P5_Satisfaccion_general"
+    ],
+    "cat_cols": [
+      "Edad",
+      "Genero"
+    ],
+    "dt_cols": [],
+    "n_num": 5,
+    "n_cat": 2,
+    "n_dt": 0,
+    "missing_global_pct": 8.57,
+    "segment_column": "Genero",
+    "columns_summary": [
+      {
+        "name": "Edad",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "dtype": "numeric",
+        "interpretation": "La variable Edad es numérica, con media 23.67 y desviación estándar 2.00.",
+        "numeric": {
+          "mean": 23.666666666666668,
+          "median": 23.0,
+          "min": 21.0,
+          "max": 27.0,
+          "std": 2.0,
+          "q1": 22.0,
+          "q3": 25.0
+        }
+      },
+      {
+        "name": "Genero",
+        "n_total": 10,
+        "n_valid": 9,
+        "n_missing": 1,
+        "missing_pct": 10.0,
+        "dtype": "categorical",
+        "interpretation": "La categoría más frecuente en Genero fue 'Femenino', con 50.0% de los casos válidos.",
+        "top_categories": [
+          {
+            "category": "Femenino",
+            "count": 5,
+            "pct": 50.0
+          },
+          {
+            "category": "Masculino",
+            "count": 4,
+            "pct": 40.0
+          },
+          {
+            "category": "Sin dato",
+            "count": 1,
+            "pct": 10.0
+          }
+        ]
+      },
+      {
+        "name": "P1_Claridad_contenido",
+        "n_total": 10,
+        "n_valid": 9,
+        "n_missing": 1,
+        "missing_pct": 10.0,
+        "dtype": "numeric",
+        "interpretation": "La variable P1_Claridad_contenido es numérica, con media 4.22 y desviación estándar 0.83.",
+        "numeric": {
+          "mean": 4.222222222222222,
+          "median": 4.0,
+          "min": 3.0,
+          "max": 5.0,
+          "std": 0.8333333333333334,
+          "q1": 4.0,
+          "q3": 5.0
+        }
+      },
+      {
+        "name": "P2_Dominio_docente",
+        "n_total": 10,
+        "n_valid": 9,
+        "n_missing": 1,
+        "missing_pct": 10.0,
+        "dtype": "numeric",
+        "interpretation": "La variable P2_Dominio_docente es numérica, con media 4.22 y desviación estándar 0.67.",
+        "numeric": {
+          "mean": 4.222222222222222,
+          "median": 4.0,
+          "min": 3.0,
+          "max": 5.0,
+          "std": 0.6666666666666666,
+          "q1": 4.0,
+          "q3": 5.0
+        }
+      },
+      {
+        "name": "P3_Material_apoyo",
+        "n_total": 10,
+        "n_valid": 9,
+        "n_missing": 1,
+        "missing_pct": 10.0,
+        "dtype": "numeric",
+        "interpretation": "La variable P3_Material_apoyo es numérica, con media 4.33 y desviación estándar 0.71.",
+        "numeric": {
+          "mean": 4.333333333333333,
+          "median": 4.0,
+          "min": 3.0,
+          "max": 5.0,
+          "std": 0.7071067811865476,
+          "q1": 4.0,
+          "q3": 5.0
+        }
+      },
+      {
+        "name": "P4_Participacion_clase",
+        "n_total": 10,
+        "n_valid": 9,
+        "n_missing": 1,
+        "missing_pct": 10.0,
+        "dtype": "numeric",
+        "interpretation": "La variable P4_Participacion_clase es numérica, con media 3.89 y desviación estándar 0.78.",
+        "numeric": {
+          "mean": 3.888888888888889,
+          "median": 4.0,
+          "min": 3.0,
+          "max": 5.0,
+          "std": 0.7817359599705717,
+          "q1": 3.0,
+          "q3": 4.0
+        }
+      },
+      {
+        "name": "P5_Satisfaccion_general",
+        "n_total": 10,
+        "n_valid": 9,
+        "n_missing": 1,
+        "missing_pct": 10.0,
+        "dtype": "numeric",
+        "interpretation": "La variable P5_Satisfaccion_general es numérica, con media 4.44 y desviación estándar 0.73.",
+        "numeric": {
+          "mean": 4.444444444444445,
+          "median": 5.0,
+          "min": 3.0,
+          "max": 5.0,
+          "std": 0.7264831572567788,
+          "q1": 4.0,
+          "q3": 5.0
+        }
+      }
+    ],
+    "numeric_tests": [
+      {
+        "variable": "Edad",
+        "test": "Kruskal-Wallis",
+        "statistic": 0.9762711864406752,
+        "p_value": 0.32312112726881226,
+        "significant": false
+      },
+      {
+        "variable": "P1_Claridad_contenido",
+        "test": "Kruskal-Wallis",
+        "statistic": 2.0742857142857156,
+        "p_value": 0.14980005429362617,
+        "significant": false
+      },
+      {
+        "variable": "P2_Dominio_docente",
+        "test": "Kruskal-Wallis",
+        "statistic": 0.6750000000000034,
+        "p_value": 0.4113137917762577,
+        "significant": false
+      },
+      {
+        "variable": "P3_Material_apoyo",
+        "test": "Kruskal-Wallis",
+        "statistic": 1.4579999999999997,
+        "p_value": 0.22724860991303014,
+        "significant": false
+      },
+      {
+        "variable": "P4_Participacion_clase",
+        "test": "Kruskal-Wallis",
+        "statistic": 4.9542857142857155,
+        "p_value": 0.02602607440859102,
+        "significant": true
+      },
+      {
+        "variable": "P5_Satisfaccion_general",
+        "test": "Kruskal-Wallis",
+        "statistic": 2.6999999999999957,
+        "p_value": 0.1003482464622905,
+        "significant": false
+      }
+    ],
+    "crosstabs": [],
+    "group_comparisons": [
+      {
+        "variable": "Edad",
+        "segment_column": "Genero",
+        "groups": [
+          {
+            "group": "Femenino",
+            "n": 5,
+            "mean": 23.2,
+            "median": 22.0,
+            "std": 2.3874672772626644
+          },
+          {
+            "group": "Masculino",
+            "n": 4,
+            "mean": 24.25,
+            "median": 24.0,
+            "std": 1.5
+          }
+        ],
+        "statistic": 0.9762711864406752,
+        "p_value": 0.32312112726881226,
+        "is_significant": false,
+        "interpretation": "La variable Edad muestra diferencias descriptivas entre grupos de Genero. El grupo con mayor media fue 'Masculino' y el de menor media fue 'Femenino'. No se observó significación estadística al nivel 0.05."
+      },
+      {
+        "variable": "P1_Claridad_contenido",
+        "segment_column": "Genero",
+        "groups": [
+          {
+            "group": "Femenino",
+            "n": 5,
+            "mean": 4.6,
+            "median": 5.0,
+            "std": 0.5477225575051661
+          },
+          {
+            "group": "Masculino",
+            "n": 4,
+            "mean": 3.75,
+            "median": 3.5,
+            "std": 0.9574271077563381
+          }
+        ],
+        "statistic": 2.0742857142857156,
+        "p_value": 0.14980005429362617,
+        "is_significant": false,
+        "interpretation": "La variable P1_Claridad_contenido muestra diferencias descriptivas entre grupos de Genero. El grupo con mayor media fue 'Femenino' y el de menor media fue 'Masculino'. No se observó significación estadística al nivel 0.05."
+      },
+      {
+        "variable": "P2_Dominio_docente",
+        "segment_column": "Genero",
+        "groups": [
+          {
+            "group": "Femenino",
+            "n": 5,
+            "mean": 4.4,
+            "median": 4.0,
+            "std": 0.5477225575051662
+          },
+          {
+            "group": "Masculino",
+            "n": 4,
+            "mean": 4.0,
+            "median": 4.0,
+            "std": 0.816496580927726
+          }
+        ],
+        "statistic": 0.6750000000000034,
+        "p_value": 0.4113137917762577,
+        "is_significant": false,
+        "interpretation": "La variable P2_Dominio_docente muestra diferencias descriptivas entre grupos de Genero. El grupo con mayor media fue 'Femenino' y el de menor media fue 'Masculino'. No se observó significación estadística al nivel 0.05."
+      },
+      {
+        "variable": "P3_Material_apoyo",
+        "segment_column": "Genero",
+        "groups": [
+          {
+            "group": "Femenino",
+            "n": 5,
+            "mean": 4.6,
+            "median": 5.0,
+            "std": 0.5477225575051662
+          },
+          {
+            "group": "Masculino",
+            "n": 4,
+            "mean": 4.0,
+            "median": 4.0,
+            "std": 0.816496580927726
+          }
+        ],
+        "statistic": 1.4579999999999997,
+        "p_value": 0.22724860991303014,
+        "is_significant": false,
+        "interpretation": "La variable P3_Material_apoyo muestra diferencias descriptivas entre grupos de Genero. El grupo con mayor media fue 'Femenino' y el de menor media fue 'Masculino'. No se observó significación estadística al nivel 0.05."
+      },
+      {
+        "variable": "P4_Participacion_clase",
+        "segment_column": "Genero",
+        "groups": [
+          {
+            "group": "Femenino",
+            "n": 5,
+            "mean": 4.4,
+            "median": 4.0,
+            "std": 0.5477225575051662
+          },
+          {
+            "group": "Masculino",
+            "n": 4,
+            "mean": 3.25,
+            "median": 3.0,
+            "std": 0.5
+          }
+        ],
+        "statistic": 4.9542857142857155,
+        "p_value": 0.02602607440859102,
+        "is_significant": true,
+        "interpretation": "La variable P4_Participacion_clase muestra diferencias descriptivas entre grupos de Genero. El grupo con mayor media fue 'Femenino' y el de menor media fue 'Masculino'. La diferencia fue estadísticamente significativa."
+      },
+      {
+        "variable": "P5_Satisfaccion_general",
+        "segment_column": "Genero",
+        "groups": [
+          {
+            "group": "Femenino",
+            "n": 5,
+            "mean": 4.8,
+            "median": 5.0,
+            "std": 0.4472135954999579
+          },
+          {
+            "group": "Masculino",
+            "n": 4,
+            "mean": 4.0,
+            "median": 4.0,
+            "std": 0.816496580927726
+          }
+        ],
+        "statistic": 2.6999999999999957,
+        "p_value": 0.1003482464622905,
+        "is_significant": false,
+        "interpretation": "La variable P5_Satisfaccion_general muestra diferencias descriptivas entre grupos de Genero. El grupo con mayor media fue 'Femenino' y el de menor media fue 'Masculino'. No se observó significación estadística al nivel 0.05."
+      }
+    ],
+    "group_comparison_summary": "Se identificaron diferencias entre grupos en varias variables numéricas. Las comparaciones más destacadas incluyen: P4_Participacion_clase.",
+    "group_findings": [
+      "En P4_Participacion_clase, el grupo 'Femenino' presentó la media más alta (4.40).",
+      "En P2_Dominio_docente, el grupo 'Femenino' presentó la media más alta (4.40).",
+      "En Edad, el grupo 'Masculino' presentó la media más alta (24.25).",
+      "En P3_Material_apoyo, el grupo 'Femenino' presentó la media más alta (4.60).",
+      "En P1_Claridad_contenido, el grupo 'Femenino' presentó la media más alta (4.60).",
+      "En P5_Satisfaccion_general, el grupo 'Femenino' presentó la media más alta (4.80)."
+    ],
+    "crosstabs_insights": "",
+    "survey_profile": {
+      "n_total": 10,
+      "segment_column": "Genero",
+      "n_variables": 7,
+      "n_categorical": 1,
+      "n_numeric": 6
+    },
+    "important_variables": [
+      "P4_Participacion_clase"
+    ],
+    "results_text": "El análisis se realizó sobre 10 registros y 7 variables.\n\nSe detectó como variable principal de segmentación a 'Genero', utilizada para explorar diferencias y asociaciones entre grupos.\n\nLas variables con mayor relevancia analítica fueron: P4_Participacion_clase.\n\nTambién se observaron diferencias entre grupos en determinadas variables numéricas.",
+    "survey_insights": "Se analizaron 10 respuestas/registros y 7 variables.\nLa variable de segmentación más útil fue 'Genero'.\nLas variables con mayor peso analítico fueron: P4_Participacion_clase.\nSe detectaron diferencias entre grupos en: P4_Participacion_clase.",
+    "survey_key_findings": [
+      "Se detectó 'Genero' como variable principal de segmentación.",
+      "La variable 'P4_Participacion_clase' mostró relevancia analítica destacada.",
+      "Se encontraron diferencias significativas entre grupos en 1 variables numéricas."
+    ],
+    "insights": [
+      "El dataset contiene 10 filas y 7 columnas, lo que permite un análisis exploratorio inicial consistente.",
+      "Se detectaron 5 variables numéricas, adecuadas para análisis descriptivo, correlacional y eventualmente predictivo.",
+      "Se identificaron 2 variables categóricas, útiles para segmentación, frecuencias y comparaciones entre grupos.",
+      "El dataset presenta valores faltantes moderados (8.57%), por lo que conviene revisar imputación o limpieza antes de análisis avanzados.",
+      "Se detectó una relación fuerte entre 'P1_Claridad_contenido' y 'P4_Participacion_clase' (r=0.8102).",
+      "La variable 'P1_Claridad_contenido' destaca como la más relevante en términos de variabilidad y calidad de datos.",
+      "La variable 'P1_Claridad_contenido' presenta la mayor variabilidad observada en el dataset.",
+      "La variable 'Genero' podría utilizarse como objetivo en un modelo de clasificación.",
+      "Se observan múltiples relaciones fuertes entre variables numéricas, lo que sugiere estructura interna relevante.",
+      "La variable con mayor dispersión observada fue 'P1_Claridad_contenido'."
+    ],
+    "insights_text": "El dataset analizado presenta 10 registros y 7 variables. En su estructura se identifican 5 variables numéricas, 2 categóricas y 0 temporales. Además, el porcentaje global de datos faltantes alcanza 8.57%, aspecto que debe considerarse antes de aplicar técnicas más complejas. Desde la perspectiva analítica, el enfoque sugerido por SADI es: general Se identificaron 4 relaciones fuertes entre variables numéricas. Las variables más dispersas podrían explicar buena parte de la variabilidad observada. SADI detectó como posible variable objetivo 'Genero', dentro de un contexto de classification.",
+    "sadi_insights": "El dataset analizado presenta 10 registros y 7 variables. En su estructura se identifican 5 variables numéricas, 2 categóricas y 0 temporales. Además, el porcentaje global de datos faltantes alcanza 8.57%, aspecto que debe considerarse antes de aplicar técnicas más complejas. Desde la perspectiva analítica, el enfoque sugerido por SADI es: general Se identificaron 4 relaciones fuertes entre variables numéricas. Las variables más dispersas podrían explicar buena parte de la variabilidad observada. SADI detectó como posible variable objetivo 'Genero', dentro de un contexto de classification.\n\nRecomendaciones principales: Priorizar tablas de frecuencias y distribución de respuestas.; Comparar categorías clave entre preguntas relevantes..\n\nPrioridad analítica sugerida: bar > hist > missing > corr > scatter > box.\n\nAnálisis sugeridos: frequency_analysis; categorical_summary; response_distribution; missing_analysis.\n\nGráficos sugeridos: top_categories; response_bars; distribution_bars.\n\nEnfoque narrativo recomendado: general.\n\nPróximo paso recomendado: Explorar diferencias entre grupos. Justificación: El dataset combina variables numéricas y categóricas, lo que permite comparar perfiles o medias entre grupos.. Acción sugerida: Aplicar comparaciones entre grupos o análisis segmentado..",
+    "quick_recommendations": [
+      "Priorizar tablas de frecuencias y distribución de respuestas.",
+      "Comparar categorías clave entre preguntas relevantes."
+    ],
+    "suggested_plan": {
+      "recommended_analysis": [
+        "frequency_analysis",
+        "categorical_summary",
+        "response_distribution",
+        "missing_analysis"
+      ],
+      "recommended_plots": [
+        "top_categories",
+        "response_bars",
+        "distribution_bars"
+      ],
+      "narrative_focus": "general",
+      "warnings": [
+        "El dataset tiene pocas filas; algunos análisis pueden ser inestables."
+      ]
+    },
+    "priority_order": [
+      "bar",
+      "hist",
+      "missing",
+      "corr",
+      "scatter",
+      "box"
+    ],
+    "warnings": [],
+    "research_area_suggested": "educacion",
+    "sadi_recommendations": [
+      "Priorizar tablas de frecuencias y distribución de respuestas.",
+      "Comparar categorías clave entre preguntas relevantes."
+    ],
+    "sadi_plan": {
+      "recommended_analysis": [
+        "frequency_analysis",
+        "categorical_summary",
+        "response_distribution",
+        "missing_analysis"
+      ],
+      "recommended_plots": [
+        "top_categories",
+        "response_bars",
+        "distribution_bars"
+      ],
+      "narrative_focus": "general",
+      "warnings": [
+        "El dataset tiene pocas filas; algunos análisis pueden ser inestables."
+      ]
+    },
+    "sadi_priority": [
+      "bar",
+      "hist",
+      "missing",
+      "corr",
+      "scatter",
+      "box"
+    ],
+    "next_step_recommendation": {
+      "title": "Explorar diferencias entre grupos",
+      "reason": "El dataset combina variables numéricas y categóricas, lo que permite comparar perfiles o medias entre grupos.",
+      "action": "Aplicar comparaciones entre grupos o análisis segmentado."
+    },
+    "top_numeric_by_variability": [
+      {
+        "column": "P1_Claridad_contenido",
+        "std": 0.8333,
+        "range": 2.0
+      },
+      {
+        "column": "P4_Participacion_clase",
+        "std": 0.7817,
+        "range": 2.0
+      },
+      {
+        "column": "P5_Satisfaccion_general",
+        "std": 0.7265,
+        "range": 2.0
+      },
+      {
+        "column": "P3_Material_apoyo",
+        "std": 0.7071,
+        "range": 2.0
+      },
+      {
+        "column": "P2_Dominio_docente",
+        "std": 0.6667,
+        "range": 2.0
+      }
+    ],
+    "variable_importance": [
+      {
+        "column": "Edad",
+        "score": 10,
+        "std": 2.0,
+        "missing_pct": 0.0
+      },
+      {
+        "column": "Genero",
+        "score": 9,
+        "std": "—",
+        "missing_pct": 10.0
+      },
+      {
+        "column": "P1_Claridad_contenido",
+        "score": 9,
+        "std": 0.8333333333333334,
+        "missing_pct": 10.0
+      },
+      {
+        "column": "P2_Dominio_docente",
+        "score": 9,
+        "std": 0.6666666666666666,
+        "missing_pct": 10.0
+      },
+      {
+        "column": "P3_Material_apoyo",
+        "score": 9,
+        "std": 0.7071067811865476,
+        "missing_pct": 10.0
+      },
+      {
+        "column": "P4_Participacion_clase",
+        "score": 9,
+        "std": 0.7817359599705717,
+        "missing_pct": 10.0
+      },
+      {
+        "column": "P5_Satisfaccion_general",
+        "score": 9,
+        "std": 0.7264831572567788,
+        "missing_pct": 10.0
+      }
+    ],
+    "ranked_target_candidates": [
+      {
+        "column": "P4_Participacion_clase",
+        "type": "classification",
+        "score": 1.0,
+        "reason": "Variable destacada automáticamente por SADI a partir del análisis descriptivo."
+      }
+    ],
+    "target_candidate": "P4_Participacion_clase",
+    "target_type": "classification",
+    "target_reason": "Variable destacada automáticamente por SADI a partir del análisis descriptivo.",
+    "model_suggestion": "Random Forest Classifier"
+  },
+  "generated": [
+    "ds3_bar_ID.png",
+    "ds3_hist_Edad.png",
+    "ds3_bar_Genero.png",
+    "ds3_hist_P1_Claridad_contenido.png",
+    "ds3_hist_P2_Dominio_docente.png",
+    "ds3_hist_P3_Material_apoyo.png",
+    "ds3_hist_P4_Participacion_clase.png",
+    "ds3_hist_P5_Satisfaccion_general.png",
+    "ds3_group_mean_Edad.png",
+    "ds3_group_mean_P1_Claridad_contenido.png",
+    "ds3_group_mean_P2_Dominio_docente.png",
+    "ds3_group_mean_P3_Material_apoyo.png",
+    "ds3_group_mean_P4_Participacion_clase.png",
+    "ds3_group_mean_P5_Satisfaccion_general.png"
+  ],
+  "dataset_type": "survey_normal",
+  "cols": [
+    "Edad",
+    "Genero",
+    "P1_Claridad_contenido",
+    "P2_Dominio_docente",
+    "P3_Material_apoyo",
+    "P4_Participacion_clase",
+    "P5_Satisfaccion_general"
+  ]
+}

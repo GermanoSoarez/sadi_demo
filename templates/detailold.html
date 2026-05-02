@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}Dataset — SADI{% endblock %}
+{% block content %}
+<div class="card">
+  <h2>{{ ds.title }}</h2>
+  <p class="meta">
+    Archivo: {{ ds.original_name }} |
+    Subido: {{ ds.uploaded_at.strftime('%Y-%m-%d %H:%M') }} |
+    Dimensiones: {{ ds.n_rows }} × {{ ds.n_cols }}
+  </p>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <a class="btn" href="{{ url_for('dataset_stats', dataset_id=ds.id) }}">Calcular estadísticas</a>
+    <a class="btn secondary" href="{{ url_for('dataset_pdf', dataset_id=ds.id) }}">Generar PDF</a>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Vista previa (primeras 25 filas)</h3>
+  {% if preview %}
+  <div style="overflow:auto;max-height:420px">
+    <table class="table">
+      <thead>
+        <tr>
+          {% for col in preview.columns %}
+            <th>{{ col }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for _, row in preview.iterrows() %}
+          <tr>
+          {% for col in preview.columns %}
+            <td>{{ row[col] }}</td>
+          {% endfor %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+    <p class="meta">No se pudo mostrar la vista previa.</p>
+  {% endif %}
+</div>
+
+{% if plots %}
+<div class="card">
+  <h3>Gráficos guardados</h3>
+  <div style="display:flex;gap:16px;flex-wrap:wrap">
+    {% for p in plots %}
+      <img src="{{ url_for('static', filename=p) }}" alt="plot" style="max-width:360px;border-radius:12px;border:1px solid #1f2a44"/>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+{% endblock %}

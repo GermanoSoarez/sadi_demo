@@ -1,0 +1,213 @@
+{% extends 'base.html' %}
+{% block title %}Análisis Multivariado — {{ ds.title }}{% endblock %}
+
+{% block content %}
+
+{% set quick_recommendations = profile.quick_recommendations if profile and profile.quick_recommendations is defined else [] %}
+{% set top_insights = insights_ranking if insights_ranking else [] %}
+
+<!-- ========================= -->
+<!-- HEADER -->
+<!-- ========================= -->
+<div class="card">
+  <div class="mv-block-title">
+    <div>
+      <h2 style="margin:0;">Análisis multivariado</h2>
+      <p class="meta" style="margin:4px 0 0;">
+        Dataset: <strong>{{ ds.title }}</strong>
+      </p>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <span class="mv-badge">Área: {{ research_type or 'general' }}</span>
+      <span class="mv-badge">Perfil: {{ profile.profile_type }}</span>
+      <a class="btn secondary" href="{{ url_for('dataset.dashboard') }}">Dashboard</a>
+    </div>
+  </div>
+</div>
+
+<!-- ========================= -->
+<!-- RESUMEN EJECUTIVO -->
+<!-- ========================= -->
+<div class="card">
+  <h3>Resumen ejecutivo</h3>
+
+  <p>
+    El dataset contiene <strong>{{ profile.n_rows }}</strong> filas y 
+    <strong>{{ profile.n_cols }}</strong> columnas.
+    Se identificaron <strong>{{ profile.n_num }}</strong> variables numéricas y 
+    <strong>{{ profile.n_cat }}</strong> categóricas.
+    Missing global: <strong>{{ profile.missing_pct }}%</strong>.
+  </p>
+
+  {% if conclusion %}
+    <div class="ds-alert">
+      <strong>Lectura automática SADI:</strong><br>
+      {{ conclusion }}
+    </div>
+  {% endif %}
+</div>
+
+<!-- ========================= -->
+<!-- RECOMENDACIONES -->
+<!-- ========================= -->
+<div class="card">
+  <h3>SADI recomienda</h3>
+
+  {% if suggested_plan %}
+    <h4>Análisis sugeridos</h4>
+    <ul>
+      {% for a in suggested_plan.recommended_analysis %}
+        <li>✓ {{ a }}</li>
+      {% endfor %}
+    </ul>
+
+    <h4>Gráficos sugeridos</h4>
+    <ul>
+      {% for g in suggested_plan.recommended_plots %}
+        <li>📊 {{ g }}</li>
+      {% endfor %}
+    </ul>
+
+    {% if suggested_plan.narrative_focus %}
+      <div class="ds-alert">
+        {{ suggested_plan.narrative_focus }}
+      </div>
+    {% endif %}
+  {% endif %}
+
+  {% if quick_recommendations %}
+    <h4>Recomendaciones rápidas</h4>
+    <ul>
+      {% for r in quick_recommendations %}
+        <li>{{ r }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
+
+<!-- ========================= -->
+<!-- INSIGHTS -->
+<!-- ========================= -->
+{% if top_insights %}
+<div class="card">
+  <h3>Hallazgos principales</h3>
+
+  <ol>
+    {% for i in top_insights %}
+      <li>
+        {% if i.category %}<strong>[{{ i.category }}]</strong>{% endif %}
+        {{ i.text if i.text else i }}
+      </li>
+    {% endfor %}
+  </ol>
+</div>
+{% endif %}
+
+<!-- ========================= -->
+<!-- MODELOS -->
+<!-- ========================= -->
+{% if regression_result or rf_result %}
+<div class="card">
+  <h3>Modelos predictivos</h3>
+
+  <div class="mv-mini-grid">
+
+    {% if regression_result %}
+    <div class="mv-kpi">
+      <strong>Regresión lineal</strong><br>
+      R²: {{ regression_result.r2 }}<br>
+      MAE: {{ regression_result.mae }}<br>
+      RMSE: {{ regression_result.rmse }}
+    </div>
+    {% endif %}
+
+    {% if rf_result %}
+    <div class="mv-kpi">
+      <strong>Random Forest</strong><br>
+      R²: {{ rf_result.r2 }}<br>
+      MAE: {{ rf_result.mae }}<br>
+      RMSE: {{ rf_result.rmse }}
+    </div>
+    {% endif %}
+
+  </div>
+</div>
+{% endif %}
+
+<!-- ========================= -->
+<!-- PCA -->
+<!-- ========================= -->
+{% if pca_summary %}
+<div class="card">
+  <h3>PCA</h3>
+  <p>Componentes: {{ pca_summary.n_components }}</p>
+</div>
+{% endif %}
+
+<!-- ========================= -->
+<!-- CLUSTER -->
+<!-- ========================= -->
+{% if cluster_counts %}
+<div class="card">
+  <h3>Clustering</h3>
+
+  <ul>
+    {% for k,v in cluster_counts.items() %}
+      <li>Cluster {{ k }}: {{ v }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+<!-- ========================= -->
+<!-- EFA -->
+<!-- ========================= -->
+{% if efa_loadings %}
+<div class="card">
+  <h3>Análisis Factorial</h3>
+
+  <table>
+    {% for row in efa_loadings %}
+      <tr>
+        {% for val in row %}
+          <td>{{ val }}</td>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endif %}
+
+<!-- ========================= -->
+<!-- GRÁFICOS -->
+<!-- ========================= -->
+{% if plot_catalog %}
+<div class="card">
+  <h3>Visualizaciones</h3>
+
+  {% for group in plot_catalog %}
+    <h4>{{ group.tag }}</h4>
+
+    {% for fig in group.figures %}
+      <div style="margin-bottom:20px;">
+        <img src="{{ url_for('static', filename=fig.path) }}" style="max-width:100%;">
+        <p>{{ fig.title }}</p>
+      </div>
+    {% endfor %}
+  {% endfor %}
+</div>
+{% endif %}
+
+<!-- ========================= -->
+<!-- CIERRE -->
+<!-- ========================= -->
+<div class="card">
+  <h3>Conclusión final</h3>
+
+  {% if conclusion %}
+    <p>{{ conclusion }}</p>
+  {% endif %}
+</div>
+
+{% endblock %}

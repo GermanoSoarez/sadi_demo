@@ -1,0 +1,496 @@
+{
+  "plots": [
+    "ds3_hist_Edad.png",
+    "ds3_bar_Genero.png",
+    "ds3_bar_Carrera.png",
+    "ds3_bar_Trabaja.png",
+    "ds3_bar_Tipo_Trabajo.png",
+    "ds3_hist_Horas_Estudio_Semanal.png",
+    "ds3_bar_Uso_Biblioteca.png",
+    "ds3_bar_Servicio_Mas_Utilizado.png",
+    "ds3_bar_Satisfaccion_Servicios.png",
+    "ds3_bar_Recomendaria_Universidad.png",
+    "ds3_bar_Comentario.png",
+    "ds3_group_mean_Edad.png",
+    "ds3_group_mean_Horas_Estudio_Semanal.png"
+  ],
+  "meta": {
+    "n_total": 10,
+    "segment_column": "Servicio_Mas_Utilizado",
+    "columns_summary": [
+      {
+        "name": "Edad",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "dtype": "numeric",
+        "interpretation": "La variable Edad es numérica, con media 23.70 y desviación estándar 1.89.",
+        "numeric": {
+          "mean": 23.7,
+          "median": 23.5,
+          "min": 21.0,
+          "max": 27.0,
+          "std": 1.888562063228706,
+          "q1": 22.25,
+          "q3": 24.75
+        }
+      },
+      {
+        "name": "Genero",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "dtype": "categorical",
+        "interpretation": "La categoría más frecuente en Genero fue 'Femenino', con 50.0% de los casos válidos.",
+        "top_categories": [
+          {
+            "category": "Femenino",
+            "count": 5,
+            "pct": 50.0
+          },
+          {
+            "category": "Masculino",
+            "count": 5,
+            "pct": 50.0
+          }
+        ]
+      },
+      {
+        "name": "Carrera",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "dtype": "categorical",
+        "interpretation": "La categoría más frecuente en Carrera fue 'Informatica', con 30.0% de los casos válidos.",
+        "top_categories": [
+          {
+            "category": "Informatica",
+            "count": 3,
+            "pct": 30.0
+          },
+          {
+            "category": "Derecho",
+            "count": 3,
+            "pct": 30.0
+          },
+          {
+            "category": "Educacion",
+            "count": 2,
+            "pct": 20.0
+          },
+          {
+            "category": "Electromecanica",
+            "count": 2,
+            "pct": 20.0
+          }
+        ]
+      },
+      {
+        "name": "Trabaja",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "dtype": "categorical",
+        "interpretation": "La categoría más frecuente en Trabaja fue 'Si', con 60.0% de los casos válidos.",
+        "top_categories": [
+          {
+            "category": "Si",
+            "count": 6,
+            "pct": 60.0
+          },
+          {
+            "category": "No",
+            "count": 4,
+            "pct": 40.0
+          }
+        ]
+      },
+      {
+        "name": "Tipo_Trabajo",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "dtype": "categorical",
+        "interpretation": "La categoría más frecuente en Tipo_Trabajo fue 'Ninguno', con 40.0% de los casos válidos.",
+        "top_categories": [
+          {
+            "category": "Ninguno",
+            "count": 4,
+            "pct": 40.0
+          },
+          {
+            "category": "Medio tiempo",
+            "count": 3,
+            "pct": 30.0
+          },
+          {
+            "category": "Tiempo completo",
+            "count": 2,
+            "pct": 20.0
+          },
+          {
+            "category": "Freelance",
+            "count": 1,
+            "pct": 10.0
+          }
+        ]
+      },
+      {
+        "name": "Horas_Estudio_Semanal",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "dtype": "numeric",
+        "interpretation": "La variable Horas_Estudio_Semanal es numérica, con media 7.90 y desviación estándar 3.73.",
+        "numeric": {
+          "mean": 7.9,
+          "median": 7.5,
+          "min": 3.0,
+          "max": 15.0,
+          "std": 3.725288952252936,
+          "q1": 5.25,
+          "q3": 9.75
+        }
+      },
+      {
+        "name": "Uso_Biblioteca",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "dtype": "categorical",
+        "interpretation": "La categoría más frecuente en Uso_Biblioteca fue 'Frecuente', con 50.0% de los casos válidos.",
+        "top_categories": [
+          {
+            "category": "Frecuente",
+            "count": 5,
+            "pct": 50.0
+          },
+          {
+            "category": "Ocasional",
+            "count": 3,
+            "pct": 30.0
+          },
+          {
+            "category": "Raro",
+            "count": 2,
+            "pct": 20.0
+          }
+        ]
+      },
+      {
+        "name": "Servicio_Mas_Utilizado",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "dtype": "categorical",
+        "interpretation": "La categoría más frecuente en Servicio_Mas_Utilizado fue 'Biblioteca', con 40.0% de los casos válidos.",
+        "top_categories": [
+          {
+            "category": "Biblioteca",
+            "count": 4,
+            "pct": 40.0
+          },
+          {
+            "category": "Plataforma Virtual",
+            "count": 3,
+            "pct": 30.0
+          },
+          {
+            "category": "Laboratorio",
+            "count": 3,
+            "pct": 30.0
+          }
+        ]
+      },
+      {
+        "name": "Satisfaccion_Servicios",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "dtype": "categorical",
+        "interpretation": "La categoría más frecuente en Satisfaccion_Servicios fue 'Alta', con 50.0% de los casos válidos.",
+        "top_categories": [
+          {
+            "category": "Alta",
+            "count": 5,
+            "pct": 50.0
+          },
+          {
+            "category": "Media",
+            "count": 4,
+            "pct": 40.0
+          },
+          {
+            "category": "Baja",
+            "count": 1,
+            "pct": 10.0
+          }
+        ]
+      },
+      {
+        "name": "Recomendaria_Universidad",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "dtype": "categorical",
+        "interpretation": "La categoría más frecuente en Recomendaria_Universidad fue 'Si', con 70.0% de los casos válidos.",
+        "top_categories": [
+          {
+            "category": "Si",
+            "count": 7,
+            "pct": 70.0
+          },
+          {
+            "category": "No",
+            "count": 3,
+            "pct": 30.0
+          }
+        ]
+      },
+      {
+        "name": "Comentario",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "dtype": "categorical",
+        "interpretation": "La categoría más frecuente en Comentario fue 'Excelente infraestructura', con 10.0% de los casos válidos.",
+        "top_categories": [
+          {
+            "category": "Excelente infraestructura",
+            "count": 1,
+            "pct": 10.0
+          },
+          {
+            "category": "Buen nivel academico",
+            "count": 1,
+            "pct": 10.0
+          },
+          {
+            "category": "Falta mas equipamiento",
+            "count": 1,
+            "pct": 10.0
+          },
+          {
+            "category": "Muy buenos docentes",
+            "count": 1,
+            "pct": 10.0
+          },
+          {
+            "category": "Me gusta la modalidad",
+            "count": 1,
+            "pct": 10.0
+          },
+          {
+            "category": "Poca organizacion",
+            "count": 1,
+            "pct": 10.0
+          },
+          {
+            "category": "Muy buen ambiente",
+            "count": 1,
+            "pct": 10.0
+          },
+          {
+            "category": "Mejorar horarios",
+            "count": 1,
+            "pct": 10.0
+          },
+          {
+            "category": "Recomendaria totalmente",
+            "count": 1,
+            "pct": 10.0
+          },
+          {
+            "category": "Servicio aceptable",
+            "count": 1,
+            "pct": 10.0
+          }
+        ]
+      }
+    ],
+    "numeric_tests": [
+      {
+        "variable": "Edad",
+        "test": "Kruskal-Wallis",
+        "statistic": 0.38657407407406985,
+        "p_value": 0.8242453512375555,
+        "significant": false
+      },
+      {
+        "variable": "Horas_Estudio_Semanal",
+        "test": "Kruskal-Wallis",
+        "statistic": 3.6090909090909093,
+        "p_value": 0.16454923468751842,
+        "significant": false
+      }
+    ],
+    "crosstabs": [
+      {
+        "variable": "Comentario",
+        "chi2": 20.000000000000004,
+        "p_value": 0.33281967875071894,
+        "cramers_v": 1.0,
+        "is_significant": false,
+        "strength": "muy fuerte",
+        "css_class": "ct-strong"
+      },
+      {
+        "variable": "Tipo_Trabajo",
+        "chi2": 12.291666666666666,
+        "p_value": 0.055769550007500134,
+        "cramers_v": 0.7839536550927824,
+        "is_significant": false,
+        "strength": "muy fuerte",
+        "css_class": "ct-strong"
+      },
+      {
+        "variable": "Carrera",
+        "chi2": 9.305555555555555,
+        "p_value": 0.15710900011711684,
+        "cramers_v": 0.6821127309893709,
+        "is_significant": false,
+        "strength": "muy fuerte",
+        "css_class": "ct-strong"
+      },
+      {
+        "variable": "Recomendaria_Universidad",
+        "chi2": 3.253968253968254,
+        "p_value": 0.19652136477670393,
+        "cramers_v": 0.5704356452719495,
+        "is_significant": false,
+        "strength": "fuerte",
+        "css_class": "ct-strong"
+      },
+      {
+        "variable": "Uso_Biblioteca",
+        "chi2": 6.444444444444444,
+        "p_value": 0.16832466414461644,
+        "cramers_v": 0.5676462121975466,
+        "is_significant": false,
+        "strength": "fuerte",
+        "css_class": "ct-strong"
+      },
+      {
+        "variable": "Trabaja",
+        "chi2": 1.3194444444444446,
+        "p_value": 0.5169949242489345,
+        "cramers_v": 0.3632415786283895,
+        "is_significant": false,
+        "strength": "moderada",
+        "css_class": "ct-medium"
+      },
+      {
+        "variable": "Satisfaccion_Servicios",
+        "chi2": 2.625,
+        "p_value": 0.6224009314362378,
+        "cramers_v": 0.362284418654736,
+        "is_significant": false,
+        "strength": "moderada",
+        "css_class": "ct-medium"
+      },
+      {
+        "variable": "Genero",
+        "chi2": 0.6666666666666666,
+        "p_value": 0.7165313105737892,
+        "cramers_v": 0.2581988897471611,
+        "is_significant": false,
+        "strength": "moderada",
+        "css_class": "ct-medium"
+      }
+    ],
+    "group_comparisons": [
+      {
+        "variable": "Edad",
+        "segment_column": "Servicio_Mas_Utilizado",
+        "groups": [
+          {
+            "group": "Biblioteca",
+            "n": 4,
+            "mean": 23.75,
+            "median": 23.0,
+            "std": 2.362907813126304
+          },
+          {
+            "group": "Laboratorio",
+            "n": 3,
+            "mean": 23.333333333333332,
+            "median": 23.0,
+            "std": 2.5166114784235836
+          },
+          {
+            "group": "Plataforma Virtual",
+            "n": 3,
+            "mean": 24.0,
+            "median": 24.0,
+            "std": 1.0
+          }
+        ],
+        "statistic": 0.38657407407406985,
+        "p_value": 0.8242453512375555,
+        "is_significant": false,
+        "interpretation": "La variable Edad muestra diferencias descriptivas entre grupos de Servicio_Mas_Utilizado. El grupo con mayor media fue 'Plataforma Virtual' y el de menor media fue 'Laboratorio'. No se observó significación estadística al nivel 0.05."
+      },
+      {
+        "variable": "Horas_Estudio_Semanal",
+        "segment_column": "Servicio_Mas_Utilizado",
+        "groups": [
+          {
+            "group": "Biblioteca",
+            "n": 4,
+            "mean": 7.75,
+            "median": 8.0,
+            "std": 2.217355782608345
+          },
+          {
+            "group": "Laboratorio",
+            "n": 3,
+            "mean": 5.0,
+            "median": 4.0,
+            "std": 2.6457513110645907
+          },
+          {
+            "group": "Plataforma Virtual",
+            "n": 3,
+            "mean": 11.0,
+            "median": 12.0,
+            "std": 4.58257569495584
+          }
+        ],
+        "statistic": 3.6090909090909093,
+        "p_value": 0.16454923468751842,
+        "is_significant": false,
+        "interpretation": "La variable Horas_Estudio_Semanal muestra diferencias descriptivas entre grupos de Servicio_Mas_Utilizado. El grupo con mayor media fue 'Plataforma Virtual' y el de menor media fue 'Laboratorio'. No se observó significación estadística al nivel 0.05."
+      }
+    ],
+    "group_comparison_summary": "Se realizaron comparaciones entre grupos en variables numéricas, pero no se detectaron diferencias estadísticamente significativas en los principales contrastes.",
+    "group_findings": [
+      "En Edad, el grupo 'Plataforma Virtual' presentó la media más alta (24.00).",
+      "En Horas_Estudio_Semanal, el grupo 'Plataforma Virtual' presentó la media más alta (11.00)."
+    ],
+    "crosstabs_insights": "No se detectaron asociaciones significativas (p < 0.05) en las combinaciones evaluadas.",
+    "survey_profile": {
+      "n_total": 10,
+      "segment_column": "Servicio_Mas_Utilizado",
+      "n_variables": 11,
+      "n_categorical": 9,
+      "n_numeric": 2
+    },
+    "important_variables": [],
+    "results_text": "El análisis se realizó sobre 10 registros y 11 variables.\n\nSe detectó como variable principal de segmentación a 'Servicio_Mas_Utilizado', utilizada para explorar diferencias y asociaciones entre grupos.",
+    "survey_insights": "Se analizaron 10 respuestas/registros y 11 variables.\nLa variable de segmentación más útil fue 'Servicio_Mas_Utilizado'.",
+    "survey_key_findings": [
+      "Se detectó 'Servicio_Mas_Utilizado' como variable principal de segmentación."
+    ]
+  }
+}

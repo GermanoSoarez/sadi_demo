@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard Premium - Encuestas{% endblock %}
+
+{% block content %}
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="mb-0">Dashboard Premium - Encuestas</h3>
+        <a href="{{ url_for('dataset.dashboard') }}" class="btn btn-outline-secondary btn-sm">
+            Volver al panel de datasets
+        </a>
+    </div>
+
+    {% if not premium_activo or not is_premium %}
+        <div class="alert alert-warning">
+            <strong>Función Premium:</strong> el dashboard avanzado de encuestas está disponible solo en
+            <span class="fw-bold">SADI PREMIUM</span>.
+        </div>
+    {% else %}
+
+        {% if resumen %}
+        <!-- Tarjetas resumen -->
+        <div class="row g-3 mb-4">
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="text-muted small">Encuestas detectadas</div>
+                        <div class="fs-3 fw-bold">{{ resumen.total_encuestas }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="text-muted small">Total de respuestas</div>
+                        <div class="fs-3 fw-bold">{{ resumen.total_respuestas }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="text-muted small">Preguntas promedio</div>
+                        <div class="fs-3 fw-bold">{{ resumen.prom_preguntas }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="text-muted small">Score encuesta promedio</div>
+                        <div class="fs-3 fw-bold">{{ resumen.prom_score }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Tabla de encuestas -->
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-primary text-white">
+                <strong>Encuestas detectadas en tus datasets</strong>
+            </div>
+            <div class="card-body p-0">
+                {% if encuestas_info %}
+                    <div class="table-responsive">
+                        <table class="table table-striped mb-0 align-middle">
+                            <thead>
+                                <tr>
+                                    <th>Dataset</th>
+                                    <th>Respuestas (filas)</th>
+                                    <th>Preguntas (columnas)</th>
+                                    <th>Score encuesta</th>
+                                    <th>Última carga</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for e in encuestas_info %}
+                                <tr>
+                                    <td>{{ e.ds.title }}</td>
+                                    <td>{{ e.n_resp }}</td>
+                                    <td>{{ e.n_preg }}</td>
+                                    <td>{{ e.score }}</td>
+                                    <td>
+                                        {% if e.ds.uploaded_at %}
+                                            {{ e.ds.uploaded_at.strftime("%d/%m/%Y %H:%M") }}
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a href="{{ url_for('dataset.dataset_detail', dataset_id=e.ds.id) }}"
+                                           class="btn btn-sm btn-outline-primary">
+                                            Ver análisis
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="p-3">
+                        <em>No se detectaron encuestas en tus datasets analizados.</em>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+    {% endif %}
+</div>
+
+{% endblock %}

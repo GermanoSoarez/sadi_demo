@@ -1,0 +1,36 @@
+{
+  "problem_type": "multiclass",
+  "target": "organizacion_programa",
+  "features_used": [
+    "id_respuesta",
+    "semestre",
+    "claridad_clases",
+    "disponibilidad_docentes",
+    "uso_tecnologia",
+    "relevancia_contenidos",
+    "satisfaccion_general",
+    "facultad_Informatica",
+    "facultad_Ingenieria",
+    "facultad_Salud",
+    "genero_M",
+    "genero_Otro"
+  ],
+  "metrics": {
+    "accuracy": 0.261,
+    "f1_score": 0.214
+  },
+  "features": {
+    "id_respuesta": 0.3439,
+    "semestre": 0.1667,
+    "uso_tecnologia": 0.0874,
+    "facultad_Informatica": 0.0781,
+    "relevancia_contenidos": 0.0778,
+    "facultad_Ingenieria": 0.072,
+    "satisfaccion_general": 0.0674,
+    "genero_M": 0.0392,
+    "genero_Otro": 0.0365,
+    "facultad_Salud": 0.031,
+    "claridad_clases": 0.0,
+    "disponibilidad_docentes": 0.0
+  }
+}

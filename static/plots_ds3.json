@@ -1,0 +1,609 @@
+{
+  "plots": [
+    "ds3_corr_heatmap.png",
+    "ds3_cronbach.png",
+    "ds3_dimension_radar.png",
+    "ds3_efa_loadings.png",
+    "ds3_efa_scree.png",
+    "ds3_likert_q1.png",
+    "ds3_likert_q10.png",
+    "ds3_likert_q11.png",
+    "ds3_likert_q12.png",
+    "ds3_likert_q13.png",
+    "ds3_likert_q14.png",
+    "ds3_likert_q15.png",
+    "ds3_likert_q16.png",
+    "ds3_likert_q17.png",
+    "ds3_likert_q18.png",
+    "ds3_likert_q19.png",
+    "ds3_likert_q2.png",
+    "ds3_likert_q20.png",
+    "ds3_likert_q21.png",
+    "ds3_likert_q22.png",
+    "ds3_likert_q23.png",
+    "ds3_likert_q24.png",
+    "ds3_likert_q25.png",
+    "ds3_likert_q26.png",
+    "ds3_likert_q27.png",
+    "ds3_likert_q28.png",
+    "ds3_likert_q3.png",
+    "ds3_likert_q4.png",
+    "ds3_likert_q5.png",
+    "ds3_likert_q6.png",
+    "ds3_likert_q7.png",
+    "ds3_likert_q8.png",
+    "ds3_likert_q9.png",
+    "ds3_likert_summary_scores.png",
+    "ds3_normal_Carrera_bar.png",
+    "ds3_normal_Comentario_bar.png",
+    "ds3_normal_Edad_hist.png",
+    "ds3_normal_Genero_bar.png",
+    "ds3_normal_Horas_Estudio_Semanal_hist.png",
+    "ds3_normal_Recomendaria_Universidad_bar.png",
+    "ds3_normal_Satisfaccion_Servicios_bar.png",
+    "ds3_normal_Servicio_Mas_Utilizado_bar.png",
+    "ds3_normal_Tipo_Trabajo_bar.png",
+    "ds3_normal_Trabaja_bar.png",
+    "ds3_normal_Uso_Biblioteca_bar.png",
+    "plots/ds3_group_mean_carrera_edad.png",
+    "plots/ds3_group_mean_carrera_horas_estudio_semanal.png"
+  ],
+  "meta": {
+    "n_total": 10,
+    "segment_column": "Carrera",
+    "columns_summary": [
+      {
+        "name": "Edad",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 23.7,
+          "median": 23.5,
+          "min": 21.0,
+          "max": 27.0,
+          "std": 1.888562063228706,
+          "q1": 22.25,
+          "q3": 24.75
+        },
+        "categorical": {}
+      },
+      {
+        "name": "Genero",
+        "dtype": "categorical",
+        "dtype_raw": "object",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {},
+        "categorical": {
+          "n_unique": 2,
+          "top": "Femenino",
+          "top_freq": 5
+        },
+        "top_categories": [
+          {
+            "category": "Femenino",
+            "count": 5,
+            "pct": 50.0
+          },
+          {
+            "category": "Masculino",
+            "count": 5,
+            "pct": 50.0
+          }
+        ]
+      },
+      {
+        "name": "Carrera",
+        "dtype": "categorical",
+        "dtype_raw": "object",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {},
+        "categorical": {
+          "n_unique": 4,
+          "top": "Informatica",
+          "top_freq": 3
+        },
+        "top_categories": [
+          {
+            "category": "Informatica",
+            "count": 3,
+            "pct": 30.0
+          },
+          {
+            "category": "Derecho",
+            "count": 3,
+            "pct": 30.0
+          },
+          {
+            "category": "Educacion",
+            "count": 2,
+            "pct": 20.0
+          },
+          {
+            "category": "Electromecanica",
+            "count": 2,
+            "pct": 20.0
+          }
+        ]
+      },
+      {
+        "name": "Trabaja",
+        "dtype": "categorical",
+        "dtype_raw": "object",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {},
+        "categorical": {
+          "n_unique": 2,
+          "top": "Si",
+          "top_freq": 6
+        },
+        "top_categories": [
+          {
+            "category": "Si",
+            "count": 6,
+            "pct": 60.0
+          },
+          {
+            "category": "No",
+            "count": 4,
+            "pct": 40.0
+          }
+        ]
+      },
+      {
+        "name": "Tipo_Trabajo",
+        "dtype": "categorical",
+        "dtype_raw": "object",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {},
+        "categorical": {
+          "n_unique": 4,
+          "top": "Ninguno",
+          "top_freq": 4
+        },
+        "top_categories": [
+          {
+            "category": "Ninguno",
+            "count": 4,
+            "pct": 40.0
+          },
+          {
+            "category": "Medio tiempo",
+            "count": 3,
+            "pct": 30.0
+          },
+          {
+            "category": "Tiempo completo",
+            "count": 2,
+            "pct": 20.0
+          },
+          {
+            "category": "Freelance",
+            "count": 1,
+            "pct": 10.0
+          }
+        ]
+      },
+      {
+        "name": "Horas_Estudio_Semanal",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 7.9,
+          "median": 7.5,
+          "min": 3.0,
+          "max": 15.0,
+          "std": 3.725288952252936,
+          "q1": 5.25,
+          "q3": 9.75
+        },
+        "categorical": {}
+      },
+      {
+        "name": "Uso_Biblioteca",
+        "dtype": "categorical",
+        "dtype_raw": "object",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {},
+        "categorical": {
+          "n_unique": 3,
+          "top": "Frecuente",
+          "top_freq": 5
+        },
+        "top_categories": [
+          {
+            "category": "Frecuente",
+            "count": 5,
+            "pct": 50.0
+          },
+          {
+            "category": "Ocasional",
+            "count": 3,
+            "pct": 30.0
+          },
+          {
+            "category": "Raro",
+            "count": 2,
+            "pct": 20.0
+          }
+        ]
+      },
+      {
+        "name": "Servicio_Mas_Utilizado",
+        "dtype": "categorical",
+        "dtype_raw": "object",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {},
+        "categorical": {
+          "n_unique": 3,
+          "top": "Biblioteca",
+          "top_freq": 4
+        },
+        "top_categories": [
+          {
+            "category": "Biblioteca",
+            "count": 4,
+            "pct": 40.0
+          },
+          {
+            "category": "Plataforma Virtual",
+            "count": 3,
+            "pct": 30.0
+          },
+          {
+            "category": "Laboratorio",
+            "count": 3,
+            "pct": 30.0
+          }
+        ]
+      },
+      {
+        "name": "Satisfaccion_Servicios",
+        "dtype": "categorical",
+        "dtype_raw": "object",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {},
+        "categorical": {
+          "n_unique": 3,
+          "top": "Alta",
+          "top_freq": 5
+        },
+        "top_categories": [
+          {
+            "category": "Alta",
+            "count": 5,
+            "pct": 50.0
+          },
+          {
+            "category": "Media",
+            "count": 4,
+            "pct": 40.0
+          },
+          {
+            "category": "Baja",
+            "count": 1,
+            "pct": 10.0
+          }
+        ]
+      },
+      {
+        "name": "Recomendaria_Universidad",
+        "dtype": "categorical",
+        "dtype_raw": "object",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {},
+        "categorical": {
+          "n_unique": 2,
+          "top": "Si",
+          "top_freq": 7
+        },
+        "top_categories": [
+          {
+            "category": "Si",
+            "count": 7,
+            "pct": 70.0
+          },
+          {
+            "category": "No",
+            "count": 3,
+            "pct": 30.0
+          }
+        ]
+      },
+      {
+        "name": "Comentario",
+        "dtype": "categorical",
+        "dtype_raw": "object",
+        "n_total": 10,
+        "n_valid": 10,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {},
+        "categorical": {
+          "n_unique": 10,
+          "top": "Excelente infraestructura",
+          "top_freq": 1
+        },
+        "top_categories": [
+          {
+            "category": "Excelente infraestructura",
+            "count": 1,
+            "pct": 10.0
+          },
+          {
+            "category": "Buen nivel academico",
+            "count": 1,
+            "pct": 10.0
+          },
+          {
+            "category": "Falta mas equipamiento",
+            "count": 1,
+            "pct": 10.0
+          },
+          {
+            "category": "Muy buenos docentes",
+            "count": 1,
+            "pct": 10.0
+          },
+          {
+            "category": "Me gusta la modalidad",
+            "count": 1,
+            "pct": 10.0
+          },
+          {
+            "category": "Poca organizacion",
+            "count": 1,
+            "pct": 10.0
+          },
+          {
+            "category": "Muy buen ambiente",
+            "count": 1,
+            "pct": 10.0
+          },
+          {
+            "category": "Mejorar horarios",
+            "count": 1,
+            "pct": 10.0
+          },
+          {
+            "category": "Recomendaria totalmente",
+            "count": 1,
+            "pct": 10.0
+          },
+          {
+            "category": "Servicio aceptable",
+            "count": 1,
+            "pct": 10.0
+          }
+        ]
+      }
+    ],
+    "numeric_tests": [
+      {
+        "variable": "Edad",
+        "stat": 5.12,
+        "p_value": 0.1632
+      },
+      {
+        "variable": "Horas_Estudio_Semanal",
+        "stat": 5.836,
+        "p_value": 0.1198
+      }
+    ],
+    "crosstabs": [
+      {
+        "variable": "Genero",
+        "chi2": 10.0,
+        "p_value": 0.0186,
+        "cramers_v": 1.0,
+        "is_significant": true,
+        "strength": "Muy fuerte",
+        "css_class": "ct-strong"
+      },
+      {
+        "variable": "Uso_Biblioteca",
+        "chi2": 13.0,
+        "p_value": 0.043,
+        "cramers_v": 0.806,
+        "is_significant": true,
+        "strength": "Muy fuerte",
+        "css_class": "ct-strong"
+      },
+      {
+        "variable": "Comentario",
+        "chi2": 30.0,
+        "p_value": 0.3142,
+        "cramers_v": 1.0,
+        "is_significant": false,
+        "strength": "Muy fuerte",
+        "css_class": "ct-strong"
+      },
+      {
+        "variable": "Servicio_Mas_Utilizado",
+        "chi2": 9.306,
+        "p_value": 0.1571,
+        "cramers_v": 0.682,
+        "is_significant": false,
+        "strength": "Muy fuerte",
+        "css_class": "ct-strong"
+      },
+      {
+        "variable": "Satisfaccion_Servicios",
+        "chi2": 7.167,
+        "p_value": 0.3057,
+        "cramers_v": 0.599,
+        "is_significant": false,
+        "strength": "Fuerte",
+        "css_class": "ct-strong"
+      },
+      {
+        "variable": "Tipo_Trabajo",
+        "chi2": 8.056,
+        "p_value": 0.5286,
+        "cramers_v": 0.518,
+        "is_significant": false,
+        "strength": "Fuerte",
+        "css_class": "ct-strong"
+      },
+      {
+        "variable": "Recomendaria_Universidad",
+        "chi2": 2.063,
+        "p_value": 0.5593,
+        "cramers_v": 0.454,
+        "is_significant": false,
+        "strength": "Fuerte",
+        "css_class": "ct-strong"
+      },
+      {
+        "variable": "Trabaja",
+        "chi2": 0.278,
+        "p_value": 0.9642,
+        "cramers_v": 0.167,
+        "is_significant": false,
+        "strength": "Débil",
+        "css_class": "ct-medium"
+      }
+    ],
+    "group_comparisons": [
+      {
+        "variable": "Horas_Estudio_Semanal",
+        "segment_column": "Carrera",
+        "groups": [
+          {
+            "group": "Informatica",
+            "n": 3,
+            "mean": 12.3333,
+            "median": 12.0,
+            "std": 2.5166
+          },
+          {
+            "group": "Derecho",
+            "n": 3,
+            "mean": 6.0,
+            "median": 6.0,
+            "std": 1.0
+          },
+          {
+            "group": "Educacion",
+            "n": 2,
+            "mean": 6.5,
+            "median": 6.5,
+            "std": 3.5355
+          },
+          {
+            "group": "Electromecanica",
+            "n": 2,
+            "mean": 5.5,
+            "median": 5.5,
+            "std": 3.5355
+          }
+        ],
+        "top_group": "Informatica",
+        "top_mean": 12.3333,
+        "low_group": "Electromecanica",
+        "low_mean": 5.5,
+        "mean_diff": 6.8333,
+        "magnitude": "alta",
+        "interpretation": "La variable 'Horas_Estudio_Semanal' mostró diferencias altas entre grupos definidos por 'Carrera'. El valor promedio más alto se observó en 'Informatica' (M=12.33), mientras que el más bajo correspondió a 'Electromecanica' (M=5.50), con una diferencia aproximada de 6.83 puntos."
+      },
+      {
+        "variable": "Edad",
+        "segment_column": "Carrera",
+        "groups": [
+          {
+            "group": "Informatica",
+            "n": 3,
+            "mean": 23.3333,
+            "median": 23.0,
+            "std": 1.5275
+          },
+          {
+            "group": "Derecho",
+            "n": 3,
+            "mean": 25.0,
+            "median": 24.0,
+            "std": 1.7321
+          },
+          {
+            "group": "Educacion",
+            "n": 2,
+            "mean": 21.5,
+            "median": 21.5,
+            "std": 0.7071
+          },
+          {
+            "group": "Electromecanica",
+            "n": 2,
+            "mean": 24.5,
+            "median": 24.5,
+            "std": 2.1213
+          }
+        ],
+        "top_group": "Derecho",
+        "top_mean": 25.0,
+        "low_group": "Educacion",
+        "low_mean": 21.5,
+        "mean_diff": 3.5,
+        "magnitude": "alta",
+        "interpretation": "La variable 'Edad' mostró diferencias altas entre grupos definidos por 'Carrera'. El valor promedio más alto se observó en 'Derecho' (M=25.00), mientras que el más bajo correspondió a 'Educacion' (M=21.50), con una diferencia aproximada de 3.50 puntos."
+      }
+    ],
+    "group_comparison_summary": "El análisis comparativo entre grupos permitió identificar diferencias en las medias de algunas variables numéricas según la variable de segmentación detectada. En la variable 'Horas_Estudio_Semanal', el grupo 'Informatica' presentó la media más alta (M=12.33), mientras que 'Electromecanica' registró la más baja (M=5.50), evidenciando una diferencia alta de 6.83 puntos. En la variable 'Edad', el grupo 'Derecho' presentó la media más alta (M=25.00), mientras que 'Educacion' registró la más baja (M=21.50), evidenciando una diferencia alta de 3.50 puntos. Estas diferencias deben interpretarse como una aproximación descriptiva inicial y pueden complementarse posteriormente con análisis inferenciales más específicos.",
+    "group_findings": [
+      "La variable 'Horas_Estudio_Semanal' presentó una diferencia alta entre grupos, destacando 'Informatica' frente a 'Electromecanica' (Δ≈6.83).",
+      "La variable 'Edad' presentó una diferencia alta entre grupos, destacando 'Derecho' frente a 'Educacion' (Δ≈3.50)."
+    ],
+    "crosstabs_insights": "Principales asociaciones detectadas (p < 0.05), ordenadas por magnitud:\n• Genero: Cramér’s V = 1.000 (Muy fuerte), p = 0.018600\n• Uso_Biblioteca: Cramér’s V = 0.806 (Muy fuerte), p = 0.043000",
+    "important_variables": [
+      "Genero",
+      "Uso_Biblioteca"
+    ],
+    "results_text": "Participaron 10 personas en la encuesta.\nLa variable seleccionada como segmento fue 'Carrera'.\nSe observaron asociaciones estadísticamente significativas:\n- Genero (χ²=10.0, p=0.0186, V=1.0)\n- Uso_Biblioteca (χ²=13.0, p=0.043, V=0.806)",
+    "survey_insights": "La encuesta analizada reúne 10 respuestas válidas.\nLa segmentación principal se realizó con la variable 'Carrera'.\nLa asociación categórica más destacada se observó en 'Genero', con un Cramér’s V de 1.000, lo que indica una relación Muy fuerte.\nLas variables con mayor impacto analítico fueron: Genero, Uso_Biblioteca.\nEn términos descriptivos, la variable 'Genero' mostró una categoría predominante ('Femenino') con 50.0% de los casos válidos.",
+    "survey_key_findings": [
+      "La encuesta contó con 10 participantes.",
+      "La variable de segmentación principal identificada fue 'Carrera'.",
+      "Se detectó asociación Muy fuerte entre 'Carrera' y 'Genero' (V=1.0, p=0.0186).",
+      "Se detectó asociación Muy fuerte entre 'Carrera' y 'Uso_Biblioteca' (V=0.806, p=0.043).",
+      "Entre las variables más relevantes identificadas se encuentran: Genero, Uso_Biblioteca."
+    ],
+    "survey_profile": {
+      "n_total": 10,
+      "segment_column": "Carrera",
+      "n_variables": 11,
+      "n_categorical": 9,
+      "n_numeric": 2
+    }
+  }
+}

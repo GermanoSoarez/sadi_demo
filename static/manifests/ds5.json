@@ -1,0 +1,51 @@
+{
+  "plots": [
+    "plots\\ds5_likert_summary.png"
+  ],
+  "meta": {
+    "items": [
+      {
+        "item": "id_respuesta",
+        "mean": 100.5,
+        "std": 57.879184513951124
+      },
+      {
+        "item": "semestre",
+        "mean": 5.4,
+        "std": 2.9003552026445893
+      },
+      {
+        "item": "claridad_clases",
+        "mean": 3.0260416666666665,
+        "std": 1.366904615772912
+      },
+      {
+        "item": "organizacion_programa",
+        "mean": 2.94,
+        "std": 1.444587889626059
+      },
+      {
+        "item": "disponibilidad_docentes",
+        "mean": 3.035,
+        "std": 1.4084365329459059
+      },
+      {
+        "item": "uso_tecnologia",
+        "mean": 3.11,
+        "std": 1.3216024991763393
+      },
+      {
+        "item": "relevancia_contenidos",
+        "mean": 2.98,
+        "std": 1.4560910016290622
+      },
+      {
+        "item": "satisfaccion_general",
+        "mean": 2.8229166666666665,
+        "std": 1.3880174694999332
+      }
+    ],
+    "mean_global": 15.476744791666668,
+    "cronbach_alpha": -0.00430686977605989
+  }
+}

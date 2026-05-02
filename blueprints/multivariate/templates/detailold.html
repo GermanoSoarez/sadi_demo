@@ -1,0 +1,248 @@
+{% extends 'base.html' %}
+{% block title %}Análisis multivariado{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;">
+    <div>
+      <h2 style="margin:0;">Análisis multivariado</h2>
+      <p class="meta" style="margin:4px 0 0;">
+        Dataset: <strong>{{ ds.title }}</strong>
+      </p>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <a class="btn secondary" href="{{ url_for('dataset.dashboard') }}">Dashboard</a>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h3 style="margin-top:0;">SADI recomienda</h3>
+  {% if profile.quick_recommendations %}
+    <ul>
+      {% for item in profile.quick_recommendations %}
+        <li>✓ {{ item }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No se generaron recomendaciones rápidas.</p>
+  {% endif %}
+</div>
+
+<div class="card">
+  <h3 style="margin-top:0;">Perfil detectado por SADI</h3>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;">
+    <div class="card"><strong>Filas</strong><br>{{ profile.n_rows }}</div>
+    <div class="card"><strong>Columnas</strong><br>{{ profile.n_cols }}</div>
+    <div class="card"><strong>Numéricas</strong><br>{{ profile.n_num }}</div>
+    <div class="card"><strong>Categóricas</strong><br>{{ profile.n_cat }}</div>
+    <div class="card"><strong>Missing (%)</strong><br>{{ profile.missing_pct }}</div>
+    <div class="card"><strong>Perfil</strong><br>{{ profile.profile_type }}</div>
+  </div>
+</div>
+
+<div class="card">
+  <h3 style="margin-top:0;">Métodos recomendados</h3>
+  {% if profile.recommendations %}
+    <ul>
+      {% for rec in profile.recommendations %}
+        <li><strong>{{ rec.method }}</strong>: {{ rec.reason }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No se generaron recomendaciones.</p>
+  {% endif %}
+</div>
+
+<div class="card">
+  <h3 style="margin-top:0;">Acciones de análisis</h3>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;">
+    <form method="post" action="{{ url_for('multivariate.multivariate_corr', dataset_id=ds.id) }}">
+      <button class="btn" type="submit">Generar heatmap de correlación</button>
+    </form>
+
+    <form method="post" action="{{ url_for('multivariate.multivariate_pca', dataset_id=ds.id) }}">
+      <button class="btn" type="submit">Ejecutar PCA</button>
+    </form>
+
+    <form method="post" action="{{ url_for('multivariate.multivariate_cluster', dataset_id=ds.id) }}">
+      <button class="btn" type="submit">Ejecutar clustering</button>
+    </form>
+  </div>
+</div>
+
+<div class="card">
+  <h3 style="margin-top:0;">Detalles del perfil</h3>
+
+  <h4>Columnas numéricas</h4>
+  {% if profile.num_cols %}
+    <p>{{ profile.num_cols | join(', ') }}</p>
+  {% else %}
+    <p>No se detectaron columnas numéricas.</p>
+  {% endif %}
+
+  <h4>Columnas categóricas</h4>
+  {% if profile.cat_cols %}
+    <p>{{ profile.cat_cols | join(', ') }}</p>
+  {% else %}
+    <p>No se detectaron columnas categóricas.</p>
+  {% endif %}
+
+  <h4>Varianza cero</h4>
+  {% if profile.zero_variance_cols %}
+    <p>{{ profile.zero_variance_cols | join(', ') }}</p>
+  {% else %}
+    <p>No se detectaron columnas con varianza cero.</p>
+  {% endif %}
+
+  <h4>Correlaciones altas</h4>
+  {% if profile.high_corr_pairs %}
+    <div style="overflow:auto;">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Variable 1</th>
+            <th>Variable 2</th>
+            <th>Correlación</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in profile.high_corr_pairs %}
+          <tr>
+            <td>{{ item.col1 }}</td>
+            <td>{{ item.col2 }}</td>
+            <td>{{ item.corr }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p>No se detectaron correlaciones altas.</p>
+  {% endif %}
+</div>
+
+{% if corr_image %}
+<div class="card">
+  <h3 style="margin-top:0;">Heatmap de correlación</h3>
+  <img src="{{ url_for('static', filename=corr_image) }}" alt="Heatmap de correlación"
+       style="max-width:100%;border-radius:10px;">
+</div>
+{% endif %}
+
+{% if pca_scree %}
+<div class="card">
+  <h3 style="margin-top:0;">PCA - Scree plot</h3>
+  <img src="{{ url_for('static', filename=pca_scree) }}" alt="Scree plot PCA"
+       style="max-width:100%;border-radius:10px;">
+</div>
+{% endif %}
+
+{% if pca_scatter %}
+<div class="card">
+  <h3 style="margin-top:0;">PCA - Proyección PC1 vs PC2</h3>
+  <img src="{{ url_for('static', filename=pca_scatter) }}" alt="Scatter PCA"
+       style="max-width:100%;border-radius:10px;">
+</div>
+{% endif %}
+
+{% if pca_summary %}
+<div class="card">
+  <h3 style="margin-top:0;">Tabla de varianza explicada del PCA</h3>
+  <div style="overflow:auto;">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Componente</th>
+          <th>Varianza explicada</th>
+          <th>% explicada</th>
+          <th>Varianza acumulada</th>
+          <th>% acumulado</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in pca_summary %}
+        <tr>
+          <td>{{ row.component }}</td>
+          <td>{{ row.explained_variance_ratio }}</td>
+          <td>{{ row.explained_pct }}%</td>
+          <td>{{ row.cumulative_variance }}</td>
+          <td>{{ row.cumulative_pct }}%</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endif %}
+
+{% if pca_loadings %}
+<div class="card">
+  <h3 style="margin-top:0;">Loadings del PCA</h3>
+  <div style="overflow:auto;">
+    <table class="table">
+      <thead>
+        <tr>
+          {% for key in pca_loadings[0].keys() %}
+            <th>{{ key }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in pca_loadings %}
+        <tr>
+          {% for key, value in row.items() %}
+            <td>{{ value }}</td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endif %}
+
+{% if elbow_image %}
+<div class="card">
+  <h3 style="margin-top:0;">Elbow plot</h3>
+  <img src="{{ url_for('static', filename=elbow_image) }}" alt="Elbow plot KMeans"
+       style="max-width:100%;border-radius:10px;">
+</div>
+{% endif %}
+
+{% if cluster_image %}
+<div class="card">
+  <h3 style="margin-top:0;">Clusters PC1 vs PC2</h3>
+  {% if cluster_best_k %}
+    <p><strong>SADI sugiere:</strong> k = {{ cluster_best_k }}</p>
+  {% endif %}
+  <img src="{{ url_for('static', filename=cluster_image) }}" alt="Clusters KMeans"
+       style="max-width:100%;border-radius:10px;">
+</div>
+{% endif %}
+
+{% if cluster_counts %}
+<div class="card">
+  <h3 style="margin-top:0;">Distribución por cluster</h3>
+  <div style="overflow:auto;">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Cluster</th>
+          <th>Cantidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in cluster_counts %}
+        <tr>
+          <td>{{ row.cluster }}</td>
+          <td>{{ row.n }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

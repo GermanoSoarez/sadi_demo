@@ -1,0 +1,770 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+
+  <h2>{{ page_title or "Crear dataset manual" }}</h2>
+
+  <form
+    method="POST"
+    action="{{ url_for('dataset.dataset_new_manual_post') }}"
+    enctype="multipart/form-data"
+    id="manualDatasetForm"
+    novalidate
+  >
+
+    <!-- TITULO -->
+    <div class="mb-3">
+      <label class="form-label">Título del dataset</label>
+      <input
+        type="text"
+        name="title"
+        id="title"
+        class="form-control"
+        placeholder="Nombre del dataset"
+        maxlength="200"
+        value="{{ default_title or '' }}"
+        required
+      />
+    </div>
+
+    <!-- TIPOS -->
+    <div class="types-inline">
+      <div class="type-box">
+        <label class="form-label mb-1" for="research_area">Área de investigación</label>
+        <select name="research_area" id="research_area" class="manual-select">
+          {% for value, label in allowed_research_areas %}
+            <option value="{{ value }}" {% if value == (default_research_area or 'general') %}selected{% endif %}>
+              {{ label }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="type-box">
+        <label class="form-label mb-1" for="dataset_type">Tipo de dataset</label>
+        <select name="dataset_type" id="dataset_type" class="manual-select">
+          {% for value, label in allowed_dataset_types %}
+            <option value="{{ value }}" {% if value == (default_dataset_type or 'dataset') %}selected{% endif %}>
+              {{ label }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <!-- BOTONES -->
+    <div class="d-flex flex-wrap gap-2 mb-2 mt-2">
+      <button type="button" class="btn btn-sm btn-secondary" onclick="addRow()">Agregar fila</button>
+      <button type="button" class="btn btn-sm btn-secondary" onclick="addColumn()">Agregar columna</button>
+      <button type="button" class="btn btn-sm btn-outline-danger" onclick="removeLastRow()">Eliminar última fila</button>
+      <button type="button" class="btn btn-sm btn-outline-danger" onclick="removeLastColumn()">Eliminar última columna</button>
+      <button type="button" class="btn btn-sm btn-outline-primary" onclick="loadExample()">Cargar ejemplo</button>
+      <button type="button" class="btn btn-sm btn-outline-dark" onclick="clearGrid()">Limpiar tabla</button>
+      <button type="button" class="btn btn-sm btn-outline-success" onclick="pasteFullTableMode()">Pegar tabla completa</button>
+      <button type="button" class="btn btn-sm btn-outline-warning" onclick="fillHeadersFromFirstRow()">Usar primera fila como encabezado</button>
+    </div>
+
+    <div class="small text-muted mb-2">
+      Puede pegar una tabla completa desde Excel con <strong>Ctrl + V</strong>. Si la primera fila contiene nombres de columnas,
+      use <strong>“Usar primera fila como encabezado”</strong>.
+    </div>
+
+    <input type="hidden" name="data_json" id="data_json" />
+
+    <!-- GRID -->
+    <div class="sheet-wrap">
+      <table id="dataGrid" class="sheet-grid">
+        <thead>
+          <tr id="headerRow">
+            <th class="corner-cell">#</th>
+            <th contenteditable="true">A</th>
+            <th contenteditable="true">B</th>
+            <th contenteditable="true">C</th>
+            <th contenteditable="true">D</th>
+            <th contenteditable="true">E</th>
+            <th contenteditable="true">F</th>
+            <th contenteditable="true">G</th>
+            <th contenteditable="true">H</th>
+            <th contenteditable="true">I</th>
+            <th contenteditable="true">J</th>
+          </tr>
+        </thead>
+        <tbody id="gridBody">
+          {% for i in range(1, 11) %}
+          <tr>
+            <th class="row-number">{{ i }}</th>
+            {% for j in range(10) %}
+            <td contenteditable="true"></td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- BOTONES FINALES -->
+    <div class="mt-3 d-flex gap-2">
+      <button type="submit" class="btn btn-primary">
+        Crear dataset
+      </button>
+      <a href="{{ url_for('dataset.dashboard') }}" class="btn btn-outline-secondary">
+        Cancelar
+      </a>
+    </div>
+
+  </form>
+
+</div>
+
+<style>
+  .types-inline {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 10px;
+    align-items: flex-end;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+  }
+
+  .type-box {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .manual-select {
+    width: 220px;
+    min-width: 220px;
+    max-width: 220px;
+    height: 34px;
+    padding: 4px 8px;
+    font-size: 12.5px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    background: #fff;
+    color: #111827;
+  }
+
+  .sheet-wrap {
+    width: 100%;
+    overflow-x: auto;
+    background: #ffffff;
+    border: 1px solid #c7ced8;
+    border-radius: 8px;
+    padding: 6px;
+  }
+
+  .sheet-grid {
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    min-width: 100%;
+    width: max-content;
+    font-size: 13px;
+    color: #111111 !important;
+  }
+
+  .sheet-grid th,
+  .sheet-grid td {
+    border: 1px solid #d6dbe3;
+    color: #111111 !important;
+  }
+
+  .sheet-grid thead th {
+    background: #f3f4f6 !important;
+    color: #111111 !important;
+    font-weight: 600;
+    text-align: center;
+    height: 26px;
+    min-height: 26px;
+    padding: 2px 4px;
+    white-space: nowrap;
+  }
+
+  .sheet-grid .corner-cell {
+    width: 38px;
+    min-width: 38px;
+    max-width: 38px;
+    background: #f3f4f6 !important;
+    text-align: center;
+    user-select: none;
+  }
+
+  .sheet-grid .row-number {
+    width: 38px;
+    min-width: 38px;
+    max-width: 38px;
+    background: #f8fafc !important;
+    color: #111111 !important;
+    font-weight: 600;
+    text-align: center;
+    padding: 0 4px;
+    height: 26px;
+    min-height: 26px;
+    user-select: none;
+  }
+
+  .sheet-grid td {
+    width: 92px;
+    min-width: 92px;
+    max-width: 92px;
+    height: 26px;
+    min-height: 26px;
+    padding: 2px 6px;
+    background: #ffffff !important;
+    color: #111111 !important;
+    vertical-align: middle;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .sheet-grid td[contenteditable="true"],
+  .sheet-grid th[contenteditable="true"] {
+    caret-color: #111111;
+  }
+
+  .sheet-grid td:hover,
+  .sheet-grid th[contenteditable="true"]:hover {
+    background: #f9fbff !important;
+  }
+
+  .sheet-grid td:focus,
+  .sheet-grid th[contenteditable="true"]:focus,
+  .sheet-grid td.active-cell,
+  .sheet-grid th.active-cell {
+    background: #dbeafe !important;
+    color: #111111 !important;
+    outline: 2px solid #2563eb !important;
+    outline-offset: -2px;
+  }
+
+  .sheet-grid *::selection {
+    background: #bfdbfe;
+    color: #111111;
+  }
+</style>
+
+<script>
+  const EXAMPLE_GRID = {{ example_grid|tojson if example_grid else '{"header":["Edad","Genero","Satisfaccion"],"rows":[["22","Femenino","5"],["25","Masculino","4"],["21","Femenino","5"]]}'|safe }};
+  let fullPasteMode = false;
+
+  function columnLabel(index) {
+    let label = "";
+    let n = index + 1;
+    while (n > 0) {
+      let rem = (n - 1) % 26;
+      label = String.fromCharCode(65 + rem) + label;
+      n = Math.floor((n - 1) / 26);
+    }
+    return label;
+  }
+
+  function normalizeText(value) {
+    if (value === null || value === undefined) return "";
+    return String(value)
+      .replace(/\u00A0/g, " ")
+      .replace(/\r\n/g, "\n")
+      .replace(/\r/g, "\n")
+      .replace(/\u0000/g, "")
+      .trim();
+  }
+
+  function getHeader() {
+    const headers = [];
+    const cells = document.querySelectorAll("#headerRow th");
+    cells.forEach((c, idx) => {
+      if (idx === 0) return;
+      headers.push(normalizeText(c.innerText || ""));
+    });
+    return headers;
+  }
+
+  function getRows() {
+    const rows = [];
+    const trs = document.querySelectorAll("#gridBody tr");
+    trs.forEach(tr => {
+      const row = [];
+      tr.querySelectorAll("td").forEach(td => {
+        row.push(normalizeText(td.innerText || ""));
+      });
+      rows.push(row);
+    });
+    return rows;
+  }
+
+  function currentColumnCount() {
+    return document.querySelectorAll("#headerRow th").length - 1;
+  }
+
+  function currentRowCount() {
+    return document.querySelectorAll("#gridBody tr").length;
+  }
+
+  function refreshRowNumbers() {
+    const rows = document.querySelectorAll("#gridBody tr");
+    rows.forEach((row, idx) => {
+      const th = row.querySelector(".row-number");
+      if (th) th.innerText = idx + 1;
+    });
+  }
+
+  function refreshColumnLetters() {
+    const headers = document.querySelectorAll("#headerRow th");
+    headers.forEach((th, idx) => {
+      if (idx === 0) return;
+      if (!normalizeText(th.innerText)) {
+        th.innerText = columnLabel(idx - 1);
+      }
+    });
+  }
+
+  function clearActiveCell() {
+    document.querySelectorAll("#dataGrid .active-cell").forEach(el => {
+      el.classList.remove("active-cell");
+    });
+  }
+
+  function setActiveCell(cell) {
+    clearActiveCell();
+    if (cell) {
+      cell.classList.add("active-cell");
+    }
+  }
+
+  function getEditableHeaders() {
+    return Array.from(document.querySelectorAll("#headerRow th[contenteditable='true']"));
+  }
+
+  function getAllEditableCells() {
+    const headerCells = getEditableHeaders();
+    const bodyCells = Array.from(document.querySelectorAll("#gridBody td"));
+    return [...headerCells, ...bodyCells];
+  }
+
+  function addRow() {
+    const body = document.getElementById("gridBody");
+    const headerCount = currentColumnCount();
+    const tr = document.createElement("tr");
+
+    const th = document.createElement("th");
+    th.className = "row-number";
+    th.innerText = body.children.length + 1;
+    tr.appendChild(th);
+
+    for (let i = 0; i < headerCount; i++) {
+      const td = document.createElement("td");
+      td.contentEditable = "true";
+      tr.appendChild(td);
+    }
+
+    body.appendChild(tr);
+    refreshRowNumbers();
+  }
+
+  function addColumn() {
+    const headerRow = document.getElementById("headerRow");
+
+    const th = document.createElement("th");
+    th.contentEditable = "true";
+    th.innerText = columnLabel(currentColumnCount());
+    headerRow.appendChild(th);
+
+    const rows = document.querySelectorAll("#gridBody tr");
+    rows.forEach(r => {
+      const td = document.createElement("td");
+      td.contentEditable = "true";
+      r.appendChild(td);
+    });
+  }
+
+  function removeLastRow() {
+    const body = document.getElementById("gridBody");
+    if (body.children.length > 1) {
+      body.removeChild(body.lastElementChild);
+    }
+    refreshRowNumbers();
+  }
+
+  function removeLastColumn() {
+    const headerRow = document.getElementById("headerRow");
+    if (currentColumnCount() <= 1) return;
+
+    headerRow.removeChild(headerRow.lastElementChild);
+
+    document.querySelectorAll("#gridBody tr").forEach(r => {
+      if (r.lastElementChild) {
+        r.removeChild(r.lastElementChild);
+      }
+    });
+
+    refreshColumnLetters();
+  }
+
+  function clearGrid() {
+    const headerRow = document.getElementById("headerRow");
+    const body = document.getElementById("gridBody");
+
+    headerRow.innerHTML = "";
+    body.innerHTML = "";
+
+    const first = document.createElement("th");
+    first.className = "corner-cell";
+    first.innerText = "#";
+    headerRow.appendChild(first);
+
+    for (let i = 0; i < 10; i++) {
+      const th = document.createElement("th");
+      th.contentEditable = "true";
+      th.innerText = columnLabel(i);
+      headerRow.appendChild(th);
+    }
+
+    for (let r = 0; r < 10; r++) {
+      addRow();
+    }
+
+    refreshRowNumbers();
+    refreshColumnLetters();
+  }
+
+  function ensureSize(rowsNeeded, colsNeeded) {
+    while (currentColumnCount() < colsNeeded) {
+      addColumn();
+    }
+    while (currentRowCount() < rowsNeeded) {
+      addRow();
+    }
+  }
+
+  function setCell(rowIndex, colIndex, value) {
+    const row = document.querySelectorAll("#gridBody tr")[rowIndex];
+    if (!row) return;
+    const cells = row.querySelectorAll("td");
+    const cell = cells[colIndex];
+    if (!cell) return;
+    cell.innerText = value ?? "";
+  }
+
+  function setHeader(colIndex, value) {
+    const headers = document.querySelectorAll("#headerRow th");
+    const header = headers[colIndex + 1];
+    if (!header) return;
+    header.innerText = value ?? columnLabel(colIndex);
+  }
+
+  function loadGrid(payload) {
+    const header = Array.isArray(payload.header) ? payload.header : [];
+    const rows = Array.isArray(payload.rows) ? payload.rows : [];
+
+    const rowLengths = rows.map(r => Array.isArray(r) ? r.length : 0);
+    const colsNeeded = Math.max(header.length, ...rowLengths, 1);
+    const rowsNeeded = Math.max(rows.length, 1);
+
+    clearGrid();
+
+    while (currentColumnCount() > colsNeeded && currentColumnCount() > 1) {
+      removeLastColumn();
+    }
+    while (currentRowCount() > rowsNeeded && currentRowCount() > 1) {
+      removeLastRow();
+    }
+
+    ensureSize(rowsNeeded, colsNeeded);
+
+    for (let c = 0; c < colsNeeded; c++) {
+      setHeader(c, header[c] ?? columnLabel(c));
+    }
+
+    for (let r = 0; r < rows.length; r++) {
+      const row = Array.isArray(rows[r]) ? rows[r] : [];
+      for (let c = 0; c < colsNeeded; c++) {
+        setCell(r, c, row[c] ?? "");
+      }
+    }
+
+    refreshRowNumbers();
+    refreshColumnLetters();
+  }
+
+  function loadExample() {
+    loadGrid(EXAMPLE_GRID);
+  }
+
+  function parseClipboardTable(text) {
+    const normalized = String(text || "")
+      .replace(/\r\n/g, "\n")
+      .replace(/\r/g, "\n")
+      .trim();
+
+    if (!normalized) return [];
+
+    return normalized.split("\n").map(line => line.split("\t"));
+  }
+
+  function getCellPosition(cell) {
+    const tr = cell.closest("tr");
+    const rowIndex = Array.from(document.querySelectorAll("#gridBody tr")).indexOf(tr);
+    const colIndex = Array.from(tr.querySelectorAll("td")).indexOf(cell);
+    return { rowIndex, colIndex };
+  }
+
+  function pasteFullTableMode() {
+    fullPasteMode = true;
+    alert("Modo pegar tabla completa activado. Haz clic en una celda de la tabla y luego pega con Ctrl + V.");
+  }
+
+  function fillHeadersFromFirstRow() {
+    const rows = getRows();
+    if (!rows.length) return;
+
+    const firstRow = rows[0];
+    const remainingRows = rows.slice(1);
+
+    loadGrid({
+      header: firstRow,
+      rows: remainingRows
+    });
+  }
+
+  function focusNextEditable(current, backwards = false) {
+    const editable = getAllEditableCells();
+    const index = editable.indexOf(current);
+    if (index === -1) return;
+
+    let nextIndex = backwards ? index - 1 : index + 1;
+
+    if (nextIndex < 0) nextIndex = 0;
+    if (nextIndex >= editable.length) {
+      const bodyCells = Array.from(document.querySelectorAll("#gridBody td"));
+      if (bodyCells.length && current === bodyCells[bodyCells.length - 1]) {
+        addRow();
+        const newBodyCells = Array.from(document.querySelectorAll("#gridBody td"));
+        const targetIndex = newBodyCells.length - currentColumnCount();
+        if (newBodyCells[targetIndex]) {
+          newBodyCells[targetIndex].focus();
+          setActiveCell(newBodyCells[targetIndex]);
+        }
+        return;
+      }
+      nextIndex = editable.length - 1;
+    }
+
+    editable[nextIndex].focus();
+    setActiveCell(editable[nextIndex]);
+  }
+
+  function prepareData() {
+    const payload = {
+      header: getHeader(),
+      rows: getRows()
+    };
+
+    document.getElementById("data_json").value = JSON.stringify(payload);
+    return payload;
+  }
+
+  document.addEventListener("focusin", function (e) {
+    const target = e.target;
+    if (!target) return;
+
+    if (
+      (target.tagName === "TD" && target.isContentEditable) ||
+      (target.tagName === "TH" && target.isContentEditable)
+    ) {
+      setActiveCell(target);
+    }
+  });
+
+  document.addEventListener("click", function (e) {
+    const target = e.target;
+    if (!target) return;
+
+    if (
+      (target.tagName === "TD" && target.isContentEditable) ||
+      (target.tagName === "TH" && target.isContentEditable)
+    ) {
+      setActiveCell(target);
+    }
+  });
+
+  document.addEventListener("keydown", function (e) {
+    const target = e.target;
+    if (!target) return;
+
+    const isEditableCell =
+      (target.tagName === "TD" && target.isContentEditable) ||
+      (target.tagName === "TH" && target.isContentEditable);
+
+    if (!isEditableCell) return;
+
+    if (e.key === "Enter") {
+      e.preventDefault();
+      focusNextEditable(target, e.shiftKey);
+      return;
+    }
+
+    if (e.key === "Tab") {
+      e.preventDefault();
+      focusNextEditable(target, e.shiftKey);
+      return;
+    }
+
+    const bodyRows = Array.from(document.querySelectorAll("#gridBody tr"));
+    const headerCells = getEditableHeaders();
+
+    if (target.tagName === "TD") {
+      const tr = target.closest("tr");
+      const rowIndex = bodyRows.indexOf(tr);
+      const cells = Array.from(tr.querySelectorAll("td"));
+      const colIndex = cells.indexOf(target);
+
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        const next = cells[colIndex + 1];
+        if (next) { next.focus(); setActiveCell(next); }
+        return;
+      }
+
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        const prev = cells[colIndex - 1];
+        if (prev) { prev.focus(); setActiveCell(prev); }
+        return;
+      }
+
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        const nextRow = bodyRows[rowIndex + 1];
+        if (nextRow) {
+          const next = nextRow.querySelectorAll("td")[colIndex];
+          if (next) { next.focus(); setActiveCell(next); }
+        }
+        return;
+      }
+
+      if (e.key === "ArrowUp") {
+        e.preventDefault();
+        if (rowIndex === 0) {
+          const header = headerCells[colIndex];
+          if (header) { header.focus(); setActiveCell(header); }
+        } else {
+          const prevRow = bodyRows[rowIndex - 1];
+          if (prevRow) {
+            const prev = prevRow.querySelectorAll("td")[colIndex];
+            if (prev) { prev.focus(); setActiveCell(prev); }
+          }
+        }
+        return;
+      }
+    }
+
+    if (target.tagName === "TH" && target.isContentEditable) {
+      const colIndex = headerCells.indexOf(target);
+
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        const next = headerCells[colIndex + 1];
+        if (next) { next.focus(); setActiveCell(next); }
+        return;
+      }
+
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        const prev = headerCells[colIndex - 1];
+        if (prev) { prev.focus(); setActiveCell(prev); }
+        return;
+      }
+
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        const firstRow = document.querySelector("#gridBody tr");
+        if (firstRow) {
+          const firstCell = firstRow.querySelectorAll("td")[colIndex];
+          if (firstCell) { firstCell.focus(); setActiveCell(firstCell); }
+        }
+        return;
+      }
+    }
+  });
+
+  document.addEventListener("paste", function (e) {
+    const target = e.target;
+    if (!target || target.tagName !== "TD" || !target.isContentEditable) return;
+
+    const text = (e.clipboardData || window.clipboardData).getData("text");
+    if (!text) return;
+
+    const matrix = parseClipboardTable(text);
+    if (!matrix.length) return;
+
+    e.preventDefault();
+
+    if (fullPasteMode) {
+      const header = matrix[0] || [];
+      const rows = matrix.slice(1);
+
+      loadGrid({
+        header: header,
+        rows: rows
+      });
+
+      fullPasteMode = false;
+      return;
+    }
+
+    const start = getCellPosition(target);
+    const neededRows = start.rowIndex + matrix.length;
+    const neededCols = start.colIndex + Math.max(...matrix.map(r => r.length), 1);
+
+    ensureSize(neededRows, neededCols);
+
+    matrix.forEach((row, rOffset) => {
+      row.forEach((value, cOffset) => {
+        setCell(start.rowIndex + rOffset, start.colIndex + cOffset, value);
+      });
+    });
+
+    refreshRowNumbers();
+    refreshColumnLetters();
+  });
+
+  document.getElementById("manualDatasetForm").addEventListener("submit", function (e) {
+    const titleInput = document.getElementById("title");
+    const title = (titleInput.value || "").trim();
+
+    if (!title) {
+      e.preventDefault();
+      alert("Debes ingresar un título para el dataset.");
+      titleInput.focus();
+      return;
+    }
+
+    const payload = prepareData();
+    const hasHeaders = Array.isArray(payload.header) && payload.header.some(h => String(h || "").trim() !== "");
+    const hasRows = Array.isArray(payload.rows) && payload.rows.some(
+      row => Array.isArray(row) && row.some(cell => String(cell || "").trim() !== "")
+    );
+
+    const fileInput = document.getElementById("file");
+    const hasFile = fileInput && fileInput.files && fileInput.files.length > 0;
+
+    if (!hasFile && !hasHeaders) {
+      e.preventDefault();
+      alert("Debes subir un archivo o ingresar al menos un encabezado válido.");
+      return;
+    }
+
+    if (!hasFile && !hasRows) {
+      e.preventDefault();
+      alert("Debes subir un archivo o ingresar al menos una fila con datos.");
+      return;
+    }
+  });
+
+  refreshRowNumbers();
+  refreshColumnLetters();
+</script>
+
+{% endblock %}

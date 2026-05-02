@@ -1,0 +1,254 @@
+{
+  "plots": [
+    "plots/ds9_bar_C.png",
+    "plots/ds9_missing.png"
+  ],
+  "meta": {
+    "n_rows": 5,
+    "n_cols": 10,
+    "missing_global_pct": 2.0,
+    "num_cols": [
+      "A",
+      "B",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J"
+    ],
+    "cat_cols": [
+      "C"
+    ],
+    "dt_cols": [],
+    "n_num": 9,
+    "n_cat": 1,
+    "n_dt": 0,
+    "n_duplicates": 0,
+    "columns_summary": [
+      {
+        "name": "A",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 5,
+        "n_valid": 5,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 19853.2,
+          "median": 98.0,
+          "min": 0.0,
+          "max": 98098.0,
+          "std": 43741.99342965522,
+          "q1": 90.0,
+          "q3": 980.0
+        },
+        "categorical": {},
+        "top_categories": []
+      },
+      {
+        "name": "B",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 5,
+        "n_valid": 5,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 591.6,
+          "median": 980.0,
+          "min": 9.0,
+          "max": 980.0,
+          "std": 531.8386033375162,
+          "q1": 9.0,
+          "q3": 980.0
+        },
+        "categorical": {},
+        "top_categories": []
+      },
+      {
+        "name": "C",
+        "dtype": "numeric",
+        "dtype_raw": "float64",
+        "n_total": 5,
+        "n_valid": 5,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 314.0,
+          "median": 98.0,
+          "min": 80.0,
+          "max": 980.0,
+          "std": 444.08107367912,
+          "q1": 93.5,
+          "q3": 318.5
+        },
+        "categorical": {},
+        "top_categories": []
+      },
+      {
+        "name": "D",
+        "dtype": "numeric",
+        "dtype_raw": "float64",
+        "n_total": 5,
+        "n_valid": 4,
+        "n_missing": 1,
+        "missing_pct": 20.0,
+        "numeric": {
+          "mean": 73.5,
+          "median": 98.0,
+          "min": 0.0,
+          "max": 98.0,
+          "std": 49.0,
+          "q1": 73.5,
+          "q3": 98.0
+        },
+        "categorical": {},
+        "top_categories": []
+      },
+      {
+        "name": "E",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 5,
+        "n_valid": 5,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 254.8,
+          "median": 98.0,
+          "min": 0.0,
+          "max": 980.0,
+          "std": 407.61403312447425,
+          "q1": 98.0,
+          "q3": 98.0
+        },
+        "categorical": {},
+        "top_categories": []
+      },
+      {
+        "name": "F",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 5,
+        "n_valid": 5,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 60.8,
+          "median": 90.0,
+          "min": 9.0,
+          "max": 98.0,
+          "std": 47.39936708438204,
+          "q1": 9.0,
+          "q3": 98.0
+        },
+        "categorical": {},
+        "top_categories": []
+      },
+      {
+        "name": "G",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 5,
+        "n_valid": 5,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 19673.0,
+          "median": 80.0,
+          "min": 9.0,
+          "max": 98098.0,
+          "std": 43840.92107837152,
+          "q1": 80.0,
+          "q3": 98.0
+        },
+        "categorical": {},
+        "top_categories": []
+      },
+      {
+        "name": "H",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 5,
+        "n_valid": 5,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 94.4,
+          "median": 98.0,
+          "min": 80.0,
+          "max": 98.0,
+          "std": 8.049844718999243,
+          "q1": 98.0,
+          "q3": 98.0
+        },
+        "categorical": {},
+        "top_categories": []
+      },
+      {
+        "name": "I",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 5,
+        "n_valid": 5,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 197.8,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 980.0,
+          "std": 437.28045920210064,
+          "q1": 0.0,
+          "q3": 9.0
+        },
+        "categorical": {},
+        "top_categories": []
+      },
+      {
+        "name": "J",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 5,
+        "n_valid": 5,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 252.8,
+          "median": 98.0,
+          "min": 8.0,
+          "max": 980.0,
+          "std": 408.20730027768985,
+          "q1": 80.0,
+          "q3": 98.0
+        },
+        "categorical": {},
+        "top_categories": []
+      }
+    ],
+    "top_missing_cols": [
+      {
+        "name": "D",
+        "missing_pct": 20.0
+      }
+    ],
+    "high_cardinality_cols": [],
+    "strong_correlations": [
+      {
+        "a": "H",
+        "b": "I",
+        "corr": -0.9999602858951244
+      },
+      {
+        "a": "G",
+        "b": "J",
+        "corr": 0.9958166760610803
+      }
+    ],
+    "insights_text": "Filas: 5, Columnas: 10. Missing global: 2.0%.\nColumnas con más faltantes:\n• D: 20.0% missing\nCorrelaciones fuertes (|r| ≥ 0.70):\n• H vs I: r=-1.000\n• G vs J: r=0.996",
+    "dataset_type": "dataset",
+    "n_total": 5
+  }
+}

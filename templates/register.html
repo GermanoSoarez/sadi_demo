@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% block title %}Registro{% endblock %}
+
+{% block content %}
+<div class="container my-5" style="max-width: 520px;">
+  <!-- Mensajes flash -->
+  {% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+      {% for category, msg in messages %}
+        <div class="alert alert-{{ 'warning' if category=='message' else category }} alert-dismissible fade show" role="alert">
+          {{ msg }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <div class="card shadow-sm rounded-3">
+    <div class="card-body p-4">
+      <h1 class="h4 mb-3 text-center">Crear cuenta</h1>
+      <form method="POST" action="{{ url_for('auth.register') }}" novalidate id="registerForm">
+        <!-- CSRF (solo si usas Flask-WTF; si no, elimina esta línea) -->
+        {% if csrf_token is defined %}
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        {% endif %}
+
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nombre"
+            name="nombre"
+            required
+            minlength="2"
+            maxlength="120"
+            value="{{ request.form.get('nombre', '') }}"
+            placeholder="Tu nombre"
+          >
+          <div class="invalid-feedback">Ingresa tu nombre (mínimo 2 caracteres).</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Correo electrónico</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            required
+            maxlength="255"
+            value="{{ request.form.get('email', '') }}"
+            placeholder="tucorreo@ejemplo.com"
+          >
+          <div class="invalid-feedback">Ingresa un correo válido.</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Contraseña</label>
+          <div class="input-group" id="passwordGroup">
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              required
+              minlength="6"
+              maxlength="128"
+              placeholder="Mínimo 6 caracteres"
+              autocomplete="new-password"
+            >
+            <button class="btn btn-outline-secondary" type="button" id="togglePassword" tabindex="-1">
+              <span class="visually-hidden">Mostrar/Ocultar</span>👁️
+            </button>
+          </div>
+          <div class="form-text">Usa al menos 6 caracteres. Recomendada combinación de letras y números.</div>
+          <div class="invalid-feedback">La contraseña es obligatoria (mínimo 6 caracteres).</div>
+        </div>
+
+        <div class="mb-4">
+          <label for="password2" class="form-label">Repetir contraseña</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password2"
+            name="password2"
+            required
+            minlength="6"
+            maxlength="128"
+            placeholder="Repite tu contraseña"
+            autocomplete="new-password"
+          >
+          <div class="invalid-feedback">Las contraseñas no coinciden.</div>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100" id="submitBtn">Crear cuenta</button>
+
+        <div class="text-center mt-3">
+          <small>¿Ya tienes cuenta? <a href="{{ url_for('auth.login') }}">Inicia sesión</a></small>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- JS de validación y toggle -->
+<script>
+  (function () {
+    const form = document.getElementById('registerForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const pwd = document.getElementById('password');
+    const pwd2 = document.getElementById('password2');
+    const toggle = document.getElementById('togglePassword');
+
+    // Mostrar/ocultar contraseña
+    toggle.addEventListener('click', function () {
+      const type = pwd.getAttribute('type') === 'password' ? 'text' : 'password';
+      pwd.setAttribute('type', type);
+      pwd2.setAttribute('type', type);
+    });
+
+    // Validar coincidencia de contraseñas
+    function validatePasswordsMatch() {
+      if (pwd.value && pwd2.value && pwd.value !== pwd2.value) {
+        pwd2.setCustomValidity('Las contraseñas no coinciden');
+      } else {
+        pwd2.setCustomValidity('');
+      }
+    }
+    pwd.addEventListener('input', validatePasswordsMatch);
+    pwd2.addEventListener('input', validatePasswordsMatch);
+
+    // Previene doble envío y aplica validación Bootstrap
+    form.addEventListener('submit', function (e) {
+      validatePasswordsMatch();
+      if (!form.checkValidity()) {
+        e.preventDefault();
+        e.stopPropagation();
+      } else {
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Creando...';
+      }
+      form.classList.add('was-validated');
+    }, false);
+  })();
+</script>
+{% endblock %}

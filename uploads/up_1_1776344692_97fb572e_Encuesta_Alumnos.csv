@@ -1,0 +1,11 @@
+Edad,Genero,P1_Claridad_contenido,P2_Dominio_docente,P3_Material_apoyo,P4_Participacion_clase,P5_Satisfaccion_general
+22,Femenino,5,4,5,4,5
+25,Masculino,4,4,4,3,4
+21,Femenino,5,5,4,5,5
+23,Masculino,3,4,3,3,4
+24,Femenino,4,5,5,4,5
+22,Femenino,5,4,4,5,5
+26,Masculino,3,3,4,3,3
+27,Femenino,4,4,5,4,4
+23,Masculino,5,5,5,4,5
+"22,Femenino,4,4,4,4,4"""

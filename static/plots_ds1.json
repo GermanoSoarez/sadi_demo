@@ -1,0 +1,380 @@
+{
+  "plots": [
+    "plots/ds1_box_outliers.png",
+    "plots/ds1_corr_heatmap.png",
+    "plots/ds1_hist_C6H6.png",
+    "plots/ds1_hist_CO.png",
+    "plots/ds1_hist_Date.png",
+    "plots/ds1_hist_NMHC.png",
+    "plots/ds1_hist_S1.png",
+    "plots/ds1_hist_Time.png",
+    "plots/ds1_missing.png",
+    "plots/ds1_scatter_CO_vs_C6H6.png",
+    "plots/ds1_scatter_CO_vs_S2.png",
+    "plots/ds1_scatter_NMHC_vs_C6H6.png",
+    "plots/ds1_scatter_S1_vs_S3.png"
+  ],
+  "meta": {
+    "n_rows": 9357,
+    "n_cols": 15,
+    "missing_global_pct": 4.749385486801326,
+    "num_cols": [
+      "Date",
+      "Time",
+      "CO",
+      "S1",
+      "NMHC",
+      "C6H6",
+      "S2",
+      "Nox",
+      "S3",
+      "NO2",
+      "S4",
+      "S5",
+      "T",
+      "RH",
+      "AH"
+    ],
+    "cat_cols": [],
+    "dt_cols": [],
+    "n_num": 15,
+    "n_cat": 0,
+    "n_dt": 0,
+    "n_duplicates": 45,
+    "columns_summary": [
+      {
+        "name": "Date",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 9357,
+        "n_valid": 9357,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": -110.89024259912365,
+          "median": -200.0,
+          "min": -200.0,
+          "max": 1189.0,
+          "std": 148.4549867789031,
+          "q1": -200.0,
+          "q3": 5.0
+        },
+        "categorical": {}
+      },
+      {
+        "name": "Time",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 9357,
+        "n_valid": 9357,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 26.54953510740622,
+          "median": 7.0,
+          "min": -200.0,
+          "max": 1852.0,
+          "std": 165.22274867338166,
+          "q1": 3.0,
+          "q3": 12.0
+        },
+        "categorical": {}
+      },
+      {
+        "name": "CO",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 9357,
+        "n_valid": 9357,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 276.8726087421182,
+          "median": 7.0,
+          "min": -200.0,
+          "max": 1889.0,
+          "std": 457.0069469103602,
+          "q1": 3.0,
+          "q3": 665.0
+        },
+        "categorical": {}
+      },
+      {
+        "name": "S1",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 9357,
+        "n_valid": 9357,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 645.02340493748,
+          "median": 744.0,
+          "min": -200.0,
+          "max": 2214.0,
+          "std": 490.92708907162944,
+          "q1": 188.0,
+          "q3": 1005.0
+        },
+        "categorical": {}
+      },
+      {
+        "name": "NMHC",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 9357,
+        "n_valid": 9357,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 389.5367104841295,
+          "median": 273.0,
+          "min": -200.0,
+          "max": 2331.0,
+          "std": 388.8868035630142,
+          "q1": 105.0,
+          "q3": 685.0
+        },
+        "categorical": {}
+      },
+      {
+        "name": "C6H6",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 9357,
+        "n_valid": 9357,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 563.5759324569841,
+          "median": 652.0,
+          "min": -200.0,
+          "max": 2683.0,
+          "std": 483.7778777320203,
+          "q1": 114.0,
+          "q3": 882.0
+        },
+        "categorical": {}
+      },
+      {
+        "name": "S2",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 9357,
+        "n_valid": 9357,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 527.450999251897,
+          "median": 137.0,
+          "min": -200.0,
+          "max": 2684.0,
+          "std": 679.2695095211537,
+          "q1": 86.0,
+          "q3": 1192.0
+        },
+        "categorical": {}
+      },
+      {
+        "name": "Nox",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 9357,
+        "n_valid": 9357,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 1200.1025969862135,
+          "median": 1268.0,
+          "min": -200.0,
+          "max": 2775.0,
+          "std": 537.3403054283632,
+          "q1": 900.0,
+          "q3": 1571.0
+        },
+        "categorical": {}
+      },
+      {
+        "name": "S3",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 9357,
+        "n_valid": 9357,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 655.903174094261,
+          "median": 692.0,
+          "min": -200.0,
+          "max": 2523.0,
+          "std": 600.8119180826801,
+          "q1": 21.0,
+          "q3": 1103.0
+        },
+        "categorical": {}
+      },
+      {
+        "name": "NO2",
+        "dtype": "numeric",
+        "dtype_raw": "int64",
+        "n_total": 9357,
+        "n_valid": 9357,
+        "n_missing": 0,
+        "missing_pct": 0.0,
+        "numeric": {
+          "mean": 7.136047878593566,
+          "median": 12.0,
+          "min": -200.0,
+          "max": 84.0,
+          "std": 43.655894100115255,
+          "q1": 6.0,
+          "q3": 21.0
+        },
+        "categorical": {}
+      },
+      {
+        "name": "S4",
+        "dtype": "numeric",
+        "dtype_raw": "float64",
+        "n_total": 9357,
+        "n_valid": 9282,
+        "n_missing": 75,
+        "missing_pct": 0.8015389547932029,
+        "numeric": {
+          "mean": 14.952811893988365,
+          "median": 7.0,
+          "min": -200.0,
+          "max": 8288.0,
+          "std": 115.1792910206256,
+          "q1": 3.0,
+          "q3": 36.0
+        },
+        "categorical": {}
+      },
+      {
+        "name": "S5",
+        "dtype": "numeric",
+        "dtype_raw": "float64",
+        "n_total": 9357,
+        "n_valid": 8989,
+        "n_missing": 368,
+        "missing_pct": 3.9328844715186486,
+        "numeric": {
+          "mean": 75.95883858048727,
+          "median": 30.0,
+          "min": 0.0,
+          "max": 9827.0,
+          "std": 573.9079282032508,
+          "q1": 5.0,
+          "q3": 53.0
+        },
+        "categorical": {}
+      },
+      {
+        "name": "T",
+        "dtype": "numeric",
+        "dtype_raw": "float64",
+        "n_total": 9357,
+        "n_valid": 8913,
+        "n_missing": 444,
+        "missing_pct": 4.745110612375761,
+        "numeric": {
+          "mean": 410.67609110288345,
+          "median": 3.0,
+          "min": 0.0,
+          "max": 9996.0,
+          "std": 1593.2763523616838,
+          "q1": 1.0,
+          "q3": 7.0
+        },
+        "categorical": {}
+      },
+      {
+        "name": "RH",
+        "dtype": "numeric",
+        "dtype_raw": "float64",
+        "n_total": 9357,
+        "n_valid": 8133,
+        "n_missing": 1224,
+        "missing_pct": 13.081115742225071,
+        "numeric": {
+          "mean": 1956.9048321652526,
+          "median": 1.0,
+          "min": 0.0,
+          "max": 9989.0,
+          "std": 3092.6723666960015,
+          "q1": 0.0,
+          "q3": 3705.0
+        },
+        "categorical": {}
+      },
+      {
+        "name": "AH",
+        "dtype": "numeric",
+        "dtype_raw": "float64",
+        "n_total": 9357,
+        "n_valid": 4802,
+        "n_missing": 4555,
+        "missing_pct": 48.6801325211072,
+        "numeric": {
+          "mean": 4805.041232819658,
+          "median": 4857.0,
+          "min": 1.0,
+          "max": 9998.0,
+          "std": 3091.3818667112714,
+          "q1": 1839.0,
+          "q3": 7503.75
+        },
+        "categorical": {}
+      }
+    ],
+    "top_missing_cols": [
+      {
+        "name": "AH",
+        "missing_pct": 48.6801325211072
+      },
+      {
+        "name": "RH",
+        "missing_pct": 13.081115742225071
+      },
+      {
+        "name": "T",
+        "missing_pct": 4.745110612375761
+      },
+      {
+        "name": "S5",
+        "missing_pct": 3.9328844715186486
+      },
+      {
+        "name": "S4",
+        "missing_pct": 0.8015389547932029
+      }
+    ],
+    "high_cardinality_cols": [],
+    "strong_correlations": [
+      {
+        "a": "CO",
+        "b": "S2",
+        "corr": 0.9424926564977308
+      },
+      {
+        "a": "S1",
+        "b": "S3",
+        "corr": 0.8705417833238651
+      },
+      {
+        "a": "NMHC",
+        "b": "C6H6",
+        "corr": -0.7167185705884259
+      },
+      {
+        "a": "CO",
+        "b": "C6H6",
+        "corr": -0.7117685637832101
+      }
+    ],
+    "insights_text": "Filas: 9357, Columnas: 15. Missing global: 4.7%.\nColumnas con más faltantes:\n• AH: 48.7% missing\n• RH: 13.1% missing\n• T: 4.7% missing\n• S5: 3.9% missing\n• S4: 0.8% missing\nCorrelaciones fuertes (|r| ≥ 0.70):\n• CO vs S2: r=0.942\n• S1 vs S3: r=0.871\n• NMHC vs C6H6: r=-0.717\n• CO vs C6H6: r=-0.712",
+    "dataset_type": "dataset",
+    "n_total": 9357
+  }
+}

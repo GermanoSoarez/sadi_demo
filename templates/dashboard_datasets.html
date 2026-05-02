@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard Premium - Datasets{% endblock %}
+
+{% block content %}
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="mb-0">Dashboard Premium - Datasets (No encuestas)</h3>
+        <a href="{{ url_for('dataset.dashboard') }}" class="btn btn-outline-secondary btn-sm">
+            Volver al panel de datasets
+        </a>
+    </div>
+
+    {% if not premium_activo or not is_premium %}
+        <div class="alert alert-warning">
+            <strong>Función Premium:</strong> el dashboard avanzado de datasets está disponible solo en
+            <span class="fw-bold">SADI PREMIUM</span>.
+        </div>
+    {% else %}
+
+        {% if resumen %}
+        <!-- Tarjetas resumen -->
+        <div class="row g-3 mb-4">
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="text-muted small">Datasets (no encuestas)</div>
+                        <div class="fs-3 fw-bold">{{ resumen.total_datasets }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="text-muted small">Total filas</div>
+                        <div class="fs-3 fw-bold">{{ resumen.total_rows }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="text-muted small">Total columnas</div>
+                        <div class="fs-3 fw-bold">{{ resumen.total_cols }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="text-muted small">Missing promedio (%)</div>
+                        <div class="fs-3 fw-bold">
+                            {% if resumen.pct_missing_prom is not none %}
+                                {{ resumen.pct_missing_prom }}%
+                            {% else %}
+                                &mdash;
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Tabla datasets -->
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-primary text-white">
+                <strong>Datasets no clasificados como encuestas</strong>
+            </div>
+            <div class="card-body p-0">
+                {% if datasets_info %}
+                    <div class="table-responsive">
+                        <table class="table table-striped mb-0 align-middle">
+                            <thead>
+                                <tr>
+                                    <th>Dataset</th>
+                                    <th>Filas</th>
+                                    <th>Columnas</th>
+                                    <th>Numéricas</th>
+                                    <th>Categóricas</th>
+                                    <th>Fecha</th>
+                                    <th>Missing global (%)</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for d in datasets_info %}
+                                <tr>
+                                    <td>{{ d.ds.title }}</td>
+                                    <td>{{ d.n_rows }}</td>
+                                    <td>{{ d.n_cols }}</td>
+                                    <td>{{ d.num_vars }}</td>
+                                    <td>{{ d.cat_vars }}</td>
+                                    <td>{{ d.date_vars }}</td>
+                                    <td>
+                                        {% if d.missing_pct_global is not none %}
+                                            {{ d.missing_pct_global }}%
+                                        {% else %}
+                                            &mdash;
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a href="{{ url_for('dataset.dataset_detail', dataset_id=d.ds.id) }}"
+                                           class="btn btn-sm btn-outline-primary">
+                                            Ver análisis
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="p-3">
+                        <em>No se encontraron datasets no encuestas con summary generado.</em>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+    {% endif %}
+</div>
+
+{% endblock %}

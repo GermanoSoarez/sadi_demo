@@ -1,0 +1,11 @@
+﻿Edad,Genero,Carrera,Trabaja,Tipo_Trabajo,Horas_Estudio_Semanal,Uso_Biblioteca,Servicio_Mas_Utilizado,Satisfaccion_Servicios,Recomendaria_Universidad,Comentario
+22,Femenino,Informatica,Si,Medio tiempo,10,Frecuente,Biblioteca,Alta,Si,Excelente infraestructura
+24,Masculino,Derecho,No,Ninguno,6,Ocasional,Plataforma Virtual,Media,Si,Buen nivel academico
+21,Femenino,Educacion,Si,Tiempo completo,4,Raro,Laboratorio,Media,No,Falta mas equipamiento
+23,Masculino,Electromecanica,No,Ninguno,8,Frecuente,Laboratorio,Alta,Si,Muy buenos docentes
+25,Femenino,Informatica,Si,Freelance,12,Frecuente,Plataforma Virtual,Alta,Si,Me gusta la modalidad
+27,Masculino,Derecho,Si,Medio tiempo,5,Ocasional,Biblioteca,Baja,No,Poca organizacion
+22,Femenino,Educacion,No,Ninguno,9,Frecuente,Biblioteca,Alta,Si,Muy buen ambiente
+26,Masculino,Electromecanica,Si,Tiempo completo,3,Raro,Laboratorio,Media,No,Mejorar horarios
+23,Femenino,Informatica,No,Ninguno,15,Frecuente,Plataforma Virtual,Alta,Si,Recomendaria totalmente
+24,Masculino,Derecho,Si,Medio tiempo,7,Ocasional,Biblioteca,Media,Si,Servicio aceptable

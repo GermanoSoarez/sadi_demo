@@ -1,0 +1,22 @@
+{
+  "problem_type": "regression",
+  "target": "Edad",
+  "features_used": [
+    " Año que cursas actualmente en la carrera de Agronomía: _Primer año",
+    " Año que cursas actualmente en la carrera de Agronomía: _Segundo año",
+    " Año que cursas actualmente en la carrera de Agronomía: _Tercer año",
+    " Año que cursas actualmente en la carrera de Agronomía: _Tercer año "
+  ],
+  "metrics": {
+    "rmse": 3.488,
+    "r2": 0.061
+  },
+  "features": {
+    " Año que cursas actualmente en la carrera de Agronomía: _Primer año": -3.0496,
+    " Año que cursas actualmente en la carrera de Agronomía: _Segundo año": 1.5333,
+    " Año que cursas actualmente en la carrera de Agronomía: _Tercer año": -1.0,
+    " Año que cursas actualmente en la carrera de Agronomía: _Tercer año ": 0.0606
+  },
+  "n_rows_train": 81,
+  "n_rows_test": 27
+}

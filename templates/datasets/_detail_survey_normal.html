@@ -1,0 +1,27 @@
+<div class="card">
+  <h3>Acciones — Encuesta normal</h3>
+
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    {# aquí luego pones tu endpoint para frecuencias / cruces #}
+    <a class="btn secondary" href="{{ url_for('dataset_analysis', dataset_id=ds.id) }}">Ver análisis</a>
+    <a class="btn secondary" href="{{ url_for('dataset_pdf', dataset_id=ds.id) }}">Generar PDF</a>
+  </div>
+
+  <p class="meta" style="margin-top:8px;">
+    Recomendado: frecuencias por pregunta, tablas de contingencia, barras por categorías y exportación.
+  </p>
+</div>
+C) templates/datasets/_detail_dataset.html
+<div class="card">
+  <h3>Acciones — Dataset (no encuesta)</h3>
+
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <a class="btn secondary" href="{{ url_for('dataset_stats', dataset_id=ds.id) }}">Stats</a>
+    <a class="btn secondary" href="{{ url_for('dataset_analysis', dataset_id=ds.id) }}">Análisis</a>
+    <a class="btn secondary" href="{{ url_for('dataset_pdf', dataset_id=ds.id) }}">Generar PDF</a>
+  </div>
+
+  <p class="meta" style="margin-top:8px;">
+    Incluye EDA, histogramas/barras/correlación para numéricos y reportes.
+  </p>
+</div>

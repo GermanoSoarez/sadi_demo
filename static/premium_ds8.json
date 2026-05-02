@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "plots": [
+    {
+      "kind": "hist",
+      "x": "569",
+      "title": "dfewefwerwer",
+      "note": "werfwerwerwerwere"
+    },
+    {
+      "kind": "box",
+      "x": "30",
+      "title": "werwerwerewr",
+      "note": "werwerwerewr"
+    },
+    {
+      "kind": "bar",
+      "x": "malignant",
+      "title": "werwerwer",
+      "note": "werwerwerwe"
+    },
+    {
+      "kind": "line",
+      "x": "benign",
+      "title": "werwerwerw",
+      "note": "werwerwerwerw"
+    },
+    {
+      "kind": "scatter",
+      "x": "malignant",
+      "title": "werwerwe",
+      "note": "werwerwerwer",
+      "y": "benign"
+    }
+  ],
+  "files": [
+    "plots/ds8_prem_corr_heatmap.png",
+    "plots/ds8_prem_hist_569.png",
+    "plots/ds8_prem_box_30.png",
+    "plots/ds8_prem_bar_malignant.png",
+    "plots/ds8_prem_line_benign.png"
+  ]
+}

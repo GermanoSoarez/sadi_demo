@@ -1,0 +1,66 @@
+{
+  "plots": [],
+  "meta": {},
+  "model_results": {
+    "regression_result": {
+      "target_col": "crop_yield",
+      "predictor_cols": [
+        "biomass",
+        "soil_moisture"
+      ],
+      "n_predictors": 2,
+      "n_rows": 180,
+      "intercept": 56.07034,
+      "r2": 0.167744,
+      "adj_r2": 0.128113,
+      "mae": 4.582349,
+      "rmse": 5.859323,
+      "coeff_table": [
+        {
+          "variable": "biomass",
+          "coefficient": 2.009271,
+          "abs_coefficient": 2.009271
+        },
+        {
+          "variable": "soil_moisture",
+          "coefficient": -0.615981,
+          "abs_coefficient": 0.615981
+        }
+      ],
+      "pred_vs_real_image": "ds29_regression_pred_vs_real.png",
+      "residuals_image": "ds29_regression_residuals.png",
+      "coefficients_image": "ds29_regression_coefficients.png",
+      "interpretation": [
+        "Las variables con mayor peso relativo en el modelo fueron biomass, soil_moisture.",
+        "El modelo alcanzó un R² de 0.1677 y un R² ajustado de 0.1281.",
+        "El ajuste del modelo es bajo y conviene revisar variables o probar otros enfoques."
+      ],
+      "interpretacion": "El modelo presenta un nivel de explicación bajo (R²=0.17)."
+    },
+    "rf_result": {
+      "target_col": "crop_yield",
+      "n_rows": 180,
+      "n_predictors": 2,
+      "r2": 0.038641,
+      "mae": 5.019044,
+      "rmse": 6.297406,
+      "feature_importance_table": [
+        {
+          "variable": "biomass",
+          "importance": 0.558679
+        },
+        {
+          "variable": "soil_moisture",
+          "importance": 0.441321
+        }
+      ],
+      "interpretation": [
+        "El modelo Random Forest muestra un ajuste predictivo limitado.",
+        "Las variables más influyentes en la predicción son: biomass, soil_moisture."
+      ],
+      "interpretacion": "Random Forest presenta un ajuste muy bajo (R²=0.04).",
+      "pred_plot": "plots/ds29_rf_pred_vs_real.png",
+      "importance_plot": "plots/ds29_rf_feature_importance.png"
+    }
+  }
+}

@@ -1,0 +1,227 @@
+{
+  "plots": [],
+  "meta": {
+    "n": 200,
+    "n_total": 200,
+    "scale": 7,
+    "likert_scale": 7,
+    "columns": [
+      "claridad_clases",
+      "organizacion_programa",
+      "disponibilidad_docentes",
+      "uso_tecnologia",
+      "relevancia_contenidos",
+      "evaluacion_aprendizaje",
+      "infraestructura_aulas",
+      "satisfaccion_general"
+    ],
+    "likert_cols": [
+      "claridad_clases",
+      "organizacion_programa",
+      "disponibilidad_docentes",
+      "uso_tecnologia",
+      "relevancia_contenidos",
+      "evaluacion_aprendizaje",
+      "infraestructura_aulas",
+      "satisfaccion_general"
+    ],
+    "likert_columns": [
+      "claridad_clases",
+      "organizacion_programa",
+      "disponibilidad_docentes",
+      "uso_tecnologia",
+      "relevancia_contenidos",
+      "evaluacion_aprendizaje",
+      "infraestructura_aulas",
+      "satisfaccion_general"
+    ],
+    "means_by_item": {
+      "relevancia_contenidos": 5.245,
+      "disponibilidad_docentes": 5.195,
+      "claridad_clases": 5.175,
+      "organizacion_programa": 5.075,
+      "satisfaccion_general": 5.01,
+      "evaluacion_aprendizaje": 4.965,
+      "uso_tecnologia": 4.85,
+      "infraestructura_aulas": 4.75
+    },
+    "item_stats": [
+      {
+        "item": "claridad_clases",
+        "mean": 5.175,
+        "median": 5.0,
+        "std": 1.136146621580438,
+        "n_valid": 200
+      },
+      {
+        "item": "organizacion_programa",
+        "mean": 5.075,
+        "median": 5.0,
+        "std": 1.1731394978462857,
+        "n_valid": 200
+      },
+      {
+        "item": "disponibilidad_docentes",
+        "mean": 5.195,
+        "median": 5.0,
+        "std": 1.0642547584835005,
+        "n_valid": 200
+      },
+      {
+        "item": "uso_tecnologia",
+        "mean": 4.85,
+        "median": 5.0,
+        "std": 1.1977785132628533,
+        "n_valid": 200
+      },
+      {
+        "item": "relevancia_contenidos",
+        "mean": 5.245,
+        "median": 5.0,
+        "std": 1.077394493429571,
+        "n_valid": 200
+      },
+      {
+        "item": "evaluacion_aprendizaje",
+        "mean": 4.965,
+        "median": 5.0,
+        "std": 1.1750227197632388,
+        "n_valid": 200
+      },
+      {
+        "item": "infraestructura_aulas",
+        "mean": 4.75,
+        "median": 5.0,
+        "std": 1.3176421762081743,
+        "n_valid": 200
+      },
+      {
+        "item": "satisfaccion_general",
+        "mean": 5.01,
+        "median": 5.0,
+        "std": 0.7297690141889772,
+        "n_valid": 200
+      }
+    ],
+    "cronbach_alpha": 0.6986711502850569,
+    "cronbach_text": "El alfa de Cronbach global fue 0.6987 (Cuestionable).",
+    "top_item": "relevancia_contenidos",
+    "top_mean": 5.245,
+    "low_item": "infraestructura_aulas",
+    "low_mean": 4.75,
+    "global_mean": 5.033125,
+    "alpha_if_deleted": [],
+    "dimension_alpha": [],
+    "results_text": "",
+    "survey_insights": "",
+    "cronbach_plot": "ds6_cronbach.png",
+    "kmo_report": {
+      "kmo_global": 0.6451005950524467,
+      "kmo_per_item": {
+        "claridad_clases": 0.6640535435002175,
+        "organizacion_programa": 0.7738981730371272,
+        "disponibilidad_docentes": 0.7216466283024685,
+        "uso_tecnologia": 0.6225172997833175,
+        "relevancia_contenidos": 0.704441666906974,
+        "evaluacion_aprendizaje": 0.5419982894539451,
+        "infraestructura_aulas": 0.6712231359188229,
+        "satisfaccion_general": 0.5897835333808432
+      }
+    },
+    "bartlett_report": {
+      "chi2": 384.3836258181119,
+      "p_value": 2.862017905379821e-64
+    },
+    "efa_report": {
+      "n_factors": 2,
+      "rotation": "varimax",
+      "eigenvalues": [
+        2.9246211713806605,
+        1.011308555087099,
+        0.9459403735586616,
+        0.8167549101953012,
+        0.7513608166145195,
+        0.7344606630756018,
+        0.6428650595806551,
+        0.17268845050750672
+      ],
+      "loadings": {
+        "Factor_1": {
+          "claridad_clases": 0.4945,
+          "organizacion_programa": 0.4326,
+          "disponibilidad_docentes": 0.329,
+          "uso_tecnologia": 0.264,
+          "relevancia_contenidos": 0.366,
+          "evaluacion_aprendizaje": 0.0499,
+          "infraestructura_aulas": 0.5673,
+          "satisfaccion_general": 0.8272
+        },
+        "Factor_2": {
+          "claridad_clases": 0.1371,
+          "organizacion_programa": 0.2172,
+          "disponibilidad_docentes": 0.3007,
+          "uso_tecnologia": 0.2519,
+          "relevancia_contenidos": 0.3288,
+          "evaluacion_aprendizaje": 0.5518,
+          "infraestructura_aulas": 0.0352,
+          "satisfaccion_general": 0.6072
+        }
+      },
+      "communalities": [
+        {
+          "Ítem": "claridad_clases",
+          "Comunalidad": 0.2634
+        },
+        {
+          "Ítem": "organizacion_programa",
+          "Comunalidad": 0.2343
+        },
+        {
+          "Ítem": "disponibilidad_docentes",
+          "Comunalidad": 0.1986
+        },
+        {
+          "Ítem": "uso_tecnologia",
+          "Comunalidad": 0.1332
+        },
+        {
+          "Ítem": "relevancia_contenidos",
+          "Comunalidad": 0.2421
+        },
+        {
+          "Ítem": "evaluacion_aprendizaje",
+          "Comunalidad": 0.307
+        },
+        {
+          "Ítem": "infraestructura_aulas",
+          "Comunalidad": 0.3231
+        },
+        {
+          "Ítem": "satisfaccion_general",
+          "Comunalidad": 1.0528
+        }
+      ],
+      "variance": [
+        {
+          "Factor": "Factor_1",
+          "SS_Loadings": 1.7521,
+          "Proportion_Var": 0.219,
+          "Cumulative_Var": 0.219
+        },
+        {
+          "Factor": "Factor_2",
+          "SS_Loadings": 1.0023,
+          "Proportion_Var": 0.1253,
+          "Cumulative_Var": 0.3443
+        }
+      ],
+      "factor_interpretation": "No fue posible identificar una estructura factorial interpretable a partir de las cargas obtenidas.",
+      "factor_structure": [],
+      "factor_model_plot": null
+    },
+    "factor_interpretation": "No fue posible identificar una estructura factorial interpretable a partir de las cargas obtenidas.",
+    "factor_structure": [],
+    "factor_model_plot": null,
+    "psychometric_interpretation": "El índice KMO global fue de 0.645, lo que indica una adecuación muestral aceptable. La prueba de esfericidad de Bartlett fue significativa, lo que indica que la matriz de correlaciones es adecuada para análisis factorial. El análisis factorial exploratorio sugirió una estructura de 2 factor(es). La varianza acumulada explicada por la solución factorial fue de 34.43%. En conjunto, estos resultados aportan evidencia sobre la estructura interna del instrumento y respaldan su utilidad para fines de investigación."
+  }
+}

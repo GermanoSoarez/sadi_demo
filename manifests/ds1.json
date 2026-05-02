@@ -1,0 +1,123 @@
+{
+  "plots": [],
+  "meta": {},
+  "model_results": {
+    "rf_result": {
+      "target_col": "soil_ph",
+      "n_rows": 300,
+      "n_predictors": 7,
+      "r2": -0.282539,
+      "mae": 0.361962,
+      "rmse": 0.460565,
+      "feature_importance_table": [
+        {
+          "variable": "crop_yield_t_ha",
+          "importance": 0.217417
+        },
+        {
+          "variable": "phosphorus",
+          "importance": 0.145143
+        },
+        {
+          "variable": "nitrogen",
+          "importance": 0.141529
+        },
+        {
+          "variable": "soil_moisture",
+          "importance": 0.132525
+        },
+        {
+          "variable": "rainfall_mm",
+          "importance": 0.130059
+        },
+        {
+          "variable": "temperature_c",
+          "importance": 0.117832
+        },
+        {
+          "variable": "potassium",
+          "importance": 0.115495
+        }
+      ],
+      "interpretation": [
+        "El modelo Random Forest muestra un ajuste predictivo limitado.",
+        "Las variables más influyentes en la predicción son: crop_yield_t_ha, phosphorus, nitrogen."
+      ],
+      "interpretacion": "Random Forest presenta un ajuste muy bajo (R²=-0.28).",
+      "pred_plot": "plots/ds1_rf_pred_vs_real.png",
+      "importance_plot": "plots/ds1_rf_feature_importance.png"
+    },
+    "regression_result": {
+      "target_col": "soil_ph",
+      "predictor_cols": [
+        "soil_moisture",
+        "nitrogen",
+        "phosphorus",
+        "potassium",
+        "rainfall_mm",
+        "temperature_c",
+        "crop_yield_t_ha"
+      ],
+      "n_predictors": 7,
+      "n_rows": 300,
+      "intercept": 6.486805,
+      "r2": -0.070399,
+      "adj_r2": -0.182232,
+      "mae": 0.322496,
+      "rmse": 0.420755,
+      "coeff_table": [
+        {
+          "variable": "crop_yield_t_ha",
+          "coefficient": 0.084135,
+          "abs_coefficient": 0.084135
+        },
+        {
+          "variable": "phosphorus",
+          "coefficient": 0.033221,
+          "abs_coefficient": 0.033221
+        },
+        {
+          "variable": "potassium",
+          "coefficient": 0.030911,
+          "abs_coefficient": 0.030911
+        },
+        {
+          "variable": "rainfall_mm",
+          "coefficient": 0.029266,
+          "abs_coefficient": 0.029266
+        },
+        {
+          "variable": "soil_moisture",
+          "coefficient": -0.02457,
+          "abs_coefficient": 0.02457
+        },
+        {
+          "variable": "temperature_c",
+          "coefficient": -0.020519,
+          "abs_coefficient": 0.020519
+        },
+        {
+          "variable": "nitrogen",
+          "coefficient": -0.01923,
+          "abs_coefficient": 0.01923
+        }
+      ],
+      "pred_vs_real_image": "ds1_regression_pred_vs_real.png",
+      "residuals_image": "ds1_regression_residuals.png",
+      "coefficients_image": "ds1_regression_coefficients.png",
+      "interpretation": [
+        "Las variables con mayor peso relativo en el modelo fueron crop_yield_t_ha, phosphorus, potassium.",
+        "El modelo alcanzó un R² de -0.0704 y un R² ajustado de -0.1822.",
+        "El ajuste del modelo es bajo y conviene revisar variables o probar otros enfoques."
+      ],
+      "interpretacion": "El modelo presenta un nivel de explicación muy bajo (R²=-0.07)."
+    }
+  },
+  "best_model_selection": {
+    "target_col": "crop_yield_t_ha",
+    "problem_type": "regression",
+    "best_model": null,
+    "reason": "No hay suficiente información para recomendar un modelo con seguridad.",
+    "comparison_summary": []
+  }
+}

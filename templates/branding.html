@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Branding — SADI{% endblock %}
+{% block content %}
+<div class="card">
+  <h2>Branding del reporte</h2>
+  <p class="meta">Sube el logo institucional (se usará en el encabezado del PDF).</p>
+  {% if has_logo %}
+    <p><b>Logo actual:</b></p>
+    <img src="{{ url_for('static', filename='branding/logo.png') }}"
+         style="max-width:280px;border:1px solid #1f2a44;border-radius:8px"/>
+  {% else %}
+    <p class="meta">No hay logo cargado todavía.</p>
+  {% endif %}
+  <form action="{{ url_for('admin_branding') }}" method="post" enctype="multipart/form-data" style="margin-top:12px">
+    <input type="file" name="logo" accept="image/*" required/>
+    <button class="btn" type="submit">Guardar logo</button>
+  </form>
+</div>
+{% endblock %}
