@@ -6,6 +6,7 @@ itsdangerous==2.2.0
 
 SQLAlchemy==2.0.32
 psycopg2-binary==2.9.9
+psycopg[binary]==3.2.1
 
 pandas==2.0.3
 numpy==1.24.4
