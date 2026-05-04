@@ -12,7 +12,7 @@ from sqlalchemy import inspect, select
 from config import Settings, STATIC_DIR, TEMPLATES_DIR, PLOTS_DIR, UPLOAD_DIR, MANIFESTS_DIR
 import extensions as ext
 from models import Base, User
-
+from models import Dataset
 # blueprints
 from blueprints.auth.routes import auth_bp
 from blueprints.dataset.routes import dataset_bp
@@ -198,7 +198,75 @@ def create_app() -> Flask:
     app.register_blueprint(multivariate_bp)
 
     return app
+    @app.get("/demo/preparar", endpoint="preparar_demo")
+    def preparar_demo():
+                import os
+                import shutil
+                from datetime import datetime
+                from sqlalchemy import select
+                from flask import flash, redirect, url_for
+                from flask_login import current_user
+                from models import Dataset
 
+                BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+                archivos_demo = [
+                    ("Encuesta normal - Demo", "alumnos.csv", "survey_normal", "educacion"),
+                    ("Likert 7 puntos - Demo", "dataset_likert_7_sadi.csv", "likert_7", "educacion"),
+                    ("Multivariate - Demo", "agronomy_multivariate.csv", "multivariate", "educacion"),
+                ]
+
+                with SessionLocal() as db:
+                    for titulo, archivo, dataset_type, research_area in archivos_demo:
+                        origen = os.path.join(BASE_DIR, "demo_data", archivo)
+
+                        if not os.path.exists(origen):
+                            flash(f"No existe el archivo demo: {archivo}", "danger")
+                            continue
+
+                        existente = db.execute(
+                            select(Dataset).where(
+                                Dataset.user_id == current_user.id,
+                                Dataset.original_name == archivo
+                            )
+                        ).scalar_one_or_none()
+
+                        destino = os.path.join(UPLOAD_DIR, archivo)
+                        shutil.copyfile(origen, destino)
+
+                        df = pd.read_csv(destino)
+
+                        if existente:
+                            existente.title = titulo
+                            existente.filename = archivo
+                            existente.original_name = archivo
+                            existente.delimiter = ","
+                            existente.n_rows = int(df.shape[0])
+                            existente.n_cols = int(df.shape[1])
+                            existente.dataset_type = dataset_type
+                            existente.research_area = research_area
+                            existente.analysis_cache = None
+                            existente.uploaded_at = datetime.utcnow()
+                        else:
+                            ds = Dataset(
+                                user_id=current_user.id,
+                                title=titulo,
+                                filename=archivo,
+                                original_name=archivo,
+                                delimiter=",",
+                                n_rows=int(df.shape[0]),
+                                n_cols=int(df.shape[1]),
+                                dataset_type=dataset_type,
+                                research_area=research_area,
+                                analysis_cache=None,
+                                uploaded_at=datetime.utcnow(),
+                            )
+                            db.add(ds)
+
+                    db.commit()
+
+                flash("Demo preparado: 3 datasets cargados en SADI.", "success")
+                return redirect(url_for("dataset.dashboard"))
 
 app = create_app()
 
