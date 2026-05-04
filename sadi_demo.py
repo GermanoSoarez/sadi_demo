@@ -4,7 +4,7 @@ import os
 import threading
 import time
 import webbrowser
-
+import pandas as pd
 from flask import Flask, redirect, session, url_for
 from flask_login import current_user, login_user
 from sqlalchemy import inspect, select
@@ -166,13 +166,13 @@ def create_app() -> Flask:
     with engine.connect() as conn:
         conn.exec_driver_sql("SELECT 1")
     print(f"✅ SQLite DEMO OK -> {DEMO_DB_PATH}")
-
+    
     @app.before_request
     def _demo_auto_setup():
         # Siempre premium en demo
         session["ES_VERSION_PREMIUM"] = True
         app.config["ES_VERSION_PREMIUM"] = True
-
+        
         # Autologin del usuario demo
         if not current_user.is_authenticated:
             with SessionLocal() as db:
@@ -197,7 +197,6 @@ def create_app() -> Flask:
     app.register_blueprint(survey_bp)
     app.register_blueprint(multivariate_bp)
 
-    return app
     @app.get("/demo/preparar", endpoint="preparar_demo")
     def preparar_demo():
                 import os
@@ -212,8 +211,8 @@ def create_app() -> Flask:
 
                 archivos_demo = [
                     ("Encuesta normal - Demo", "alumnos.csv", "survey_normal", "educacion"),
-                    ("Likert 7 puntos - Demo", "dataset_likert_7_sadi.csv", "likert_7", "educacion"),
-                    ("Multivariate - Demo", "agronomy_multivariate.csv", "multivariate", "educacion"),
+                    ("Likert 7 puntos - Demo", "dataset_likert_7_sadi.csv", "survey_likert_7", "educacion"),
+                    ("Multivariate - Demo", "agronomy_multivariate.csv", "multivariate", "agronomía"),
                 ]
 
                 with SessionLocal() as db:
@@ -267,7 +266,7 @@ def create_app() -> Flask:
 
                 flash("Demo preparado: 3 datasets cargados en SADI.", "success")
                 return redirect(url_for("dataset.dashboard"))
-
+    return app
 app = create_app()
 
 

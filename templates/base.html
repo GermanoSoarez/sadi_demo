@@ -204,7 +204,12 @@
 
       <button id="navToggle" class="nav-toggle" type="button">☰ Menú</button>
 
-      <nav id="topbarLinks">
+      <div style="margin: 15px 0;">
+      <a href="{{ url_for('preparar_demo') }}"
+        style="background:#007bff; color:white; padding:10px 15px; border-radius:5px; text-decoration:none;">
+        🚀 Cargar Demo con 3 datasets
+      </a>
+    </div>
         <a href="{{ url_for('home') }}" class="btn secondary">Inicio</a>
         <a href="{{ url_for('dataset.dashboard') }}" class="btn">Panel</a>
 
