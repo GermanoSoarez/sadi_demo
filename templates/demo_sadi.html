@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+
+  <h1>Demo SADI 2.0</h1>
+  <p>
+    Estos son tres datasets de ejemplo ya cargados y analizados automáticamente.
+  </p>
+
+  {% for ds in datasets %}
+  <div class="card" style="margin-bottom:20px; padding:20px;">
+    <h2>{{ ds.titulo }}</h2>
+
+    <p><strong>Archivo:</strong> {{ ds.archivo }}</p>
+    <p><strong>Filas:</strong> {{ ds.filas }}</p>
+    <p><strong>Columnas:</strong> {{ ds.columnas }}</p>
+    <p><strong>Datos faltantes:</strong> {{ ds.faltantes }}%</p>
+
+    <h4>Variables detectadas</h4>
+    <ul>
+      {% for v in ds.variables %}
+      <li>{{ v }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endfor %}
+
+</div>
+{% endblock %}
